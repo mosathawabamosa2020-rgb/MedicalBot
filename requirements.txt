@@ -2,4 +2,4 @@
 #    uv pip compile pyproject.toml --output-file=requirements.txt
 python-telegram-bot==22.5
 # via python-template (pyproject.toml)
-groq==1.10.0
+groq==0.34.0
