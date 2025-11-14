@@ -3,3 +3,4 @@
 python-telegram-bot==22.5
 # via python-template (pyproject.toml)
 groq==0.34.0
+Pillow==10.4.0
