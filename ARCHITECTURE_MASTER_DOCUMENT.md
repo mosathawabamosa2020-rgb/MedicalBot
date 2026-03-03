@@ -11,7 +11,7 @@ This document codifies the architecture of the **Medical Content Platform**. The
 Core principles:
 
 1. **Governance at the Reference level** – a Reference is the atomic unit of review, not its individual sections.
-2. **Append‑only history** – any change, especially in verification, is recorded via log tables (e.g. `VerificationLog`, `SectionAuditLog`).
+2. **Append‑only history** – any change, especially in verification, is recorded via log tables (e.g. `VerificationLog`).
 3. **Separation of concerns** – layers are cleanly divided (UI → API → service logic → state machine → database) and interactions are mediated through well‑defined contracts.
 4. **Test‑first safety** – every feature is accompanied by unit and integration tests; regressions are caught early.
 5. **Transparency & traceability** – state transitions and data mutations occur in explicit transactions, with indexes to support efficient queries.
@@ -68,7 +68,7 @@ Governance revolves around `Reference` status changes and verification logs.
      - `500` on server error
 
 5. **GET /api/admin/metrics**
-   - **Response**: `{ deviceCount, articleCount, sectionCount, statusGroups, statusBreakdown }` computed by `MetricsService`.
+   - **Response**: `{ deviceCount, articleCount, sectionCount }` computed by `MetricsService`.
 
 Other ancillary endpoints cover ingestion control (`/api/admin/ingestion/import`, `/api/admin/ingestion/run-worker`), library search, planner, etc., but they conform to the same pattern: simple JSON APIs guarded by `withAdminAuth` when necessary.
 
@@ -91,7 +91,6 @@ model User {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   devices   Device[]
-  auditLog  SectionAuditLog[]
   verificationLogs VerificationLog[]
 }
 
@@ -114,6 +113,7 @@ model Reference {
   parsedText      String?
   pageCount       Int?
   status          ReferenceStatus @default(pending_ingestion)
+  // version is a content version counter; it increments when a reference is re‑processed or re‑extracted, not during normal verification transitions.
   uploadedAt      DateTime         @default(now())
   version         Int              @default(1)
   processingDate  DateTime?
@@ -133,7 +133,7 @@ enum ReferenceStatus {
   pending_review
   verified
   rejected
-  archived
+  archived  // terminal administrative state; not active in any automated workflow. Use requires explicit architectural approval.
 }
 
 model Section {
@@ -145,15 +145,7 @@ model Section {
   title       String
   content     String        @db.Text
   order       Int
-  status      SectionStatus @default(ingested)
   createdAt   DateTime      @default(now())
-  auditLog    SectionAuditLog[]
-}
-
-enum SectionStatus {
-  ingested
-  verified
-  rejected
 }
 
 model VerificationLog {
@@ -171,7 +163,7 @@ model VerificationLog {
 }
 ```
 
-Other tables (`Device`, `KnowledgeChunk`, `SectionAuditLog`, etc.) support the broader platform but are peripheral to governance.
+Other tables (`Device`, `KnowledgeChunk`, etc.) support the broader platform but are peripheral to governance.
 
 ---
 
@@ -216,7 +208,6 @@ An architectural review consists of verifying:
 ### 6.3 Definition of Architectural Regression
 An architectural regression occurs when code reintroduces any of the following:
 - Bypassing the service layer from UI pages.
-- Mutating `Section.status` outside audit‑logged endpoints.
 - Adding new cross‑cutting concerns (e.g. global state) without explicit team approval.
 - Hard‑coding database credentials or bypassing Prisma.
 - Breaking any existing public API contract without a documented deprecation strategy.
@@ -239,10 +230,8 @@ These rules are enforced by the Technical Supervisor prior to any branch merging
 ```mermaid
 erDiagram
     USER ||--o{ VERIFICATIONLOG : writes
-    USER ||--o{ SECTIONAUDITLOG : creates
     REFERENCE ||--o{ SECTION : contains
     REFERENCE ||--o{ VERIFICATIONLOG : has
-    SECTION ||--o{ SECTIONAUDITLOG : logs
 
     USER {
         String id PK
@@ -257,7 +246,6 @@ erDiagram
     }
     SECTION {
         String id PK
-        String status
         Int order
     }
     VERIFICATIONLOG {
@@ -265,11 +253,6 @@ erDiagram
         String decision
         String comment
         DateTime createdAt
-    }
-    SECTIONAUDITLOG {
-        String id PK
-        String previousStatus
-        String newStatus
     }
 ```
 
@@ -305,7 +288,6 @@ sequenceDiagram
     API->>DB: insert VerificationLog
     DB-->>API: commit
     API-->>UI: 200 OK / 409 Conflict
-    note over API,DB: Worker picks up status change
 ```
 
 (Worker represents any background process that may react to the new status, e.g. cache invalidation.)
