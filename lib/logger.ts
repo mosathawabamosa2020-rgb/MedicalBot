@@ -1,0 +1,22 @@
+import pino from 'pino'
+
+let logger: pino.Logger
+
+function createLogger(): pino.Logger {
+  if (process.env.NODE_ENV !== 'production') {
+    try {
+      // pino.transport exists in newer pino versions; cast to any to avoid TS issues
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      const transport = (pino as any).transport ? (pino as any).transport({ target: 'pino-pretty', options: { colorize: true } }) : undefined
+      return transport ? pino(transport) : pino()
+    } catch (e) {
+      return pino()
+    }
+  }
+  return pino()
+}
+
+logger = createLogger()
+
+export default logger

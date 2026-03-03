@@ -1,0 +1,158 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DATABASE_URL") // This is the new, important line
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  name      String?
+  password  String
+  role      Role     @default(editor)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  devices   Device[]
+  auditLog  SectionAuditLog[]
+  verificationLogs VerificationLog[]
+}
+
+enum Role {
+  admin
+  reviewer
+  editor
+}
+
+model Device {
+  id                 String              @id @default(cuid())
+  name               String
+  model              String
+  description        String?
+  createdBy          User?               @relation(fields: [createdById], references: [id])
+  createdById        String?
+  createdAt          DateTime            @default(now())
+  updatedAt          DateTime            @updatedAt
+  references         Reference[] // This line is now active again
+  plannerSuggestions PlannerSuggestion[]
+  sections           Section[]
+
+  @@unique([name, model], name: "unique_name_model")
+}
+
+model Reference {
+  id              String           @id @default(cuid())
+  device          Device           @relation(fields: [deviceId], references: [id])
+  deviceId        String
+  title           String
+  filePath        String? // path to uploaded file in storage
+  sourceUrl       String? // optional link to original web page
+  sourceName      String? // e.g., "PubMed"
+  sourceId        String? // e.g., PubMed ID
+  sourceReliabilityScore Float? @default(0.0)
+  parsedText      String? // extracted text content (searchable)
+  pageCount       Int?
+  status          ReferenceStatus @default(pending_ingestion)
+  uploadedAt      DateTime         @default(now())
+  version         Int              @default(1)
+  processingDate  DateTime?
+  knowledgeChunks KnowledgeChunk[]
+  sections        Section[]
+  ingestionLogs   IngestionLog[]
+  verificationLogs VerificationLog[]
+
+  @@index([status])
+  @@index([uploadedAt])
+}
+
+enum ReferenceStatus {
+  pending_ingestion
+  processing
+  processed
+  pending_review
+  verified
+  rejected
+  archived
+}
+
+model KnowledgeChunk {
+  id          String                 @id @default(cuid())
+  reference   Reference              @relation(fields: [referenceId], references: [id])
+  referenceId String
+  content     String                 @db.Text
+  category    String
+  pageNumber  Int
+  embedding   Unsupported("vector")?
+  createdAt   DateTime               @default(now())
+}
+
+model VerificationLog {
+  id          String    @id @default(cuid())
+  reference   Reference @relation(fields: [referenceId], references: [id])
+  referenceId String
+  reviewer    User      @relation(fields: [reviewerId], references: [id])
+  reviewerId  String
+  decision    String
+  comment     String?
+  createdAt   DateTime  @default(now())
+
+  @@index([referenceId])
+  @@index([reviewerId])
+}
+
+model PlannerSuggestion {
+  id          String   @id @default(cuid())
+  device      Device   @relation(fields: [deviceId], references: [id])
+  deviceId    String
+  topic       String
+  referenceId String?
+  page        Int?
+  snippet     String?
+  score       Float?
+  createdAt   DateTime @default(now())
+}
+
+enum SectionStatus {
+  ingested
+  verified
+  rejected
+}
+
+model Section {
+  id          String        @id @default(cuid())
+  device      Device        @relation(fields: [deviceId], references: [id])
+  deviceId    String
+  reference   Reference     @relation(fields: [referenceId], references: [id])
+  referenceId String
+  title       String
+  content     String        @db.Text
+  order       Int
+  status      SectionStatus @default(ingested)
+  createdAt   DateTime      @default(now())
+  auditLog    SectionAuditLog[]
+}
+
+model SectionAuditLog {
+  id             String        @id @default(cuid())
+  section        Section       @relation(fields: [sectionId], references: [id])
+  sectionId      String
+  user           User?         @relation(fields: [userId], references: [id])
+  userId         String?
+  previousStatus SectionStatus
+  newStatus      SectionStatus
+  createdAt      DateTime      @default(now())
+}
+
+model IngestionLog {
+  id          String   @id @default(cuid())
+  reference   Reference? @relation(fields: [referenceId], references: [id])
+  referenceId String?
+  message     String
+  createdAt   DateTime @default(now())
+}
