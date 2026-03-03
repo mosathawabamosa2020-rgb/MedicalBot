@@ -5,7 +5,6 @@ type PrismaMock = any
 jest.mock('@prisma/client', () => {
   const mPrisma: any = {
     section: { findMany: jest.fn(), findUnique: jest.fn(), update: jest.fn(), groupBy: jest.fn(), count: jest.fn() },
-    sectionAuditLog: { create: jest.fn() },
     reference: { count: jest.fn() },
     device: { count: jest.fn() },
     $disconnect: jest.fn(),
@@ -45,33 +44,12 @@ describe('admin sections API', () => {
     expect(JSON.parse(res._getData())).toEqual(fake)
   })
 
-  test('verify POST updates status', async () => {
-    PrismaClient().section.findUnique.mockResolvedValue({ id: '1', status: 'ingested' })
-    PrismaClient().section.update.mockResolvedValue({})
-    const { req, res } = createMocks({ method: 'POST', query: { id: '1' } })
-    const handler = require('../pages/api/admin/sections/[id]/verify').default
-    await handler(req as any, res as any)
-    expect(res._getStatusCode()).toBe(200)
-    expect(PrismaClient().section.update).toHaveBeenCalledWith({ where: { id: '1' }, data: { status: 'verified' } })
-    expect(PrismaClient().sectionAuditLog.create).toHaveBeenCalledWith(expect.objectContaining({ data: expect.objectContaining({ sectionId: '1', userId: 'u1', previousStatus: 'ingested', newStatus: 'verified' }) }))
-  })
-
-  test('reject POST updates status', async () => {
-    PrismaClient().section.findUnique.mockResolvedValue({ id: '1', status: 'ingested' })
-    PrismaClient().section.update.mockResolvedValue({})
-    const { req, res } = createMocks({ method: 'POST', query: { id: '1' } })
-    const handler = require('../pages/api/admin/sections/[id]/reject').default
-    await handler(req as any, res as any)
-    expect(res._getStatusCode()).toBe(200)
-    expect(PrismaClient().section.update).toHaveBeenCalledWith({ where: { id: '1' }, data: { status: 'rejected' } })
-    expect(PrismaClient().sectionAuditLog.create).toHaveBeenCalledWith(expect.objectContaining({ data: expect.objectContaining({ sectionId: '1', userId: 'u1', previousStatus: 'ingested', newStatus: 'rejected' }) }))
-  })
 
   test('metrics returns counts', async () => {
     PrismaClient().device.count.mockResolvedValue(5)
     PrismaClient().reference.count.mockResolvedValue(10)
     PrismaClient().section.count.mockResolvedValue(20)
-    PrismaClient().section.groupBy.mockResolvedValue([{ status: 'ingested', _count: { status: 15 } }])
+    PrismaClient().section.groupBy.mockResolvedValue([])
 
     const { req, res } = createMocks({ method: 'GET' })
     const handler = require('../pages/api/admin/metrics').default

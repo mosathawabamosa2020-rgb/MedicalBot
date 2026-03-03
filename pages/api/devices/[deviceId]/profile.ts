@@ -8,12 +8,12 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   if (req.method !== 'GET') return res.status(405).end()
   if (typeof deviceId !== 'string') return res.status(400).json({ error: 'Invalid id' })
   try {
-    // try to load structured sections first (exclude rejected)
-    const sections = await prisma.section.findMany({ where: { deviceId, status: { not: 'rejected' } }, orderBy: { order: 'asc' } })
+    // try to load structured sections first
+    const sections = await prisma.section.findMany({ where: { deviceId }, orderBy: { order: 'asc' } })
     if (sections && sections.length) {
       const profile: Record<string, any> = {}
       for (const s of sections) {
-        profile[s.title] = { content: s.content, status: s.status }
+        profile[s.title] = { content: s.content }
       }
       return res.status(200).json({ deviceId, profile })
     }

@@ -49,7 +49,6 @@ npm run dev
 
 Notes
 - The script `tools/create_admin.js` will create or update an existing user and set the role to `admin`.
-- After migrations, regenerate Prisma client to refresh typings (so `sectionAuditLog` appears on the client).
 - Legacy front‑end pieces (planner, workshop, and associated planner APIs) have been moved into `/archive` and are no longer served. Only the governance dashboard is exposed by default via the homepage.
 - Health endpoints are now split:
   * `GET /api/health/system` returns `{ status: "ok" }` for simple liveness.

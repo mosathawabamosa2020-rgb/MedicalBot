@@ -21,11 +21,11 @@ describe('profile API', () => {
     jest.clearAllMocks()
   })
 
-  test('returns sections with status when available', async () => {
+  test('returns sections when available', async () => {
     const { req, res } = createMocks({ method: 'GET', query: { deviceId: 'dev1' } })
     const fakeSections = [
-      { title: 'A', content: '1', status: 'ingested' },
-      { title: 'B', content: '2', status: 'verified' }
+      { title: 'A', content: '1' },
+      { title: 'B', content: '2' }
     ]
     const { PrismaClient } = require('@prisma/client')
     PrismaClient().section.findMany.mockResolvedValue(fakeSections)
@@ -33,8 +33,8 @@ describe('profile API', () => {
     await handler(req as any, res as any)
     expect(res._getStatusCode()).toBe(200)
     const data = JSON.parse(res._getData())
-    expect(data.profile).toEqual({ A: { content: '1', status: 'ingested' }, B: { content: '2', status: 'verified' } })
-    expect(PrismaClient().section.findMany).toHaveBeenCalledWith({ where: { deviceId: 'dev1', status: { not: 'rejected' } }, orderBy: { order: 'asc' } })
+    expect(data.profile).toEqual({ A: { content: '1' }, B: { content: '2' } })
+    expect(PrismaClient().section.findMany).toHaveBeenCalledWith({ where: { deviceId: 'dev1' }, orderBy: { order: 'asc' } })
   })
 
   test('falls back to knowledge chunks when no sections', async () => {

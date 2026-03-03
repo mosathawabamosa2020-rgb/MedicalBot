@@ -8,7 +8,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method !== 'GET') return res.status(405).end()
   try {
     const sections = await prisma.section.findMany({
-      where: { status: 'ingested' },
+      // no status field: return all sections for review purposes
       include: { reference: { select: { id: true, filePath: true, sourceUrl: true, title: true, version: true } } },
       orderBy: { createdAt: 'asc' }
     })

@@ -20,7 +20,6 @@ model User {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   devices   Device[]
-  auditLog  SectionAuditLog[]
   verificationLogs VerificationLog[]
 }
 
@@ -118,11 +117,6 @@ model PlannerSuggestion {
   createdAt   DateTime @default(now())
 }
 
-enum SectionStatus {
-  ingested
-  verified
-  rejected
-}
 
 model Section {
   id          String        @id @default(cuid())
@@ -133,21 +127,9 @@ model Section {
   title       String
   content     String        @db.Text
   order       Int
-  status      SectionStatus @default(ingested)
   createdAt   DateTime      @default(now())
-  auditLog    SectionAuditLog[]
 }
 
-model SectionAuditLog {
-  id             String        @id @default(cuid())
-  section        Section       @relation(fields: [sectionId], references: [id])
-  sectionId      String
-  user           User?         @relation(fields: [userId], references: [id])
-  userId         String?
-  previousStatus SectionStatus
-  newStatus      SectionStatus
-  createdAt      DateTime      @default(now())
-}
 
 model IngestionLog {
   id          String   @id @default(cuid())
