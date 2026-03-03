@@ -284,7 +284,7 @@ sequenceDiagram
     }
     API->>DB: begin transaction
     DB-->>API: lock reference row
-    API->>DB: update Reference.status, version++, processingDate
+    API->>DB: update Reference.status, processingDate
     API->>DB: insert VerificationLog
     DB-->>API: commit
     API-->>UI: 200 OK / 409 Conflict

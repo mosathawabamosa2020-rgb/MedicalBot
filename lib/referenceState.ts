@@ -11,9 +11,10 @@ const allowedTransitions: Record<ReferenceStatus, ReferenceStatus[]> = {
   pending_ingestion: ['processing'],
   processing: ['pending_review'],
   processed: ['pending_review'],
-  pending_review: ['verified', 'rejected', 'archived'],
-  verified: ['archived'],
-  rejected: ['archived'],
+  // archived is reserved and currently unreachable via normal transitions
+  pending_review: ['verified', 'rejected'],
+  verified: [],
+  rejected: [],
   archived: []
 }
 
