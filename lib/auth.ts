@@ -1,7 +1,8 @@
 import { PrismaClient } from '@prisma/client'
 import CredentialsProvider from 'next-auth/providers/credentials'
 import bcrypt from 'bcryptjs'
-import NextAuth from 'next-auth'
+import type { JWT } from 'next-auth/jwt'
+import type { Session, User } from 'next-auth'
 
 const prisma = new PrismaClient()
 
@@ -35,9 +36,9 @@ export const authOptions = {
       }
     })
   ],
-  session: { strategy: 'jwt' },
+  session: { strategy: 'jwt', maxAge: 8 * 60 * 60, updateAge: 60 * 60 },
   callbacks: {
-    async jwt({ token, user }) {
+    async jwt({ token, user }: { token: JWT; user?: User }) {
       if (user) token.role = (user as any).role || token.role
       if (user) {
         // also store sub for compatibility with default NextAuth JWT
@@ -45,7 +46,7 @@ export const authOptions = {
       }
       return token
     },
-    async session({ session, token }) {
+    async session({ session, token }: { session: Session; token: JWT }) {
       // avoid calling properties as functions; use token.sub for id
       if (session?.user && token?.sub) {
         session.user.id = token.sub

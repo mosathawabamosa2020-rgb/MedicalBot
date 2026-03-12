@@ -1,29 +1,20 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-import prisma from '../../lib/prisma'
-import logger from '../../lib/logger'
-import Redis from 'ioredis'
-
-const redisUrl = process.env.REDIS_URL || ''
+import { getReadinessSnapshot } from '../../lib/ops/readiness'
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  try {
-    // simple DB check
-    await prisma.$queryRaw`SELECT 1`
-  } catch (e: any) {
-    logger.error(e, 'Database health check failed')
-    return res.status(503).json({ status: 'error', database: 'disconnected', redis: redisUrl ? 'unknown' : 'not-configured' })
-  }
+  if (req.method !== 'GET') return res.status(405).json({ error: 'method not allowed' })
+  const snapshot = await getReadinessSnapshot()
+  const httpStatus = snapshot.overallStatus === 'blocked' ? 503 : 200
 
-  if (redisUrl) {
-    try {
-      const r = new Redis(redisUrl)
-      await r.ping()
-      await r.quit()
-    } catch (e: any) {
-      logger.error(e, 'Redis health check failed')
-      return res.status(503).json({ status: 'error', database: 'connected', redis: 'disconnected' })
-    }
-  }
-
-  return res.status(200).json({ status: 'ok', database: 'connected', redis: redisUrl ? 'connected' : 'not-configured' })
+  return res.status(httpStatus).json({
+    status: snapshot.overallStatus,
+    model: {
+      liveness: '/api/health/system',
+      readiness: '/api/health',
+      dependencies: '/api/health/dependencies',
+    },
+    readiness: snapshot.overallStatus,
+    checks: snapshot.checks,
+    summary: snapshot.summary,
+  })
 }

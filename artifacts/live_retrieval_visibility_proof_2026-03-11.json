@@ -1,0 +1,161 @@
+{
+  "startedAt": "2026-03-10T23:25:39.340Z",
+  "baseUrl": "http://localhost:3000",
+  "inputProof": "live_multi_source_discovery_proof_2026-03-11.json",
+  "referenceIds": [
+    "cmml6n8fl0009ltoraa6u4ld8",
+    "cmml6n8oa000dltoret4vv6dc"
+  ],
+  "updates": [
+    {
+      "referenceId": "cmml6n8fl0009ltoraa6u4ld8",
+      "status": "verified",
+      "sectionsCreated": 2,
+      "processingDate": "2026-03-10T23:25:39.694Z"
+    },
+    {
+      "referenceId": "cmml6n8oa000dltoret4vv6dc",
+      "status": "verified",
+      "sectionsCreated": 2,
+      "processingDate": "2026-03-10T23:25:39.805Z"
+    }
+  ],
+  "paging": [
+    {
+      "referenceId": "cmml6n8fl0009ltoraa6u4ld8",
+      "page": 1,
+      "rankAhead": 1
+    },
+    {
+      "referenceId": "cmml6n8oa000dltoret4vv6dc",
+      "page": 1,
+      "rankAhead": 0
+    }
+  ],
+  "visibility": {
+    "baseUrl": "http://localhost:3000",
+    "libraryRequests": [
+      "http://localhost:3000/api/references/library?limit=20&page=1"
+    ],
+    "libraryResponses": [
+      {
+        "status": 200,
+        "items": [
+          {
+            "id": "cmml6n8oa000dltoret4vv6dc",
+            "sourceUrl": "https://www.rfc-editor.org/rfc/rfc6761",
+            "status": "verified"
+          },
+          {
+            "id": "cmml6n8fl0009ltoraa6u4ld8",
+            "sourceUrl": "https://www.rfc-editor.org/rfc/rfc2606",
+            "status": "verified"
+          },
+          {
+            "id": "cmmcyd4180004b7fik50potib",
+            "sourceUrl": "https://example.test/e2e",
+            "status": "verified"
+          },
+          {
+            "id": "r9855",
+            "sourceUrl": null,
+            "status": "verified"
+          },
+          {
+            "id": "r365",
+            "sourceUrl": null,
+            "status": "verified"
+          },
+          {
+            "id": "r730",
+            "sourceUrl": null,
+            "status": "verified"
+          },
+          {
+            "id": "r1095",
+            "sourceUrl": null,
+            "status": "verified"
+          },
+          {
+            "id": "r1460",
+            "sourceUrl": null,
+            "status": "verified"
+          },
+          {
+            "id": "r1825",
+            "sourceUrl": null,
+            "status": "verified"
+          },
+          {
+            "id": "r2190",
+            "sourceUrl": null,
+            "status": "verified"
+          },
+          {
+            "id": "r2555",
+            "sourceUrl": null,
+            "status": "verified"
+          },
+          {
+            "id": "r2920",
+            "sourceUrl": null,
+            "status": "verified"
+          },
+          {
+            "id": "r3285",
+            "sourceUrl": null,
+            "status": "verified"
+          },
+          {
+            "id": "r3650",
+            "sourceUrl": null,
+            "status": "verified"
+          },
+          {
+            "id": "r4015",
+            "sourceUrl": null,
+            "status": "verified"
+          },
+          {
+            "id": "r4380",
+            "sourceUrl": null,
+            "status": "verified"
+          },
+          {
+            "id": "r4745",
+            "sourceUrl": null,
+            "status": "verified"
+          },
+          {
+            "id": "r5110",
+            "sourceUrl": null,
+            "status": "verified"
+          },
+          {
+            "id": "r5475",
+            "sourceUrl": null,
+            "status": "verified"
+          },
+          {
+            "id": "r5840",
+            "sourceUrl": null,
+            "status": "verified"
+          }
+        ]
+      }
+    ],
+    "matches": [
+      {
+        "id": "cmml6n8oa000dltoret4vv6dc",
+        "sourceUrl": "https://www.rfc-editor.org/rfc/rfc6761",
+        "status": "verified"
+      },
+      {
+        "id": "cmml6n8fl0009ltoraa6u4ld8",
+        "sourceUrl": "https://www.rfc-editor.org/rfc/rfc2606",
+        "status": "verified"
+      }
+    ],
+    "error": null
+  }
+}

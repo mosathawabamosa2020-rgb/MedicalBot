@@ -1,0 +1,25 @@
+{
+  "devFiles": [],
+  "ampDevFiles": [],
+  "polyfillFiles": [],
+  "lowPriorityFiles": [],
+  "rootMainFiles": [],
+  "pages": {
+    "/_error": [
+      "static/chunks/f1872_next_dist_compiled_22039814._.js",
+      "static/chunks/f1872_next_dist_shared_lib_4b9b6028._.js",
+      "static/chunks/f1872_next_dist_client_a1074b57._.js",
+      "static/chunks/f1872_next_dist_0af5676c._.js",
+      "static/chunks/f1872_next_error_1469dfed.js",
+      "static/chunks/[next]_entry_page-loader_ts_560de4b3._.js",
+      "static/chunks/f1872_react_6ce4b864._.js",
+      "static/chunks/f1872_react-dom_cjs_react-dom_development_beea8fd2.js",
+      "static/chunks/f1872_react-dom_00733e11._.js",
+      "static/chunks/f1872_52b78939._.js",
+      "static/chunks/[root-of-the-server]__758bc31e._.js",
+      "static/chunks/medical-content-platform_pages__error_2da965e7._.js",
+      "static/chunks/turbopack-medical-content-platform_pages__error_d626ccd3._.js"
+    ]
+  },
+  "ampFirstPages": []
+}

@@ -2,11 +2,20 @@ require('dotenv').config({ path: '.env.local' })
 const { PrismaClient } = require('@prisma/client')
 const fs = require('fs')
 const pdf = require('pdf-parse')
-const { extractSections } = require('../dist/lib/sectionExtractor')
+let extractSections
+try {
+  ;({ extractSections } = require('../dist/lib/sectionExtractor'))
+} catch {
+  ;({ extractSections } = require('../lib/sectionExtractor'))
+}
 
-async function main() {
-  const p = new PrismaClient()
-  await p.$connect()
+async function reextractAll(prismaClient) {
+  const p = prismaClient || new PrismaClient()
+  let own = false
+  if (!prismaClient) {
+    own = true
+    await p.$connect()
+  }
   try {
     const refs = await p.reference.findMany({})
     for (const r of refs) {
@@ -27,13 +36,17 @@ async function main() {
       }
       // mark reference as reprocessed now
       await p.reference.update({ where: { id: r.id }, data: { processingDate: new Date() } })
-      console.log(`ref ${r.id}: wrote ${sections.length} sections`)  
+      console.log(`ref ${r.id}: wrote ${sections.length} sections`)
     }
-  } catch (e) {
-    console.error(e)
   } finally {
-    await p.$disconnect()
+    if (own) await p.$disconnect()
   }
 }
 
-main()
+// keep cli entrypoint
+if (require.main === module) {
+  (async () => { await reextractAll(); })().catch(e=>{console.error(e);process.exit(1)})
+}
+
+module.exports = { reextractAll }
+

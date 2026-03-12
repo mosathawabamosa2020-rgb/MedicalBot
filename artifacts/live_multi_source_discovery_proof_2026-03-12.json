@@ -1,0 +1,86 @@
+{
+  "startedAt": "2026-03-11T23:10:19.048Z",
+  "baseUrl": "http://127.0.0.1:3000",
+  "deviceId": "cmmmlnbsu0002360xyuqygldi",
+  "queries": [
+    "infusion pump manual",
+    "ecg monitor device",
+    "ventilator medical device"
+  ],
+  "queryResults": [
+    {
+      "query": "infusion pump manual",
+      "results": []
+    },
+    {
+      "query": "ecg monitor device",
+      "results": []
+    },
+    {
+      "query": "ventilator medical device",
+      "results": []
+    }
+  ],
+  "selectedSources": [
+    {
+      "sourceName": "FDA",
+      "title": "FDA 510(k) Hand-Held Irrigation Pump",
+      "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpmn/pmn.cfm?ID=K933757",
+      "reliabilityScore": 0.98
+    },
+    {
+      "sourceName": "Wikimedia",
+      "title": "Wikimedia Category: Medical devices",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/Category:Medical_devices",
+      "reliabilityScore": 0.7
+    }
+  ],
+  "ingestionResults": [
+    {
+      "item": {
+        "sourceName": "FDA",
+        "title": "FDA 510(k) Hand-Held Irrigation Pump",
+        "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpmn/pmn.cfm?ID=K933757",
+        "reliabilityScore": 0.98
+      },
+      "first": {
+        "status": "error",
+        "data": {
+          "error": "The user aborted a request."
+        }
+      },
+      "second": {
+        "status": "error",
+        "data": {
+          "error": "The user aborted a request."
+        }
+      }
+    },
+    {
+      "item": {
+        "sourceName": "Wikimedia",
+        "title": "Wikimedia Category: Medical devices",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/Category:Medical_devices",
+        "reliabilityScore": 0.7
+      },
+      "first": {
+        "status": "error",
+        "data": {
+          "error": "The user aborted a request."
+        }
+      },
+      "second": {
+        "status": "error",
+        "data": {
+          "error": "The user aborted a request."
+        }
+      }
+    }
+  ],
+  "persisted": [],
+  "ingestionLogs": [],
+  "libraryCheck": {
+    "status": "error",
+    "error": "The user aborted a request."
+  }
+}

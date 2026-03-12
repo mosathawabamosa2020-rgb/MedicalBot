@@ -1,14 +1,19 @@
 import fs from 'fs'
 import path from 'path'
 const pdf = require('pdf-parse')
+const { PrismaClient } = require('@prisma/client')
 
 // Master scraper exported function — will be compiled to dist/scripts/master_scraper.js
 export async function runScraper(input: string) {
-  const loggerModule = require(path.join(process.cwd(), 'dist', 'lib', 'logger'))
-  const logger = loggerModule && loggerModule.default ? loggerModule.default : loggerModule
-  const prismaModule = require(path.join(process.cwd(), 'dist', 'lib', 'prisma'))
-  const { prisma } = prismaModule.prisma ? prismaModule : prismaModule.default ? prismaModule.default : prismaModule
-  const { embedText, saveReferenceEmbedding } = require(path.join(process.cwd(), 'dist', 'lib', 'embeddings'))
+  const logger = console
+  const prisma = new PrismaClient()
+  let embedHelpers: any
+  try {
+    embedHelpers = require(path.join(process.cwd(), 'lib', 'embeddings'))
+  } catch {
+    embedHelpers = require(path.join(process.cwd(), 'dist', 'lib', 'embeddings'))
+  }
+  const { embedText, saveReferenceEmbedding } = embedHelpers
 
   const BASE_HOST = 'https://www.accessdata.fda.gov'
   const BASE_URL = `${BASE_HOST}/scripts/cdrh/cfdocs/cfPMN/pmn.cfm`
@@ -131,7 +136,12 @@ export async function runScraper(input: string) {
 
       // Section detection & storage
       try {
-        const { extractSections } = require(path.join(process.cwd(), 'dist', 'lib', 'sectionExtractor'))
+        let extractSections: any
+        try {
+          ;({ extractSections } = require(path.join(process.cwd(), 'lib', 'sectionExtractor')))
+        } catch {
+          ;({ extractSections } = require(path.join(process.cwd(), 'dist', 'lib', 'sectionExtractor')))
+        }
         const sections = extractSections(pages)
         // do not delete previous sections; versioning preserves history
         for (let si = 0; si < sections.length; si++) {

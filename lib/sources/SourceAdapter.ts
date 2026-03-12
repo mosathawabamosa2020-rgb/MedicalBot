@@ -4,6 +4,8 @@ export interface SearchResultItem {
   authors?: string[]
   summary?: string
   sourceUrl?: string
+  sourceName?: string
+  reliabilityScore?: number
 }
 
 export interface SourceAdapter {

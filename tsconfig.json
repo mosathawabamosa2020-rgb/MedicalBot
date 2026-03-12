@@ -1,21 +1,41 @@
 {
   "compilerOptions": {
     "target": "es2017",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "allowJs": false,
     "skipLibCheck": true,
-    "strict": false,
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "noImplicitReturns": true,
     "forceConsistentCasingInFileNames": true,
-    "noEmit": false, // Important for build
+    "noEmit": true,
     "esModuleInterop": true,
-    "module": "CommonJS", // Important for Node scripts
+    "module": "CommonJS",
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "jsx": "preserve",
+    "jsx": "react-jsx",
     "incremental": true,
-    "outDir": "./dist" // Important for build
+    "outDir": "./dist"
   },
-  "include": ["**/*.ts", "**/*.tsx"],
-  "exclude": ["node_modules", "dist", "archive", "__tests__"] // <--- هذا هو السطر الجديد والمهم
+  "include": [
+    "next-env.d.ts",
+    "lib/**/*.ts",
+    "lib/**/*.tsx",
+    "pages/**/*.ts",
+    "pages/**/*.tsx",
+    "**/*.d.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "archive",
+    "__tests__",
+    "scripts",
+    "tools"
+  ]
 }

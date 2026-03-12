@@ -2,10 +2,31 @@ const fs = require('fs')
 const path = require('path')
 const fetch = require('node-fetch')
 const { PrismaClient } = require('@prisma/client')
-const logger = require(path.join(process.cwd(), 'dist', 'lib', 'logger'))
+function loadLogger() {
+  try {
+    const mod = require(path.join(process.cwd(), 'lib', 'logger'))
+    return mod.default || mod
+  } catch {
+    try {
+      const mod = require(path.join(process.cwd(), 'dist', 'lib', 'logger'))
+      return mod.default || mod
+    } catch {
+      return console
+    }
+  }
+}
 
 const prisma = new PrismaClient()
-const embedLib = require(path.join(process.cwd(), 'dist', 'lib', 'embeddings'))
+const logger = loadLogger()
+
+function loadEmbeddingsLib() {
+  try {
+    return require(path.join(process.cwd(), 'lib', 'embeddings'))
+  } catch {
+    return require(path.join(process.cwd(), 'dist', 'lib', 'embeddings'))
+  }
+}
+const embedLib = loadEmbeddingsLib()
 
 async function readEnvKey() {
   const envPath = path.join(process.cwd(), '.env.local')

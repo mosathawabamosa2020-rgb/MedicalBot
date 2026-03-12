@@ -1,0 +1,106 @@
+﻿
+> medical-content-platform@0.1.0 ops:preflight
+> node tools/ops_preflight.js
+
+Startup Preflight Diagnostics
+GeneratedAt: 2026-03-11T23:33:19.028Z
+Overall: BLOCKED
+
+[BLOCKED] environment | required=yes | missing required env vars: DATABASE_URL, NEXTAUTH_SECRET
+  - classification: missing_config
+  - remediation: Set required env vars: DATABASE_URL, NEXTAUTH_SECRET.
+[OK] database | required=yes | database query succeeded
+  - classification: ok
+[OK] redis | required=no | redis ping succeeded
+  - classification: ok
+[OK] settings_store | required=yes | data\platform-settings.json writable
+  - classification: ok
+[OK] audit_trail | required=yes | data\audit-trail.log writable
+  - classification: ok
+[OK] backup_manifest | required=no | backup manifest found
+  - classification: ok
+
+Details (full snapshot JSON):
+{
+  "generatedAt": "2026-03-11T23:33:19.028Z",
+  "timeoutMs": 3000,
+  "checks": {
+    "environment": {
+      "name": "environment",
+      "required": true,
+      "status": "blocked",
+      "message": "missing required env vars: DATABASE_URL, NEXTAUTH_SECRET",
+      "details": {
+        "missing": [
+          "DATABASE_URL",
+          "NEXTAUTH_SECRET"
+        ]
+      },
+      "classification": "missing_config",
+      "remediation": "Set required env vars: DATABASE_URL, NEXTAUTH_SECRET.",
+      "durationMs": 0
+    },
+    "database": {
+      "name": "database",
+      "required": true,
+      "status": "ok",
+      "message": "database query succeeded",
+      "details": null,
+      "classification": "ok",
+      "remediation": null,
+      "durationMs": 1013
+    },
+    "redis": {
+      "name": "redis",
+      "required": false,
+      "status": "ok",
+      "message": "redis ping succeeded",
+      "details": null,
+      "classification": "ok",
+      "remediation": null,
+      "durationMs": 1593
+    },
+    "settings_store": {
+      "name": "settings_store",
+      "required": true,
+      "status": "ok",
+      "message": "data\\platform-settings.json writable",
+      "details": {
+        "path": "data\\platform-settings.json"
+      },
+      "classification": "ok",
+      "remediation": null,
+      "durationMs": 3
+    },
+    "audit_trail": {
+      "name": "audit_trail",
+      "required": true,
+      "status": "ok",
+      "message": "data\\audit-trail.log writable",
+      "details": {
+        "path": "data\\audit-trail.log"
+      },
+      "classification": "ok",
+      "remediation": null,
+      "durationMs": 1
+    },
+    "backup_manifest": {
+      "name": "backup_manifest",
+      "required": false,
+      "status": "ok",
+      "message": "backup manifest found",
+      "details": {
+        "path": "artifacts\\backups\\latest.json"
+      },
+      "classification": "ok",
+      "remediation": null,
+      "durationMs": 0
+    }
+  },
+  "overallStatus": "blocked",
+  "summary": {
+    "requiredOk": 3,
+    "requiredTotal": 4,
+    "optionalIssues": 0
+  }
+}

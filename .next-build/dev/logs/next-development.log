@@ -1,0 +1,4 @@
+[00:00:09.808] Server  LOG     ✓ Ready in 6.6s
+[00:00:09.998] Server  ERROR   Error: EPIPE: broken pipe, write
+[00:00:10.082] Server  ERROR   ⨯ "uncaughtException:" Error: EPIPE: broken pipe, write
+[00:00:10.139] Server  ERROR   ⨯ "uncaughtException: " Error: EPIPE: broken pipe, write

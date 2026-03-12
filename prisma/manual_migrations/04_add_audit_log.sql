@@ -2,7 +2,7 @@
 
 DO $$
 BEGIN
-    IF NOT EXISTS (SELECT 1 FROM pg_type WHERE typname = '"Role"' OR typname='role') THEN
+    IF NOT EXISTS (SELECT 1 FROM pg_type WHERE typname IN ('Role', 'role')) THEN
         CREATE TYPE "Role" AS ENUM ('admin','reviewer','editor');
     END IF;
 END$$;

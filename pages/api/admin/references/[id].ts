@@ -1,14 +1,8 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { getServerSession } from 'next-auth/next'
-import authOptions from '../../../../lib/auth'
+import { withReviewerOrAdminAuth } from '../../../../lib/adminAuth'
 import prisma from '../../../../lib/prisma'
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  const session = (await getServerSession(req, res, authOptions as any)) as any
-  if (!session || session.user?.role !== 'admin') {
-    return res.status(403).json({ error: 'forbidden' })
-  }
-
+async function handler(req: NextApiRequest, res: NextApiResponse) {
   const { id } = req.query
   if (!id || Array.isArray(id)) return res.status(400).json({ error: 'invalid id' })
 
@@ -19,3 +13,5 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   }
   res.status(405).end()
 }
+
+export default withReviewerOrAdminAuth(handler)

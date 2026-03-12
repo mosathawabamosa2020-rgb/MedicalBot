@@ -7,10 +7,13 @@ const fetcher = (url: string) => fetch(url).then(res => res.json())
 export default function Dashboard() {
   const { data: session } = useSession({ required: true })
   const { data, error } = useSWR('/api/admin/stats', fetcher)
+  const { data: readiness } = useSWR('/api/health/dependencies', fetcher)
 
   const ingested = data?.ingestedCount ?? '...'
   const verification = data?.verificationCount ?? '...'
   const knowledge = data?.knowledgeLibraryCount ?? '...'
+  const readinessStatus = readiness?.status || 'unknown'
+  const readinessSummary = readiness?.summary
 
   return (
     <div className="flex h-screen">
@@ -42,6 +45,15 @@ export default function Dashboard() {
       </nav>
       <main className="flex-1 p-8 overflow-auto">
         <h1 className="text-2xl font-bold mb-4">Executive Dashboard</h1>
+        <div className="mb-6 rounded border p-4">
+          <div className="font-semibold">Startup Readiness</div>
+          <div className="text-sm">Status: {readinessStatus}</div>
+          {readinessSummary ? (
+            <div className="text-xs text-gray-600">
+              Required OK: {readinessSummary.requiredOk}/{readinessSummary.requiredTotal} | Optional issues: {readinessSummary.optionalIssues}
+            </div>
+          ) : null}
+        </div>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-8">
           <div className="p-4 border rounded shadow">New Items Ingested: {ingested}</div>
           <div className="p-4 border rounded shadow">Items Pending Verification: {verification}</div>

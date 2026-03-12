@@ -1,0 +1,14 @@
+__turbopack_load_page_chunks__("/library", [
+  "static/chunks/f1872_next_dist_compiled_22039814._.js",
+  "static/chunks/f1872_next_dist_shared_lib_1c8e3d96._.js",
+  "static/chunks/f1872_next_dist_client_47ecae79._.js",
+  "static/chunks/f1872_next_dist_96ee2dbd._.js",
+  "static/chunks/f1872_next_link_ef5f75b1.js",
+  "static/chunks/f1872_react_d56e07fd._.js",
+  "static/chunks/f1872_react-dom_cjs_react-dom_development_beea8fd2.js",
+  "static/chunks/f1872_react-dom_00733e11._.js",
+  "static/chunks/f1872_6bedd730._.js",
+  "static/chunks/[root-of-the-server]__cb174660._.js",
+  "static/chunks/medical-content-platform_pages_library_index_tsx_2da965e7._.js",
+  "static/chunks/turbopack-medical-content-platform_pages_library_index_tsx_82602c1c._.js"
+])

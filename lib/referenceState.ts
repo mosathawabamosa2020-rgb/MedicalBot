@@ -9,7 +9,7 @@ export type ReferenceStatus =
 
 const allowedTransitions: Record<ReferenceStatus, ReferenceStatus[]> = {
   pending_ingestion: ['processing'],
-  processing: ['pending_review'],
+  processing: ['processed'],
   processed: ['pending_review'],
   // archived is reserved and currently unreachable via normal transitions
   pending_review: ['verified', 'rejected'],

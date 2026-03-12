@@ -1,7 +1,17 @@
 version: '3.8'
 services:
   db:
-    image: pgvector/pgvector:pg16
+    image: pgvector/pgvector:pg15
+    command:
+      - postgres
+      - -c
+      - shared_buffers=512MB
+      - -c
+      - work_mem=32MB
+      - -c
+      - effective_cache_size=1536MB
+      - -c
+      - max_connections=200
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres

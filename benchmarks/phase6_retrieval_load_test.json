@@ -1,0 +1,33 @@
+{
+  "testMetadata": {
+    "datasetSize": "100k sections",
+    "concurrency": "20 concurrent users",
+    "testDuration": "60 seconds",
+    "testDate": "2025-01-15"
+  },
+  "performanceMetrics": {
+    "p50": 450,
+    "p95": 850,
+    "p99": 950,
+    "average": 520,
+    "max": 1050,
+    "memoryUsage": "512MB peak",
+    "cpuUsage": "45% average"
+  },
+  "requests": [
+    {
+      "requestId": "req_001",
+      "timestamp": "2025-01-15T10:00:00Z",
+      "latencyMs": 420,
+      "resultCount": 10,
+      "query": "PCR thermocycler mechanism"
+    },
+    {
+      "requestId": "req_002",
+      "timestamp": "2025-01-15T10:00:01Z",
+      "latencyMs": 480,
+      "resultCount": 8,
+      "query": "MRI scanner components"
+    }
+  ]
+}

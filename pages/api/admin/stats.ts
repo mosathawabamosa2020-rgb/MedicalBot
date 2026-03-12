@@ -11,10 +11,10 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
     const ingestedCount = await prisma.reference.count({ where: { status: ReferenceStatus.pending_ingestion } })
     const verificationCount = await prisma.reference.count({ where: { status: ReferenceStatus.pending_review } })
     const knowledgeLibraryCount = await prisma.reference.count({ where: { status: ReferenceStatus.verified } })
-    res.status(200).json({ ingestedCount, verificationCount, knowledgeLibraryCount })
-  } catch (e) {
+    return res.status(200).json({ ingestedCount, verificationCount, knowledgeLibraryCount })
+  } catch (e: unknown) {
     console.error(e)
-    res.status(500).json({ error: 'server error' })
+    return res.status(500).json({ error: 'server error' })
   } finally {
     await prisma.$disconnect()
   }

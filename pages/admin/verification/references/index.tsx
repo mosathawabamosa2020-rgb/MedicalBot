@@ -3,8 +3,9 @@ import Link from 'next/link'
 import { GetServerSideProps } from 'next'
 import { getServerSession } from 'next-auth/next'
 import authOptions from '../../../../lib/auth'
+import type { PendingReviewListResponse } from '../../../../lib/contracts/api'
 
-const fetcher = (url: string) => fetch(url).then(r => r.json())
+const fetcher = (url: string) => fetch(url).then(r => r.json() as Promise<PendingReviewListResponse>)
 
 export default function ReferenceVerificationList() {
   const { data, error } = useSWR('/api/admin/references/pending_review', fetcher)
@@ -19,17 +20,17 @@ export default function ReferenceVerificationList() {
         <thead>
           <tr>
             <th className="border px-2">Title</th>
-            <th className="border px-2">Authors</th>
-            <th className="border px-2">Journal</th>
+            <th className="border px-2">Source</th>
+            <th className="border px-2">URL</th>
             <th className="border px-2"></th>
           </tr>
         </thead>
         <tbody>
-          {data.map((ref: any) => (
+          {data.items.map((ref) => (
             <tr key={ref.id} className="hover:bg-gray-100">
               <td className="border px-2">{ref.title}</td>
-              <td className="border px-2">{ref.authors}</td>
-              <td className="border px-2">{ref.journal}</td>
+              <td className="border px-2">{ref.sourceName || '-'}</td>
+              <td className="border px-2">{ref.sourceUrl || '-'}</td>
               <td className="border px-2">
                 <Link href={`/admin/verification/references/${ref.id}`} className="text-blue-600 underline">Review</Link>
               </td>

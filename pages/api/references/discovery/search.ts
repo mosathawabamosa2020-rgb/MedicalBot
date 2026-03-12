@@ -1,10 +1,15 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import fetch from 'node-fetch'
+import { enforceRateLimit, setSecurityHeaders } from '../../../../lib/apiSecurity'
+import logger from '../../../../lib/logger'
+import SearchAggregatorService from '../../../../lib/search/SearchAggregatorService'
 
 // This endpoint will use SerpAPI if SERPAPI_KEY is provided in env.
 // It accepts POST { queries: string[] } and returns aggregated results.
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+  setSecurityHeaders(res)
+  if (!enforceRateLimit(req, res, 'discovery-search', 60_000, 90)) return
   if (req.method !== 'POST') return res.status(405).end()
   const { queries } = req.body as { queries?: string[] }
   if (!queries || !Array.isArray(queries) || queries.length === 0) {
@@ -12,7 +17,16 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   }
 
   const serpKey = process.env.SERPAPI_KEY
-  if (!serpKey) return res.status(501).json({ error: 'Search API not configured (SERPAPI_KEY missing)' })
+  if (!serpKey) {
+    // Open-source default mode fallback: use internal multi-source adapters.
+    const service = new SearchAggregatorService()
+    const all: Record<string, any>[] = []
+    for (const q of queries.slice(0, 8)) {
+      const results = await service.searchAll(q)
+      all.push(...results.map((r) => ({ query: q, title: r.title, link: r.sourceUrl || null, snippet: r.summary || null, sourceName: r.sourceName || 'unknown', reliabilityScore: r.reliabilityScore || 0 })))
+    }
+    return res.json({ results: all })
+  }
 
   try {
     const allResults: Record<string, any>[] = []
@@ -37,8 +51,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     })
 
     return res.json({ results: deduped })
-  } catch (err) {
-    console.error(err)
+  } catch (err: unknown) {
+    logger.error({ err }, 'discovery search failed')
     return res.status(500).json({ error: 'Search failed' })
   }
 }

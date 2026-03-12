@@ -5,15 +5,18 @@ from PIL import Image
 import os
 import pytesseract
 
-TOKEN = "8273825897:AAEd8xrGVS7oU5kiF4MDjMVHEFmA90mKfhE"
+TOKEN = os.getenv("TELEGRAM_BOT_TOKEN", "")
+GROQ_API_KEY = os.getenv("GROQ_API_KEY", "")
 MEDIA_DIR = "received_files"
 if not os.path.exists(MEDIA_DIR):
     os.makedirs(MEDIA_DIR)
 
 # إعداد Groq
-client = Groq(api_key="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")
+client = Groq(api_key=GROQ_API_KEY) if GROQ_API_KEY else None
 
 async def generate_questions_from_image(image_path):
+    if client is None:
+        return "Groq API key is not configured. Set GROQ_API_KEY."
     try:
         # قراءة الصورة باستخدام Pillow
         img = Image.open(image_path)
@@ -238,6 +241,8 @@ async def handle_text(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 
 def main():
+    if not TOKEN:
+        raise RuntimeError("TELEGRAM_BOT_TOKEN is required to run MedicalBot.")
     application = Application.builder().token(TOKEN).build()
 
     application.add_handler(CommandHandler("start", start))

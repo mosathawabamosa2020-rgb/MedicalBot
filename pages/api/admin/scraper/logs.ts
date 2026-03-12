@@ -1,10 +1,12 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import fs from 'fs'
 import path from 'path'
+import { withAdminAuth } from '../../../../lib/adminAuth'
+import logger from '../../../../lib/logger'
 
 const LOG_PATH = path.join(process.cwd(), 'data', 'scraper.log')
 
-export default function handler(req: NextApiRequest, res: NextApiResponse) {
+function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method !== 'GET') return res.status(405).end()
 
   if (!fs.existsSync(LOG_PATH)) fs.writeFileSync(LOG_PATH, '')
@@ -18,7 +20,9 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
   try {
     const tail = fs.readFileSync(LOG_PATH, 'utf8').slice(-20000)
     if (tail) res.write(`data: ${JSON.stringify(tail)}\n\n`)
-  } catch (e) {}
+  } catch (e: unknown) {
+    logger.warn({ err: e }, 'failed to read initial scraper log tail')
+  }
 
   let lastSize = fs.statSync(LOG_PATH).size
   if (!lastSize) lastSize = 0
@@ -40,7 +44,14 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
   })
 
   req.on('close', () => {
-    try { watcher.close() } catch (e) {}
+    try {
+      watcher.close()
+    } catch (e: unknown) {
+      logger.warn({ err: e }, 'failed to close scraper log watcher')
+    }
     res.end()
   })
+  return
 }
+
+export default withAdminAuth(handler)

@@ -9,10 +9,10 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
   try {
     await prisma.$connect()
     const logs = await prisma.ingestionLog.findMany({ orderBy: { createdAt: 'desc' }, take: 200 })
-    res.status(200).json({ logs })
-  } catch (e) {
+    return res.status(200).json({ logs })
+  } catch (e: unknown) {
     console.error(e)
-    res.status(500).json({ error: 'server error' })
+    return res.status(500).json({ error: 'server error' })
   } finally {
     await prisma.$disconnect()
   }

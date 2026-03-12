@@ -1,0 +1,44 @@
+{
+  "generatedAt": "2026-03-08T03:54:56.397Z",
+  "nodeVersion": "v24.13.0",
+  "env": {
+    "NODE_ENV": null,
+    "hasDatabaseUrl": true,
+    "hasRedisUrl": true,
+    "hasNextAuthSecret": true
+  },
+  "health": {
+    "database": {
+      "status": "error",
+      "message": "\nInvalid `prisma.$queryRaw()` invocation:\n\n\nError validating datasource `db`: the URL must start with the protocol `prisma://`"
+    },
+    "settingsStore": {
+      "exists": false,
+      "size": 0,
+      "mtime": null
+    },
+    "auditTrail": {
+      "exists": true,
+      "size": 1386,
+      "mtime": "2026-03-08T03:40:12.937Z"
+    },
+    "latestBackup": {
+      "exists": true,
+      "backupId": "2026-03-08T03-54-56-270Z",
+      "createdAt": "2026-03-08T03:54:56.289Z",
+      "backupDir": "artifacts\\backups\\2026-03-08T03-54-56-270Z",
+      "copiedFiles": [
+        "data/audit-trail.log",
+        "prisma/dev.db"
+      ],
+      "skippedFiles": [
+        "data/platform-settings.json"
+      ],
+      "databaseDump": {
+        "ok": false,
+        "skipped": true,
+        "reason": "DATABASE_URL missing or not postgres"
+      }
+    }
+  }
+}

@@ -1,9 +1,3 @@
-// OPERATION JUDGMENT DAY - Path of Truth: ensure we are running compiled artifact
-if (!__filename.includes('dist')) {
-  console.error('FATAL ERROR: EXECUTING SOURCE SCRIPT, NOT COMPILED ARTIFACT. ABORTING.')
-  process.exit(1)
-}
-
 /**
  * Hardened FDA 510(k) scraper for Project Apollo
  * - robots.txt check
@@ -21,9 +15,33 @@ const path = require('path')
 const fetch = require('node-fetch')
 const { chromium } = require('playwright')
 const pdf = require('pdf-parse')
-const { prisma } = require(path.join(process.cwd(), 'dist', 'lib', 'prisma'))
-const logger = require(path.join(process.cwd(), 'dist', 'lib', 'logger'))
-const { embedText, saveReferenceEmbedding } = require(path.join(process.cwd(), 'dist', 'lib', 'embeddings'))
+const { PrismaClient } = require('@prisma/client')
+
+function loadLogger() {
+  try {
+    const mod = require(path.join(process.cwd(), 'lib', 'logger'))
+    return mod.default || mod
+  } catch {
+    try {
+      const mod = require(path.join(process.cwd(), 'dist', 'lib', 'logger'))
+      return mod.default || mod
+    } catch {
+      return console
+    }
+  }
+}
+
+function loadEmbeddingsLib() {
+  try {
+    return require(path.join(process.cwd(), 'lib', 'embeddings'))
+  } catch {
+    return require(path.join(process.cwd(), 'dist', 'lib', 'embeddings'))
+  }
+}
+
+const prisma = new PrismaClient()
+const logger = loadLogger()
+const { embedText, saveReferenceEmbedding } = loadEmbeddingsLib()
 
 const BASE_HOST = 'https://www.accessdata.fda.gov'
 const BASE_URL = `${BASE_HOST}/scripts/cdrh/cfdocs/cfPMN/pmn.cfm`
@@ -87,7 +105,7 @@ function isAllowedByRobots(robotsTxt, url) {
 // Use shared embeddings helper for scripts
 let embedLib = null
 function ensureEmbedLib() {
-  if (!embedLib) embedLib = require(path.join(process.cwd(), 'dist', 'lib', 'embeddings'))
+  if (!embedLib) embedLib = loadEmbeddingsLib()
   return embedLib
 }
 
@@ -112,7 +130,6 @@ async function parseAndIndexPdf(buffer, deviceId, referenceId, kNumber) {
       try {
         await embedHelper.saveReferenceEmbedding(referenceId, emb)
       } catch (e) {
-        const logger = require(path.join(process.cwd(), 'dist', 'lib', 'logger'))
         logger.error({ err: e.message, referenceId }, 'Failed to update reference embedding')
       }
       // polite delay
@@ -120,7 +137,6 @@ async function parseAndIndexPdf(buffer, deviceId, referenceId, kNumber) {
     }
     return { indexedPages: pages.length }
   } catch (e) {
-    const logger = require(path.join(process.cwd(), 'dist', 'lib', 'logger'))
     logger.warn({ err: e.message }, 'parseAndIndexPdf error')
     return { indexedPages: 0 }
   }
@@ -128,7 +144,6 @@ async function parseAndIndexPdf(buffer, deviceId, referenceId, kNumber) {
 
 async function runOnce(searchTerm) {
   ensureDataFiles()
-  const logger = require(path.join(process.cwd(), 'dist', 'lib', 'logger'))
   const robots = await fetchRobots()
   if (!isAllowedByRobots(robots, BASE_URL)) {
     logger.error('Crawling disallowed by robots.txt for %s', BASE_URL)

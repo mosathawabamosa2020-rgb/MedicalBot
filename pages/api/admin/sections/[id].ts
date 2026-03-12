@@ -1,8 +1,7 @@
 import { NextApiRequest, NextApiResponse } from 'next'
-import { PrismaClient } from '@prisma/client'
 import { withAdminAuth } from '../../../../lib/adminAuth'
-
-const prisma = new PrismaClient()
+import prisma from '../../../../lib/prisma'
+import logger from '../../../../lib/logger'
 
 async function handler(req: NextApiRequest, res: NextApiResponse) {
   const { id } = req.query
@@ -17,11 +16,9 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
       return res.status(200).json(sec)
     }
     return res.status(405).end()
-  } catch (e) {
-    console.error(e)
+  } catch (e: unknown) {
+    logger.error({ err: e, sectionId: id }, 'section endpoint failed')
     return res.status(500).json({ error: 'server error' })
-  } finally {
-    await prisma.$disconnect()
   }
 }
 

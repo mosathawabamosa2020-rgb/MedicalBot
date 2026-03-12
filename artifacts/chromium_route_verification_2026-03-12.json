@@ -1,0 +1,95 @@
+{
+  "baseUrl": "http://127.0.0.1:3000",
+  "results": [
+    {
+      "route": "/admin",
+      "status": null,
+      "ok": false,
+      "finalUrl": null,
+      "consoleErrors": [],
+      "pageErrors": [
+        "page.goto: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:3000/admin\", waiting until \"domcontentloaded\"\u001b[22m\n"
+      ]
+    },
+    {
+      "route": "/admin/dashboard",
+      "status": null,
+      "ok": false,
+      "finalUrl": null,
+      "consoleErrors": [],
+      "pageErrors": [
+        "page.goto: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:3000/admin/dashboard\", waiting until \"domcontentloaded\"\u001b[22m\n"
+      ]
+    },
+    {
+      "route": "/admin/taxonomy",
+      "status": null,
+      "ok": false,
+      "finalUrl": null,
+      "consoleErrors": [],
+      "pageErrors": [
+        "page.goto: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:3000/admin/taxonomy\", waiting until \"domcontentloaded\"\u001b[22m\n"
+      ]
+    },
+    {
+      "route": "/admin/references",
+      "status": null,
+      "ok": false,
+      "finalUrl": null,
+      "consoleErrors": [],
+      "pageErrors": [
+        "page.goto: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:3000/admin/references\", waiting until \"domcontentloaded\"\u001b[22m\n"
+      ]
+    },
+    {
+      "route": "/admin/verification",
+      "status": null,
+      "ok": false,
+      "finalUrl": null,
+      "consoleErrors": [],
+      "pageErrors": [
+        "page.goto: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:3000/admin/verification\", waiting until \"domcontentloaded\"\u001b[22m\n"
+      ]
+    },
+    {
+      "route": "/admin/settings",
+      "status": null,
+      "ok": false,
+      "finalUrl": null,
+      "consoleErrors": [],
+      "pageErrors": [
+        "page.goto: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:3000/admin/settings\", waiting until \"domcontentloaded\"\u001b[22m\n"
+      ]
+    },
+    {
+      "route": "/devices",
+      "status": null,
+      "ok": false,
+      "finalUrl": null,
+      "consoleErrors": [],
+      "pageErrors": [
+        "page.goto: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:3000/devices\", waiting until \"domcontentloaded\"\u001b[22m\n"
+      ]
+    },
+    {
+      "route": "/library",
+      "status": null,
+      "ok": false,
+      "finalUrl": null,
+      "consoleErrors": [],
+      "pageErrors": [
+        "page.goto: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:3000/library\", waiting until \"domcontentloaded\"\u001b[22m\n"
+      ]
+    },
+    {
+      "route": "/search",
+      "status": null,
+      "ok": false,
+      "finalUrl": null,
+      "consoleErrors": [],
+      "pageErrors": [
+        "page.goto: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:3000/search\", waiting until \"domcontentloaded\"\u001b[22m\n"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,127 @@
+{
+  "results": [
+    {
+      "url": "https://www.scribd.com/",
+      "status": null,
+      "ok": false,
+      "finalUrl": null,
+      "pageErrors": [
+        "page.goto: net::ERR_NAME_NOT_RESOLVED at https://www.scribd.com/\nCall log:\n\u001b[2m  - navigating to \"https://www.scribd.com/\", waiting until \"domcontentloaded\"\u001b[22m\n"
+      ]
+    },
+    {
+      "url": "https://www.ai-websites1.com/",
+      "status": 200,
+      "ok": true,
+      "finalUrl": "https://www.ai-websites1.com/",
+      "pageErrors": []
+    },
+    {
+      "url": "https://www.emro.who.int/",
+      "status": 200,
+      "ok": true,
+      "finalUrl": "https://www.emro.who.int/",
+      "pageErrors": []
+    },
+    {
+      "url": "https://tvtc.gov.sa/",
+      "status": 200,
+      "ok": true,
+      "finalUrl": "https://tvtc.gov.sa/ar/Pages/default1.aspx",
+      "pageErrors": []
+    },
+    {
+      "url": "https://pubrica.com/",
+      "status": 200,
+      "ok": true,
+      "finalUrl": "https://pubrica.com/",
+      "pageErrors": []
+    },
+    {
+      "url": "https://www.noor-book.com/",
+      "status": 403,
+      "ok": false,
+      "finalUrl": "https://www.noor-book.com/",
+      "pageErrors": []
+    },
+    {
+      "url": "https://rayatgrup.com/",
+      "status": 200,
+      "ok": true,
+      "finalUrl": "https://rayatgrup.com/",
+      "pageErrors": []
+    },
+    {
+      "url": "https://frankshospitalworkshop.com/",
+      "status": null,
+      "ok": false,
+      "finalUrl": null,
+      "pageErrors": [
+        "page.goto: net::ERR_CERT_COMMON_NAME_INVALID at https://frankshospitalworkshop.com/\nCall log:\n\u001b[2m  - navigating to \"https://frankshospitalworkshop.com/\", waiting until \"domcontentloaded\"\u001b[22m\n"
+      ]
+    },
+    {
+      "url": "https://bmegtu.wordpress.com/",
+      "status": 200,
+      "ok": true,
+      "finalUrl": "https://bmegtu.wordpress.com/",
+      "pageErrors": []
+    },
+    {
+      "url": "https://www.freebookcentre.net/",
+      "status": 200,
+      "ok": true,
+      "finalUrl": "https://www.freebookcentre.net/",
+      "pageErrors": []
+    },
+    {
+      "url": "http://ijlalhaider.pbworks.com/",
+      "status": 200,
+      "ok": true,
+      "finalUrl": "http://ijlalhaider.pbworks.com/w/page/50662041/Welcome",
+      "pageErrors": []
+    },
+    {
+      "url": "https://www.sciencedirect.com/",
+      "status": 403,
+      "ok": false,
+      "finalUrl": "https://www.sciencedirect.com/",
+      "pageErrors": []
+    },
+    {
+      "url": "https://dokumen.pub/",
+      "status": 200,
+      "ok": true,
+      "finalUrl": "https://dokumen.pub/",
+      "pageErrors": []
+    },
+    {
+      "url": "https://www.cambridge.org/",
+      "status": 403,
+      "ok": false,
+      "finalUrl": "https://www.cambridge.org/?__cf_chl_rt_tk=zK37_HgAap8VZx4bgHeiqemlp5I9IL_8a02VmNSd.uo-1773271289-1.0.1.1-UJMgxh.yMhWxEwYQiYiIFQYo6fk3012ddW0ExcyZ7iA",
+      "pageErrors": []
+    },
+    {
+      "url": "https://link.springer.com/",
+      "status": 200,
+      "ok": true,
+      "finalUrl": "https://link.springer.com/",
+      "pageErrors": []
+    },
+    {
+      "url": "https://www.bspublications.com/",
+      "status": 200,
+      "ok": true,
+      "finalUrl": "https://www.bspublications.com/",
+      "pageErrors": []
+    },
+    {
+      "url": "https://ar.wikipedia.org/",
+      "status": 200,
+      "ok": true,
+      "finalUrl": "https://ar.wikipedia.org/wiki/%D8%A7%D9%84%D8%B5%D9%81%D8%AD%D8%A9_%D8%A7%D9%84%D8%B1%D8%A6%D9%8A%D8%B3%D8%A9",
+      "pageErrors": []
+    }
+  ]
+}

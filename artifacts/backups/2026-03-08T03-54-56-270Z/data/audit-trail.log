@@ -1,0 +1,8 @@
+{"event":"taxonomy.model.created","actorId":"","entityType":"deviceModel","entityId":"m2","payload":{"deviceId":"d1","modelName":"X200"},"at":"2026-03-08T02:09:21.238Z"}
+{"event":"verification.reference.decision","actorId":"u","entityType":"reference","entityId":"ref1","payload":{"decision":"approved","hasComment":true},"at":"2026-03-08T02:09:44.678Z"}
+{"event":"taxonomy.department.created","actorId":"","entityType":"department","entityId":"dep2","payload":{"name":"ICU"},"at":"2026-03-08T02:09:50.969Z"}
+{"event":"verification.reference.decision","actorId":"u2","entityType":"reference","entityId":"r2","payload":{"decision":"approved","hasComment":true},"at":"2026-03-08T02:10:07.493Z"}
+{"event":"verification.reference.decision","actorId":"u","entityType":"reference","entityId":"ref1","payload":{"decision":"approved","hasComment":true},"at":"2026-03-08T03:39:59.805Z"}
+{"event":"taxonomy.model.created","actorId":"","entityType":"deviceModel","entityId":"m2","payload":{"deviceId":"d1","modelName":"X200"},"at":"2026-03-08T03:40:04.258Z"}
+{"event":"taxonomy.department.created","actorId":"","entityType":"department","entityId":"dep2","payload":{"name":"ICU"},"at":"2026-03-08T03:40:10.449Z"}
+{"event":"verification.reference.decision","actorId":"u2","entityType":"reference","entityId":"r2","payload":{"decision":"approved","hasComment":true},"at":"2026-03-08T03:40:12.936Z"}

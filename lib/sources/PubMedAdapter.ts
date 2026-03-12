@@ -24,7 +24,9 @@ export default class PubMedAdapter implements SourceAdapter {
         title: rec?.title || 'No title',
         authors: (rec?.authors || []).map((a: any) => a.name),
         summary: rec?.summary || rec?.title || undefined,
-        sourceUrl: `https://pubmed.ncbi.nlm.nih.gov/${id}/`
+        sourceUrl: `https://pubmed.ncbi.nlm.nih.gov/${id}/`,
+        sourceName: 'PubMed',
+        reliabilityScore: 0.95,
       }
     })
     return results

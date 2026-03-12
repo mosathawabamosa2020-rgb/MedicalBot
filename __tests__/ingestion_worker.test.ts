@@ -28,8 +28,9 @@ describe('runIngestionWorker', () => {
     expect(prisma.ingestionLog.create).toHaveBeenCalledWith(expect.objectContaining({ data: expect.objectContaining({ message: 'Started worker run' }) }))
     expect(prisma.ingestionLog.create).toHaveBeenCalledWith(expect.objectContaining({ data: expect.objectContaining({ message: 'Processing reference r1', referenceId: 'r1' }) }))
     expect(prisma.section.create).toHaveBeenCalledTimes(2)
-    // should set processing then pending_review
+    // should set processing -> processed -> pending_review
     expect(prisma.reference.update).toHaveBeenCalledWith({ where: { id: 'r1' }, data: { status: 'processing' } })
+    expect(prisma.reference.update).toHaveBeenCalledWith({ where: { id: 'r1' }, data: { status: 'processed' } })
     expect(prisma.reference.update).toHaveBeenCalledWith({ where: { id: 'r1' }, data: { status: 'pending_review', processingDate: expect.any(Date) } })
     expect(prisma.ingestionLog.create).toHaveBeenCalledWith(expect.objectContaining({ data: expect.objectContaining({ message: 'Finished processing reference r1', referenceId: 'r1' }) }))
   })
@@ -41,8 +42,9 @@ describe('runIngestionWorker', () => {
 
     await runIngestionWorker()
 
-    // should have attempted processing then marked pending_review
+    // should have attempted processing then processed then pending_review
     expect(prisma.reference.update).toHaveBeenCalledWith({ where: { id: 'r2' }, data: { status: 'processing' } })
+    expect(prisma.reference.update).toHaveBeenCalledWith({ where: { id: 'r2' }, data: { status: 'processed' } })
     expect(prisma.reference.update).toHaveBeenCalledWith({ where: { id: 'r2' }, data: { status: 'pending_review', processingDate: expect.any(Date) } })
     expect(prisma.ingestionLog.create).toHaveBeenCalledWith(expect.objectContaining({ data: expect.objectContaining({ message: expect.stringContaining('Error processing reference r2'), referenceId: 'r2' }) }))
   })

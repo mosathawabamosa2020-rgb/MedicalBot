@@ -1,0 +1,131 @@
+{
+  "startedAt": "2026-03-11T03:22:14.750Z",
+  "baseUrl": "http://localhost:3000",
+  "inputProof": "live_retrieval_visibility_proof_2026-03-11.json",
+  "referenceIds": [
+    "cmml6n8fl0009ltoraa6u4ld8",
+    "cmml6n8oa000dltoret4vv6dc"
+  ],
+  "embedUpdates": [
+    {
+      "sectionId": "cmml8ne7v0001c5ccmbbuhqpm",
+      "referenceId": "cmml6n8fl0009ltoraa6u4ld8"
+    },
+    {
+      "sectionId": "cmml8ne8s0003c5cc2myba29n",
+      "referenceId": "cmml6n8fl0009ltoraa6u4ld8"
+    },
+    {
+      "sectionId": "cmml8nebq0005c5cc4kccdc2z",
+      "referenceId": "cmml6n8oa000dltoret4vv6dc"
+    },
+    {
+      "sectionId": "cmml8nec30007c5cc9ib0sml4",
+      "referenceId": "cmml6n8oa000dltoret4vv6dc"
+    }
+  ],
+  "retrieval": {
+    "baseUrl": "http://localhost:3000",
+    "request": {
+      "url": "http://localhost:3000/api/references/query",
+      "body": {
+        "query": "rfc 2606",
+        "topK": 5,
+        "page": 1
+      }
+    },
+    "responseStatus": 200,
+    "responseBody": {
+      "results": [
+        {
+          "id": "s93",
+          "score": 0.039006,
+          "snippet": "benchmark content 93",
+          "sectionMatch": "Section 93",
+          "source": "semantic",
+          "reference": {
+            "id": "r93",
+            "title": "Section 93",
+            "sourceUrl": null,
+            "deviceId": "d1",
+            "uploadedAt": "2025-12-01T21:03:49.247Z"
+          }
+        },
+        {
+          "id": "s167",
+          "score": 0.039006,
+          "snippet": "benchmark content 167",
+          "sectionMatch": "Section 167",
+          "source": "semantic",
+          "reference": {
+            "id": "r167",
+            "title": "Section 167",
+            "sourceUrl": null,
+            "deviceId": "d1",
+            "uploadedAt": "2025-09-18T21:03:49.247Z"
+          }
+        },
+        {
+          "id": "s92",
+          "score": 0.039006,
+          "snippet": "benchmark content 92",
+          "sectionMatch": "Section 92",
+          "source": "semantic",
+          "reference": {
+            "id": "r92",
+            "title": "Section 92",
+            "sourceUrl": null,
+            "deviceId": "d1",
+            "uploadedAt": "2025-12-02T21:03:49.247Z"
+          }
+        },
+        {
+          "id": "s166",
+          "score": 0.039006,
+          "snippet": "benchmark content 166",
+          "sectionMatch": "Section 166",
+          "source": "semantic",
+          "reference": {
+            "id": "r166",
+            "title": "Section 166",
+            "sourceUrl": null,
+            "deviceId": "d1",
+            "uploadedAt": "2025-09-19T21:03:49.247Z"
+          }
+        },
+        {
+          "id": "s91",
+          "score": 0.039006,
+          "snippet": "benchmark content 91",
+          "sectionMatch": "Section 91",
+          "source": "semantic",
+          "reference": {
+            "id": "r91",
+            "title": "Section 91",
+            "sourceUrl": null,
+            "deviceId": "d1",
+            "uploadedAt": "2025-12-03T21:03:49.247Z"
+          }
+        }
+      ],
+      "meta": {
+        "topK": 5,
+        "page": 1,
+        "hasMore": false,
+        "candidates": 15,
+        "fallbackUsed": false,
+        "probeUsed": 10,
+        "normalizationMs": 2,
+        "embeddingMs": 3,
+        "dbVectorMs": 372,
+        "hydrationMs": 21,
+        "rankingMs": 5,
+        "serializationMs": 0,
+        "totalMs": 407,
+        "durationMs": 407
+      }
+    },
+    "error": null
+  },
+  "embeddingBackend": "local"
+}

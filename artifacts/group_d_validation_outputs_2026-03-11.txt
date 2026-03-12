@@ -1,0 +1,497 @@
+GeneratedAt: 2026-03-11T23:34:13.071Z
+Node: v24.13.0
+Platform: win32
+
+$ npx prisma generate
+exit_code: 0
+stdout:
+Environment variables loaded from .env
+Prisma schema loaded from prisma\schema.prisma
+
+✔ Generated Prisma Client (v5.22.0) to .\node_modules\@prisma\client in 3.24s
+
+Start by importing your Prisma Client (See: https://pris.ly/d/importing-client)
+
+Tip: Need your database queries to be 1000x faster? Accelerate offers you that and more: https://pris.ly/tip-2-accelerate
+
+
+stderr:
+
+========================================================================================================================
+
+$ npx prisma migrate deploy
+exit_code: 0
+stdout:
+Environment variables loaded from .env
+Prisma schema loaded from prisma\schema.prisma
+Datasource "db": PostgreSQL database "medical", schema "public" at "localhost:15432"
+
+7 migrations found in prisma/migrations
+
+
+No pending migrations to apply.
+
+stderr:
+┌─────────────────────────────────────────────────────────┐
+│  Update available 5.22.0 -> 7.5.0                       │
+│                                                         │
+│  This is a major update - please follow the guide at    │
+│  https://pris.ly/d/major-version-upgrade                │
+│                                                         │
+│  Run the following to update                            │
+│    npm i --save-dev prisma@latest                       │
+│    npm i @prisma/client@latest                          │
+└─────────────────────────────────────────────────────────┘
+
+========================================================================================================================
+
+$ npx prisma migrate status
+exit_code: 0
+stdout:
+Environment variables loaded from .env
+Prisma schema loaded from prisma\schema.prisma
+Datasource "db": PostgreSQL database "medical", schema "public" at "localhost:15432"
+
+7 migrations found in prisma/migrations
+
+Database schema is up to date!
+
+stderr:
+
+========================================================================================================================
+
+$ npm run typecheck
+exit_code: 0
+stdout:
+
+> medical-content-platform@0.1.0 typecheck
+> tsc --noEmit
+
+
+stderr:
+
+========================================================================================================================
+
+$ npm run lint
+exit_code: 0
+stdout:
+
+> medical-content-platform@0.1.0 lint
+> eslint .
+
+
+C:\Users\mosat\medical-content-platform\eslint.config.mjs
+  4:1  warning  Assign array to a variable before exporting as module default  import/no-anonymous-default-export
+
+C:\Users\mosat\medical-content-platform\lib\auth.ts
+  12:3   warning  Unused eslint-disable directive (no problems were reported from '@typescript-eslint/no-var-requires')
+  15:10  warning  'e' is defined but never used                                                                          @typescript-eslint/no-unused-vars
+
+C:\Users\mosat\medical-content-platform\lib\env.ts
+  26:5  warning  Unused eslint-disable directive (no problems were reported from 'no-console')
+
+C:\Users\mosat\medical-content-platform\lib\logger.ts
+  14:14  warning  'e' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\mosat\medical-content-platform\lib\prisma.ts
+  6:3  warning  Unused eslint-disable directive (no problems were reported from 'no-var')
+
+C:\Users\mosat\medical-content-platform\lib\queue\queues.ts
+  11:5  warning  Unused eslint-disable directive (no problems were reported from '@typescript-eslint/no-require-imports')
+
+C:\Users\mosat\medical-content-platform\lib\services\retrieval\retrieve.ts
+  15:3  warning  'page' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\mosat\medical-content-platform\lib\sources\FdaAdapter.ts
+  38:23  warning  '_id' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\mosat\medical-content-platform\lib\sources\ManufacturerDocsAdapter.ts
+  28:23  warning  '_id' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\mosat\medical-content-platform\lib\sources\OpenMedicalLibrariesAdapter.ts
+  27:23  warning  '_id' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\mosat\medical-content-platform\lib\sources\PubMedAdapter.ts
+  50:14  warning  'e' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\mosat\medical-content-platform\lib\sources\WikimediaAdapter.ts
+  27:23  warning  '_id' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\mosat\medical-content-platform\lib\workers\ingestionWorker.ts
+  84:1  warning  Assign object to a variable before exporting as module default  import/no-anonymous-default-export
+
+C:\Users\mosat\medical-content-platform\pages\admin\dashboard.tsx
+  8:17  warning  'session' is assigned a value but never used  @typescript-eslint/no-unused-vars
+  9:17  warning  'error' is assigned a value but never used    @typescript-eslint/no-unused-vars
+
+C:\Users\mosat\medical-content-platform\pages\admin\ingestion-monitor.tsx
+   8:17  warning  'session' is assigned a value but never used                           @typescript-eslint/no-unused-vars
+  47:13  warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+
+C:\Users\mosat\medical-content-platform\pages\admin\scraper.tsx
+  7:10  warning  'stream' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\mosat\medical-content-platform\pages\api\admin\ingestion\import.ts
+  10:34  warning  'authors' is assigned a value but never used  @typescript-eslint/no-unused-vars
+  10:43  warning  'pubDate' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\mosat\medical-content-platform\pages\api\admin\scraper\logs.ts
+  30:39  warning  'event' is defined but never used  @typescript-eslint/no-unused-vars
+  43:14  warning  'e' is defined but never used      @typescript-eslint/no-unused-vars
+
+C:\Users\mosat\medical-content-platform\pages\library_new.tsx
+  42:16  warning  'err' is defined but never used  @typescript-eslint/no-unused-vars
+
+✖ 24 problems (0 errors, 24 warnings)
+  0 errors and 4 warnings potentially fixable with the `--fix` option.
+
+
+stderr:
+
+========================================================================================================================
+
+$ npm test -- --runInBand
+exit_code: 0
+stdout:
+
+> medical-content-platform@0.1.0 test
+> jest --runInBand
+
+
+stderr:
+ts-jest[ts-jest-transformer] (WARN) Define `ts-jest` config under `globals` is deprecated. Please do
+transform: {
+    <transform_regex>: ['ts-jest', { /* ts-jest config goes here in Jest */ }],
+},
+See more at https://kulshekhar.github.io/ts-jest/docs/getting-started/presets#advanced
+PASS __tests__/discovery_duplicates.test.ts (6.213 s)
+PASS __tests__/health.test.ts
+PASS __tests__/phase2a_flow.test.ts
+  ● Console
+
+    console.warn
+      Environment validation issues (TEST): DATABASE_URL: Required; NEXTAUTH_SECRET: Required
+
+    [0m [90m 25 |[39m   [36mif[39m (process[33m.[39menv[33m.[39m[33mNODE_ENV[39m [33m===[39m [32m'test'[39m) {
+     [90m 26 |[39m     [90m// eslint-disable-next-line no-console[39m
+    [31m[1m>[22m[39m[90m 27 |[39m     console[33m.[39mwarn([32m'Environment validation issues (TEST):'[39m[33m,[39m issues)
+     [90m    |[39m             [31m[1m^[22m[39m
+     [90m 28 |[39m   } [36melse[39m {
+     [90m 29 |[39m     [36mthrow[39m [36mnew[39m [33mError[39m([32m`Environment validation failed: ${issues}`[39m)
+     [90m 30 |[39m   }[0m
+
+      at Object.<anonymous> (lib/env.ts:27:13)
+      at Object.<anonymous> (lib/prisma.ts:3:1)
+      at Object.<anonymous> (lib/workers/ingestionWorker.ts:1:1)
+      at Object.<anonymous> (__tests__/phase2a_flow.test.ts:87:32)
+
+    console.log
+      references state after import [
+        {
+          id: 'ref1',
+          status: 'pending_ingestion',
+          deviceId: 'dev1',
+          title: 'Stent study',
+          sourceName: 'PubMed',
+          sourceId: 'pmid123',
+          pmid: 'pmid123',
+          doi: undefined,
+          arxivId: undefined,
+          sourceFingerprint: 'pmid:pmid123',
+          sourceUrl: 'http://example',
+          sourceReliabilityScore: 0,
+          contentHash: '8a4f2bfa242a9b1f95d55c656860cfe4f8e76eec11ff5d5251075437ba60026c'
+        }
+      ]
+
+      at Object.<anonymous> (__tests__/phase2a_flow.test.ts:138:13)
+
+PASS __tests__/pending_review_api.test.ts
+  ● Console
+
+    console.warn
+      Environment validation issues (TEST): DATABASE_URL: Required; NEXTAUTH_SECRET: Required
+
+    [0m [90m 25 |[39m   [36mif[39m (process[33m.[39menv[33m.[39m[33mNODE_ENV[39m [33m===[39m [32m'test'[39m) {
+     [90m 26 |[39m     [90m// eslint-disable-next-line no-console[39m
+    [31m[1m>[22m[39m[90m 27 |[39m     console[33m.[39mwarn([32m'Environment validation issues (TEST):'[39m[33m,[39m issues)
+     [90m    |[39m             [31m[1m^[22m[39m
+     [90m 28 |[39m   } [36melse[39m {
+     [90m 29 |[39m     [36mthrow[39m [36mnew[39m [33mError[39m([32m`Environment validation failed: ${issues}`[39m)
+     [90m 30 |[39m   }[0m
+
+      at Object.<anonymous> (lib/env.ts:27:13)
+      at Object.<anonymous> (lib/prisma.ts:3:1)
+      at Object.<anonymous> (pages/api/admin/references/pending_review.ts:3:1)
+      at Object.<anonymous> (__tests__/pending_review_api.test.ts:19:21)
+
+PASS __tests__/home.test.ts
+PASS __tests__/reference_state.test.ts
+PASS __tests__/retrieval_policy.test.ts
+PASS __tests__/devices_api.test.ts
+PASS __tests__/profile_content.test.ts
+PASS __tests__/admin_sections.test.ts
+  ● Console
+
+    console.warn
+      Environment validation issues (TEST): DATABASE_URL: Required; NEXTAUTH_SECRET: Required
+
+    [0m [90m 25 |[39m   [36mif[39m (process[33m.[39menv[33m.[39m[33mNODE_ENV[39m [33m===[39m [32m'test'[39m) {
+     [90m 26 |[39m     [90m// eslint-disable-next-line no-console[39m
+    [31m[1m>[22m[39m[90m 27 |[39m     console[33m.[39mwarn([32m'Environment validation issues (TEST):'[39m[33m,[39m issues)
+     [90m    |[39m             [31m[1m^[22m[39m
+     [90m 28 |[39m   } [36melse[39m {
+     [90m 29 |[39m     [36mthrow[39m [36mnew[39m [33mError[39m([32m`Environment validation failed: ${issues}`[39m)
+     [90m 30 |[39m   }[0m
+
+      at Object.<anonymous> (lib/env.ts:27:13)
+      at Object.<anonymous> (lib/prisma.ts:3:1)
+      at Object.<anonymous> (pages/api/admin/sections/queue.ts:3:1)
+      at Object.<anonymous> (__tests__/admin_sections.test.ts:30:21)
+
+PASS __tests__/source_identifiers.test.ts
+PASS __tests__/search_aggregator.test.ts
+PASS __tests__/run_worker_api.test.ts
+PASS __tests__/search_api.test.ts
+PASS __tests__/taxonomy_models_api.test.ts
+PASS __tests__/taxonomy_departments_api.test.ts
+PASS __tests__/references_query_api.test.ts
+PASS __tests__/ingestion_logs_api.test.ts
+PASS __tests__/health_endpoints.test.ts
+  ● Console
+
+    console.warn
+      Environment validation issues (TEST): DATABASE_URL: Required; NEXTAUTH_SECRET: Required
+
+    [0m [90m 25 |[39m   [36mif[39m (process[33m.[39menv[33m.[39m[33mNODE_ENV[39m [33m===[39m [32m'test'[39m) {
+     [90m 26 |[39m     [90m// eslint-disable-next-line no-console[39m
+    [31m[1m>[22m[39m[90m 27 |[39m     console[33m.[39mwarn([32m'Environment validation issues (TEST):'[39m[33m,[39m issues)
+     [90m    |[39m             [31m[1m^[22m[39m
+     [90m 28 |[39m   } [36melse[39m {
+     [90m 29 |[39m     [36mthrow[39m [36mnew[39m [33mError[39m([32m`Environment validation failed: ${issues}`[39m)
+     [90m 30 |[39m   }[0m
+
+      at Object.<anonymous> (lib/env.ts:27:13)
+      at Object.<anonymous> (lib/prisma.ts:3:1)
+      at Object.<anonymous> (pages/api/health/database.ts:2:1)
+      at Object.<anonymous> (__tests__/health_endpoints.test.ts:5:1)
+
+PASS __tests__/retrieval_engine.test.ts
+PASS __tests__/upload_duplicate_and_rollback.test.ts
+PASS __tests__/scheduler_api.test.ts
+PASS __tests__/devices_route.test.ts
+PASS __tests__/verification_api.test.ts
+  ● Console
+
+    console.warn
+      Environment validation issues (TEST): DATABASE_URL: Required; NEXTAUTH_SECRET: Required
+
+    [0m [90m 25 |[39m   [36mif[39m (process[33m.[39menv[33m.[39m[33mNODE_ENV[39m [33m===[39m [32m'test'[39m) {
+     [90m 26 |[39m     [90m// eslint-disable-next-line no-console[39m
+    [31m[1m>[22m[39m[90m 27 |[39m     console[33m.[39mwarn([32m'Environment validation issues (TEST):'[39m[33m,[39m issues)
+     [90m    |[39m             [31m[1m^[22m[39m
+     [90m 28 |[39m   } [36melse[39m {
+     [90m 29 |[39m     [36mthrow[39m [36mnew[39m [33mError[39m([32m`Environment validation failed: ${issues}`[39m)
+     [90m 30 |[39m   }[0m
+
+      at Object.<anonymous> (lib/env.ts:27:13)
+      at Object.<anonymous> (lib/prisma.ts:3:1)
+      at Object.<anonymous> (pages/api/admin/verification/[id].ts:3:1)
+      at Object.<anonymous> (__tests__/verification_api.test.ts:33:21)
+
+PASS __tests__/admin_auth_coverage.test.ts
+PASS __tests__/taxonomy_departments_detail_api.test.ts
+PASS __tests__/discovery_ssrf_guard.test.ts
+PASS __tests__/profile_api.test.ts
+PASS __tests__/library_api.test.ts
+  ● Console
+
+    console.warn
+      Environment validation issues (TEST): DATABASE_URL: Required; NEXTAUTH_SECRET: Required
+
+    [0m [90m 25 |[39m   [36mif[39m (process[33m.[39menv[33m.[39m[33mNODE_ENV[39m [33m===[39m [32m'test'[39m) {
+     [90m 26 |[39m     [90m// eslint-disable-next-line no-console[39m
+    [31m[1m>[22m[39m[90m 27 |[39m     console[33m.[39mwarn([32m'Environment validation issues (TEST):'[39m[33m,[39m issues)
+     [90m    |[39m             [31m[1m^[22m[39m
+     [90m 28 |[39m   } [36melse[39m {
+     [90m 29 |[39m     [36mthrow[39m [36mnew[39m [33mError[39m([32m`Environment validation failed: ${issues}`[39m)
+     [90m 30 |[39m   }[0m
+
+      at Object.<anonymous> (lib/env.ts:27:13)
+      at Object.<anonymous> (lib/prisma.ts:3:1)
+      at Object.<anonymous> (pages/api/references/library.ts:2:1)
+      at Object.<anonymous> (__tests__/library_api.test.ts:31:21)
+
+PASS __tests__/admin_stats.test.ts
+PASS __tests__/tools/show_project_metrics.test.ts
+PASS __tests__/settings_api.test.ts
+PASS __tests__/verification_reference_ui_guard.test.ts
+PASS __tests__/ingestion_monitor.test.tsx
+PASS __tests__/ingestion_import_api.test.ts
+  ● Console
+
+    console.warn
+      Environment validation issues (TEST): DATABASE_URL: Required; NEXTAUTH_SECRET: Required
+
+    [0m [90m 25 |[39m   [36mif[39m (process[33m.[39menv[33m.[39m[33mNODE_ENV[39m [33m===[39m [32m'test'[39m) {
+     [90m 26 |[39m     [90m// eslint-disable-next-line no-console[39m
+    [31m[1m>[22m[39m[90m 27 |[39m     console[33m.[39mwarn([32m'Environment validation issues (TEST):'[39m[33m,[39m issues)
+     [90m    |[39m             [31m[1m^[22m[39m
+     [90m 28 |[39m   } [36melse[39m {
+     [90m 29 |[39m     [36mthrow[39m [36mnew[39m [33mError[39m([32m`Environment validation failed: ${issues}`[39m)
+     [90m 30 |[39m   }[0m
+
+      at Object.<anonymous> (lib/env.ts:27:13)
+      at Object.<anonymous> (lib/prisma.ts:3:1)
+      at Object.<anonymous> (pages/api/admin/ingestion/import.ts:3:1)
+      at Object.<anonymous> (__tests__/ingestion_import_api.test.ts:27:21)
+
+PASS __tests__/ingestion_worker.test.ts
+PASS __tests__/tools/reextract_sections.test.js
+  ● Console
+
+    console.log
+      ref r1: wrote 2 sections
+
+      at reextractAll (tools/reextract_sections.js:39:15)
+
+PASS __tests__/create_route.test.ts
+PASS __tests__/admin_dashboard.test.tsx
+PASS __tests__/taxonomy_devices_detail_api.test.ts
+PASS __tests__/auth_callbacks.test.ts
+PASS __tests__/ops_readiness.test.ts
+PASS __tests__/reference_state_lifecycle.test.ts
+PASS __tests__/readiness_classification.test.ts
+
+Test Suites: 44 passed, 44 total
+Tests:       113 passed, 113 total
+Snapshots:   0 total
+Time:        59.275 s
+Ran all test suites.
+
+========================================================================================================================
+
+$ npm run build
+exit_code: 0
+stdout:
+
+> medical-content-platform@0.1.0 build
+> node tools/clean_next_lock.js && next build --webpack
+
+▲ Next.js 16.1.6 (webpack)
+- Environments: .env.local, .env
+
+  Running TypeScript ...
+  Creating an optimized production build ...
+✓ Compiled successfully in 33.5s
+  Collecting page data using 7 workers ...
+  Generating static pages using 7 workers (0/19) ...
+  Generating static pages using 7 workers (4/19) 
+  Generating static pages using 7 workers (9/19) 
+  Generating static pages using 7 workers (14/19) 
+✓ Generating static pages using 7 workers (19/19) in 12.7s
+  Finalizing page optimization ...
+  Collecting build traces ...
+
+Route (pages)
+┌ ○ / (1244 ms)
+├   /_app
+├ ○ /404
+├ ƒ /admin
+├ ○ /admin/dashboard (623 ms)
+├ ƒ /admin/ingestion
+├ ○ /admin/ingestion-monitor
+├ ƒ /admin/logs
+├ ƒ /admin/references
+├ ○ /admin/references/[id] (619 ms)
+├ ○ /admin/research (1242 ms)
+├ ○ /admin/scraper (625 ms)
+├ ƒ /admin/sections/[id]
+├ ƒ /admin/settings
+├ ƒ /admin/sources
+├ ƒ /admin/taxonomy
+├ ○ /admin/verification (1263 ms)
+├ ƒ /admin/verification/references
+├ ƒ /admin/verification/references/[id]
+├ ƒ /api/admin/file
+├ ƒ /api/admin/ingestion/import
+├ ƒ /api/admin/ingestion/logs
+├ ƒ /api/admin/ingestion/process/[referenceId]
+├ ƒ /api/admin/ingestion/run-worker
+├ ƒ /api/admin/ingestion/scheduler
+├ ƒ /api/admin/metrics
+├ ƒ /api/admin/operations/readiness
+├ ƒ /api/admin/publishing/schedule
+├ ƒ /api/admin/reference/[id]
+├ ƒ /api/admin/references/[id]
+├ ƒ /api/admin/references/[id]/sections
+├ ƒ /api/admin/references/pending_review
+├ ƒ /api/admin/references/queue
+├ ƒ /api/admin/scraper/logs
+├ ƒ /api/admin/scraper/start
+├ ƒ /api/admin/scraper/status
+├ ƒ /api/admin/sections/[id]
+├ ƒ /api/admin/sections/queue
+├ ƒ /api/admin/settings
+├ ƒ /api/admin/sources
+├ ƒ /api/admin/stats
+├ ƒ /api/admin/taxonomy/departments
+├ ƒ /api/admin/taxonomy/departments/[id]
+├ ƒ /api/admin/taxonomy/devices
+├ ƒ /api/admin/taxonomy/devices/[id]
+├ ƒ /api/admin/taxonomy/models
+├ ƒ /api/admin/taxonomy/models/[id]
+├ ƒ /api/admin/verification/[id]
+├ ƒ /api/auth/[...nextauth]
+├ ƒ /api/content/[id]
+├ ƒ /api/content/generate
+├ ƒ /api/content/generate-post
+├ ƒ /api/devices
+├ ƒ /api/devices/[deviceId]/profile
+├ ƒ /api/health
+├ ƒ /api/health/database
+├ ƒ /api/health/dependencies
+├ ƒ /api/health/system
+├ ƒ /api/references/[id]
+├ ƒ /api/references/discovery/ingest
+├ ƒ /api/references/discovery/queries
+├ ƒ /api/references/discovery/search
+├ ƒ /api/references/library
+├ ƒ /api/references/query
+├ ƒ /api/references/upload
+├ ƒ /api/research/add-to-queue
+├ ƒ /api/research/search
+├ ƒ /api/search/pubmed
+├ ○ /create (1249 ms)
+├ ○ /devices (1247 ms)
+├ ○ /devices/[id]/discover (1263 ms)
+├ ○ /devices/[id]/references (1273 ms)
+├ ○ /devices/index_new (1244 ms)
+├ ○ /index_new (638 ms)
+├ ○ /library (626 ms)
+├ ○ /library_new (620 ms)
+├ ○ /reference/[id] (620 ms)
+└ ○ /search (626 ms)
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+
+
+stderr:
+⚠ Compiled with warnings in 17.3s
+
+./pages/api/admin/scraper/start.ts
+Critical dependency: the request of a dependency is an expression
+
+Import trace for requested module:
+./pages/api/admin/scraper/start.ts
+
+./pages/api/content/generate-post.ts
+Critical dependency: the request of a dependency is an expression
+
+Import trace for requested module:
+./pages/api/content/generate-post.ts
+
+
+========================================================================================================================
+

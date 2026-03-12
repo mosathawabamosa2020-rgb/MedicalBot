@@ -1,8 +1,9 @@
 import pino from 'pino'
 
-let logger: pino.Logger
-
 function createLogger(): pino.Logger {
+  if (process.env.NODE_ENV === 'test') {
+    return pino({ enabled: false })
+  }
   if (process.env.NODE_ENV !== 'production') {
     try {
       // pino.transport exists in newer pino versions; cast to any to avoid TS issues
@@ -17,6 +18,6 @@ function createLogger(): pino.Logger {
   return pino()
 }
 
-logger = createLogger()
+const logger = createLogger()
 
 export default logger

@@ -3,6 +3,6 @@
 
 ALTER TABLE "Section" DROP COLUMN IF EXISTS "status";
 
-DROP TYPE IF EXISTS "SectionStatus";
-
 DROP TABLE IF EXISTS "SectionAuditLog";
+
+DROP TYPE IF EXISTS "SectionStatus";

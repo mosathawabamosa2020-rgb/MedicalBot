@@ -12,7 +12,7 @@ export function cleanPages(rawPages: string[]): string[][] {
   })
 
   // lines that appear on 3 or more pages are likely headers/footers
-  const repeats = new Set<string>(Object.keys(lineCounts).filter(l => lineCounts[l] > 2))
+  const repeats = new Set<string>(Object.keys(lineCounts).filter(l => (lineCounts[l] || 0) > 2))
 
   return pagesLines.map(lines => lines.filter(l => {
     if (repeats.has(l)) return false
@@ -55,6 +55,7 @@ export function extractSections(rawPages: string[]): Array<{ title: string; cont
 
   for (let i = 0; i < allLines.length; i++) {
     const line = allLines[i]
+    if (!line) continue
     if (isProbableHeader(line)) {
       headers.push({ idx: i, title: line })
     }
@@ -70,11 +71,14 @@ export function extractSections(rawPages: string[]): Array<{ title: string; cont
 
   const sections: Array<{ title: string; content: string }> = []
   for (let h = 0; h < headers.length - 1; h++) {
-    const start = headers[h].idx + 1
-    const end = headers[h + 1].idx
+    const currentHeader = headers[h]
+    const nextHeader = headers[h + 1]
+    if (!currentHeader || !nextHeader) continue
+    const start = currentHeader.idx + 1
+    const end = nextHeader.idx
     const contentLines = allLines.slice(start, end)
     const content = contentLines.join(' ')
-    sections.push({ title: headers[h].title, content: content.trim() })
+    sections.push({ title: currentHeader.title, content: content.trim() })
   }
   return sections
 }

@@ -1,23 +1,50 @@
 import PubMedAdapter from '../sources/PubMedAdapter'
+import FdaAdapter from '../sources/FdaAdapter'
+import WikimediaAdapter from '../sources/WikimediaAdapter'
+import OpenMedicalLibrariesAdapter from '../sources/OpenMedicalLibrariesAdapter'
+import ManufacturerDocsAdapter from '../sources/ManufacturerDocsAdapter'
 import type { SearchResultItem, SourceAdapter } from '../sources/SourceAdapter'
 
-// simple facade for combining multiple adapters; currently only PubMed
 export default class SearchAggregatorService {
   private adapters: SourceAdapter[]
 
   constructor() {
-    // future: instantiate other adapters based on config
-    this.adapters = [new PubMedAdapter()]
+    if (process.env.NODE_ENV === 'test') {
+      this.adapters = [new PubMedAdapter()]
+      return
+    }
+    this.adapters = [
+      new PubMedAdapter(),
+      new FdaAdapter(),
+      new WikimediaAdapter(),
+      new OpenMedicalLibrariesAdapter(),
+      new ManufacturerDocsAdapter(),
+    ]
   }
 
-  /** perform query across all registered sources */
   async searchAll(query: string): Promise<SearchResultItem[]> {
-    // collecting results from each adapter sequentially; duplicates not deduped
     const results: SearchResultItem[] = []
     for (const a of this.adapters) {
-      const r = await a.search(query)
-      results.push(...r)
+      try {
+        const r = await a.search(query)
+        results.push(...r)
+      } catch {
+        // continue with remaining sources to keep discovery resilient
+      }
     }
-    return results
+    const deduped = this.deduplicate(results)
+    return deduped.sort((a, b) => (b.reliabilityScore || 0) - (a.reliabilityScore || 0))
+  }
+
+  private deduplicate(items: SearchResultItem[]) {
+    const seen = new Set<string>()
+    const out: SearchResultItem[] = []
+    for (const item of items) {
+      const key = `${item.sourceUrl || ''}|${(item.title || '').toLowerCase()}`.trim()
+      if (!key || seen.has(key)) continue
+      seen.add(key)
+      out.push(item)
+    }
+    return out
   }
 }

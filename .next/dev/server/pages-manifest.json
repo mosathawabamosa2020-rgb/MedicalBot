@@ -1,0 +1,4 @@
+{
+  "/api/health/database": "pages/api/health/database.js",
+  "/api/health/system": "pages/api/health/system.js"
+}

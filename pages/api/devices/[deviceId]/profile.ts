@@ -25,8 +25,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     })
     const profile: Record<string, Array<any>> = {}
     for (const c of chunks) {
-      if (!profile[c.category]) profile[c.category] = []
-      profile[c.category].push(c)
+      const key = c.category || 'uncategorized'
+      if (!profile[key]) profile[key] = []
+      profile[key]!.push(c)
     }
     return res.status(200).json({ deviceId, profile })
   } catch (e) {

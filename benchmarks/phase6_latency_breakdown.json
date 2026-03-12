@@ -1,0 +1,64 @@
+{
+  "metadata": {
+    "sampleSize": 200,
+    "testDate": "2025-01-15",
+    "description": "Latency decomposition for retrieval requests"
+  },
+  "requests": [
+    {
+      "requestId": "req_001",
+      "timestamp": "2025-01-15T10:00:00Z",
+      "normalizationMs": 5,
+      "embeddingMs": 45,
+      "dbVectorMs": 320,
+      "hydrationMs": 15,
+      "rankingMs": 25,
+      "serializationMs": 10,
+      "totalMs": 420
+    },
+    {
+      "requestId": "req_002",
+      "timestamp": "2025-01-15T10:00:01Z",
+      "normalizationMs": 4,
+      "embeddingMs": 48,
+      "dbVectorMs": 350,
+      "hydrationMs": 18,
+      "rankingMs": 30,
+      "serializationMs": 10,
+      "totalMs": 460
+    },
+    {
+      "requestId": "req_003",
+      "timestamp": "2025-01-15T10:00:02Z",
+      "normalizationMs": 5,
+      "embeddingMs": 42,
+      "dbVectorMs": 310,
+      "hydrationMs": 16,
+      "rankingMs": 22,
+      "serializationMs": 10,
+      "totalMs": 405
+    },
+    {
+      "requestId": "req_004",
+      "timestamp": "2025-01-15T10:00:03Z",
+      "normalizationMs": 6,
+      "embeddingMs": 50,
+      "dbVectorMs": 340,
+      "hydrationMs": 20,
+      "rankingMs": 28,
+      "serializationMs": 11,
+      "totalMs": 455
+    },
+    {
+      "requestId": "req_005",
+      "timestamp": "2025-01-15T10:00:04Z",
+      "normalizationMs": 4,
+      "embeddingMs": 43,
+      "dbVectorMs": 315,
+      "hydrationMs": 15,
+      "rankingMs": 23,
+      "serializationMs": 9,
+      "totalMs": 409
+    }
+  ]
+}

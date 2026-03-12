@@ -3,10 +3,10 @@ import { assertTransition } from '../lib/referenceState'
 describe('reference state machine', () => {
   const validPairs: Array<[string,string]> = [
     ['pending_ingestion','processing'],
-    ['processing','pending_review'],
+    ['processing','processed'],
+    ['processed','pending_review'],
     ['pending_review','verified'],
-    ['pending_review','rejected'],
-    ['processing','pending_review']
+    ['pending_review','rejected']
   ]
 
   for (const [cur,next] of validPairs) {
@@ -18,6 +18,7 @@ describe('reference state machine', () => {
   const invalidPairs: Array<[string,string]> = [
     ['pending_ingestion','verified'],
     ['processing','verified'],
+    ['processing','pending_review'],
     ['pending_review','processing'],
     ['verified','pending_review'],
     ['archived','pending_ingestion']

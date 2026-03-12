@@ -1,6 +1,8 @@
 import prisma from '../prisma'
 import PubMedAdapter from '../sources/PubMedAdapter'
 import { assertTransition } from '../referenceState'
+import logger from '../logger'
+import { embedText } from '../embeddings'
 
 async function parseTextIntoSections(text: string): Promise<{ title: string; content: string }[]> {
   if (!text) return []
@@ -13,8 +15,15 @@ async function logEvent(message: string, referenceId?: string) {
   try {
     await prisma.ingestionLog.create({ data: { message, referenceId } })
   } catch (e) {
-    console.error('failed to write ingestion log', e)
+    logger.error({ err: e, referenceId }, 'failed to write ingestion log')
   }
+}
+
+async function moveProcessingToPendingReview(referenceId: string) {
+  await prisma.reference.update({ where: { id: referenceId }, data: { status: 'processed' } })
+  assertTransition('processing', 'processed')
+  await prisma.reference.update({ where: { id: referenceId }, data: { status: 'pending_review', processingDate: new Date() } })
+  assertTransition('processed', 'pending_review')
 }
 
 export async function runIngestionWorker() {
@@ -33,27 +42,36 @@ export async function runIngestionWorker() {
       }
 
       if (fullText) {
+        if (typeof (prisma.section as any).deleteMany === 'function') {
+          await (prisma.section as any).deleteMany({ where: { referenceId: r.id } })
+        }
         const sections = await parseTextIntoSections(fullText)
         let order = 1
         for (const s of sections) {
+          let embeddingLiteral: string | null = null
+          try {
+            const sectionEmbedding = await embedText(s.content)
+            embeddingLiteral = `[${sectionEmbedding.join(',')}]`
+          } catch (e) {
+            logger.warn({ err: e, referenceId: r.id, order }, 'section embedding generation failed')
+          }
           await prisma.section.create({ data: {
             deviceId: r.deviceId,
             referenceId: r.id,
             title: s.title,
             content: s.content,
-            order: order++
+            order: order++,
+            ...(embeddingLiteral ? { embedding: embeddingLiteral as any } : {})
           } })
         }
       }
-      // regardless of fullText outcome, move to pending_review
-      await prisma.reference.update({ where: { id: r.id }, data: { status: 'pending_review', processingDate: new Date() } })
-      assertTransition('processing', 'pending_review')
+      // official lifecycle: processing -> processed -> pending_review
+      await moveProcessingToPendingReview(r.id)
       await logEvent(`Finished processing reference ${r.id}`, r.id)
     } catch (e: any) {
-      console.error('worker error for reference', r.id, e?.message)
+      logger.error({ err: e, referenceId: r.id }, 'worker error for reference')
       // errors also send to pending_review so human can inspect
-      await prisma.reference.update({ where: { id: r.id }, data: { status: 'pending_review', processingDate: new Date() } })
-      assertTransition('processing', 'pending_review')
+      await moveProcessingToPendingReview(r.id)
       await logEvent(`Error processing reference ${r.id}: ${e?.message}`, r.id)
     }
   }
@@ -79,23 +97,33 @@ export async function processReferenceById(referenceId: string) {
     }
 
     if (fullText) {
+      if (typeof (prisma.section as any).deleteMany === 'function') {
+        await (prisma.section as any).deleteMany({ where: { referenceId: r.id } })
+      }
       const sections = await parseTextIntoSections(fullText)
       let order = 1
       for (const s of sections) {
+        let embeddingLiteral: string | null = null
+        try {
+          const sectionEmbedding = await embedText(s.content)
+          embeddingLiteral = `[${sectionEmbedding.join(',')}]`
+        } catch (e) {
+          logger.warn({ err: e, referenceId: r.id, order }, 'section embedding generation failed')
+        }
         await prisma.section.create({ data: {
           deviceId: r.deviceId,
           referenceId: r.id,
           title: s.title,
           content: s.content,
-          order: order++
+          order: order++,
+          ...(embeddingLiteral ? { embedding: embeddingLiteral as any } : {})
         } })
       }
     }
-    await prisma.reference.update({ where: { id: r.id }, data: { status: 'pending_review', processingDate: new Date() } })
-    assertTransition('processing', 'pending_review')
+    await moveProcessingToPendingReview(r.id)
     return { status: 'pending_review', sections: fullText ? fullText.split(/\n\s*\n/).length : 0 }
   } catch (e: any) {
-    await prisma.reference.update({ where: { id: r.id }, data: { status: 'pending_review', processingDate: new Date() } })
+    await moveProcessingToPendingReview(r.id)
     throw e
   }
 }

@@ -1,0 +1,5 @@
+[00:00:09.932] Server  WARN    ⚠ Duplicate page detected. pages\create.tsx and pages\create\index.tsx resolve to /create
+[00:00:09.933] Server  WARN    ⚠ Duplicate page detected. pages\library.tsx and pages\library\index.tsx resolve to /library
+[00:00:09.933] Server  WARN    ⚠ Duplicate page detected. pages\create.tsx and pages\create\index.tsx resolve to /create
+[00:00:09.934] Server  WARN    ⚠ Duplicate page detected. pages\library.tsx and pages\library\index.tsx resolve to /library
+[00:00:09.938] Server  LOG     ✓ Ready in 6s

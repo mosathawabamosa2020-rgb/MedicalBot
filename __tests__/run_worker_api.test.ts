@@ -1,12 +1,13 @@
 import { createMocks } from 'node-mocks-http'
 
-jest.mock('../lib/workers/ingestionWorker', () => ({
-  runIngestionWorker: jest.fn().mockResolvedValue(undefined)
+jest.mock('../lib/queue/queues', () => ({
+  ensureSchedulersStarted: jest.fn().mockResolvedValue(undefined),
+  enqueueIngestionJob: jest.fn().mockResolvedValue({ mode: 'inline', id: null }),
 }))
 
 jest.mock('next-auth/next', () => ({ getServerSession: jest.fn() }))
 
-const { runIngestionWorker } = require('../lib/workers/ingestionWorker')
+const { enqueueIngestionJob, ensureSchedulersStarted } = require('../lib/queue/queues')
 
 describe('run-worker endpoint', () => {
   beforeEach(() => jest.clearAllMocks())
@@ -27,16 +28,17 @@ describe('run-worker endpoint', () => {
     const handler = require('../pages/api/admin/ingestion/run-worker').default
     await handler(req as any, res as any)
     expect(res._getStatusCode()).toBe(403)
-    expect(runIngestionWorker).not.toHaveBeenCalled()
+    expect(enqueueIngestionJob).not.toHaveBeenCalled()
   })
 
-  test('accepts admin and triggers worker', async () => {
+  test('accepts admin and enqueues worker job', async () => {
     const { getServerSession } = require('next-auth/next') as any
     getServerSession.mockResolvedValue({ user: { role: 'admin' } })
     const { req, res } = createMocks({ method: 'POST' })
     const handler = require('../pages/api/admin/ingestion/run-worker').default
     await handler(req as any, res as any)
     expect(res._getStatusCode()).toBe(202)
-    expect(runIngestionWorker).toHaveBeenCalled()
+    expect(ensureSchedulersStarted).toHaveBeenCalled()
+    expect(enqueueIngestionJob).toHaveBeenCalled()
   })
 })

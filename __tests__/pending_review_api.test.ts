@@ -24,12 +24,14 @@ describe('pending review APIs', () => {
   test('list returns data for admin', async () => {
     const { getServerSession } = require('next-auth/next') as any
     getServerSession.mockResolvedValue({ user: { role: 'admin' } })
-    PrismaClient().reference.findMany.mockResolvedValue([{ id: 'r1', title: 't', authors: 'a', journal: 'j' }])
+    PrismaClient().reference.findMany.mockResolvedValue([
+      { id: 'r1', title: 't', sourceName: 'PubMed', sourceUrl: null, uploadedAt: new Date(), processingDate: null }
+    ])
     const { req, res } = createMocks({ method: 'GET' })
     const handler = require('../pages/api/admin/references/pending_review').default
     await handler(req as any, res as any)
     expect(res._getStatusCode()).toBe(200)
-    expect(JSON.parse(res._getData())).toEqual([{ id: 'r1', title: 't', authors: 'a', journal: 'j' }])
+    expect(JSON.parse(res._getData())).toMatchObject({ items: [{ id: 'r1', title: 't', sourceName: 'PubMed' }] })
   })
 
   test('get reference denies non-admin or missing id', async () => {

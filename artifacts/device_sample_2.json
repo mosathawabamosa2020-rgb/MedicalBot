@@ -1,0 +1,121 @@
+{
+  "id": "dev_mri_scanner_001",
+  "name": "MRI Scanner",
+  "model": "MRI-7000",
+  "description": "A medical imaging device that uses magnetic fields and radio waves to create detailed images of the body's internal structures.",
+  "createdAt": "2025-01-15T10:00:00Z",
+  "scientificSections": [
+    {
+      "title": "Scientific Definition",
+      "content": "Magnetic Resonance Imaging (MRI) is a non-invasive medical imaging technique that utilizes strong magnetic fields and radio waves to generate detailed images of organs and tissues within the body. Unlike X-rays and CT scans, MRI does not use ionizing radiation, making it safer for repeated examinations and particularly valuable for imaging soft tissues.",
+      "citationTrace": ["ref_001", "ref_002"]
+    },
+    {
+      "title": "Mechanism of Action",
+      "content": "MRI operates based on the principles of nuclear magnetic resonance. The device generates a powerful static magnetic field (typically 1.5 to 7.0 Tesla) using superconducting magnets. Hydrogen nuclei in the body align with this field. Radio frequency pulses are then applied, causing the nuclei to absorb energy and shift their alignment. When the RF pulse is stopped, nuclei return to their original alignment, releasing energy that is detected by coils and processed into images. Different tissue types emit different signals, creating contrast in the final images.",
+      "citationTrace": ["ref_001", "ref_003", "ref_004"]
+    },
+    {
+      "title": "Basic Components",
+      "content": "Key MRI components include: 1) Superconducting magnet producing the main magnetic field, 2) Gradient coils for spatial encoding, 3) Radiofrequency (RF) coils for transmitting and receiving signals, 4) Shim coils for magnetic field homogeneity, 5) Patient table with positioning controls, 6) Computer system for image reconstruction and display, 7) RF shielding room (Faraday cage), 8) Cryogenic system for maintaining superconductivity, 9) Power supply and emergency systems. Modern systems also include advanced software for image processing and analysis.",
+      "citationTrace": ["ref_002", "ref_005"]
+    },
+    {
+      "title": "Medical Uses",
+      "content": "MRI scanners are essential for: 1) Neurological imaging (brain tumors, multiple sclerosis, stroke), 2) Musculoskeletal imaging (ligaments, tendons, cartilage), 3) Cardiovascular imaging (heart function, blood vessels), 4) Oncological imaging (tumor detection and staging), 5) Abdominal and pelvic imaging (organs, reproductive system), 6) Breast imaging (particularly for high-risk patients), 7) Functional MRI (brain activity mapping). Specialized sequences include diffusion-weighted imaging, perfusion imaging, and spectroscopy.",
+      "citationTrace": ["ref_003", "ref_006", "ref_007"]
+    },
+    {
+      "title": "Limitations",
+      "content": "MRI limitations include: 1) Long scan times (30-60 minutes typical), 2) High cost of equipment and operation, 3) Contraindications for patients with certain implants (pacemakers, metal fragments), 4) Claustrophobia and patient discomfort, 5) Limited availability in some regions, 6) Motion artifacts affecting image quality, 7) Reduced sensitivity for cortical bone and calcium, 8) Requirement for specialized facilities with RF shielding. Recent advances address some limitations but fundamental constraints remain.",
+      "citationTrace": ["ref_004", "ref_008"]
+    },
+    {
+      "title": "Technical Comparison",
+      "content": "Compared to CT scans, MRI provides superior soft tissue contrast without ionizing radiation but requires longer scan times. Higher field strengths (3T, 7T) offer improved resolution and signal-to-noise ratio but increase cost and may cause more artifacts. Open MRI designs reduce claustrophobia but typically offer lower field strength. Functional MRI (fMRI) adds capability for brain activity mapping but requires specialized sequences and processing. Hybrid systems like PET/MRI combine metabolic and anatomical imaging.",
+      "citationTrace": ["ref_005", "ref_009"]
+    }
+  ],
+  "reelScript": {
+    "fullScript": "Experience the power of MRI scanners - revolutionizing medical imaging with magnetic fields and radio waves. Unlike X-rays, MRI uses no ionizing radiation, making it safer for patients. From detecting brain tumors to visualizing soft tissues, MRI provides unparalleled detail. With field strengths up to 7 Tesla, modern MRI scanners deliver crystal-clear images in minutes. Essential for diagnosis and treatment planning, MRI technology continues to advance healthcare. Subscribe for more medical technology insights.",
+    "timeSegmentedScript": [
+      {
+        "time": "0-3s",
+        "content": "Hook: Experience the power of MRI scanners - revolutionizing medical imaging with magnetic fields and radio waves."
+      },
+      {
+        "time": "3-8s",
+        "content": "Unlike X-rays, MRI uses no ionizing radiation, making it safer for patients."
+      },
+      {
+        "time": "8-15s",
+        "content": "From detecting brain tumors to visualizing soft tissues, MRI provides unparalleled detail."
+      },
+      {
+        "time": "15-22s",
+        "content": "With field strengths up to 7 Tesla, modern MRI scanners deliver crystal-clear images in minutes."
+      },
+      {
+        "time": "22-28s",
+        "content": "Essential for diagnosis and treatment planning, MRI technology continues to advance healthcare."
+      },
+      {
+        "time": "28-30s",
+        "content": "CTA: Subscribe for more medical technology insights."
+      }
+    ],
+    "voiceoverText": "Experience the power of MRI scanners - revolutionizing medical imaging with magnetic fields and radio waves. Unlike X-rays, MRI uses no ionizing radiation, making it safer for patients. From detecting brain tumors to visualizing soft tissues, MRI provides unparalleled detail. With field strengths up to 7 Tesla, modern MRI scanners deliver crystal-clear images in minutes. Essential for diagnosis and treatment planning, MRI technology continues to advance healthcare. Subscribe for more medical technology insights.",
+    "caption": "MRI Scanners: Advanced medical imaging without radiation. Superior soft tissue contrast, detailed anatomical visualization. #MRI #MedicalImaging #HealthcareTechnology",
+    "hashtags": ["#MRI", "#MedicalImaging", "#HealthcareTechnology", "#Radiology", "#DiagnosticImaging", "#MedicalDevices"],
+    "citationTrace": ["ref_001", "ref_002", "ref_003", "ref_004", "ref_005", "ref_006", "ref_007", "ref_008", "ref_009"]
+  },
+  "imagePrompt": "Professional medical imaging suite showing a modern MRI scanner. Device features a sleek cylindrical design with a patient table extending into the bore. The control room is visible through a glass window with monitors displaying MRI images. Lighting is soft and professional, highlighting the device's advanced technology. Camera angle is from the side showing the full length of the scanner. High resolution, photorealistic style with medical equipment aesthetics. Clean hospital environment with subtle depth of field.",
+  "generationMode": "offline",
+  "references": [
+    {
+      "id": "ref_001",
+      "title": "Principles of Magnetic Resonance Imaging",
+      "source": "Radiology Journal"
+    },
+    {
+      "id": "ref_002",
+      "title": "MRI Scanner Design and Components",
+      "source": "Medical Physics"
+    },
+    {
+      "id": "ref_003",
+      "title": "MRI in Neurological Imaging",
+      "source": "Neuroimaging Clinics"
+    },
+    {
+      "id": "ref_004",
+      "title": "High-Field MRI Technology",
+      "source": "Journal of Magnetic Resonance"
+    },
+    {
+      "id": "ref_005",
+      "title": "MRI System Components",
+      "source": "Biomedical Instrumentation"
+    },
+    {
+      "id": "ref_006",
+      "title": "MRI Applications in Oncology",
+      "source": "Cancer Imaging"
+    },
+    {
+      "id": "ref_007",
+      "title": "Functional MRI Principles",
+      "source": "Human Brain Mapping"
+    },
+    {
+      "id": "ref_008",
+      "title": "MRI Limitations and Contraindications",
+      "source": "Safety in MRI"
+    },
+    {
+      "id": "ref_009",
+      "title": "MRI vs CT Imaging Comparison",
+      "source": "Diagnostic Radiology"
+    }
+  ]
+}

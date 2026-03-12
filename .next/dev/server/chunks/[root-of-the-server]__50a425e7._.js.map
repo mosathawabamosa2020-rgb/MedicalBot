@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 16, "column": 0}, "map": {"version":3,"sources":["file:///C:/Users/mosat/medical-content-platform/pages/api/health/system.ts"],"sourcesContent":["import type { NextApiRequest, NextApiResponse } from 'next'\r\n\r\n// unauthenticated simple liveness check\r\nexport default function handler(req: NextApiRequest, res: NextApiResponse) {\n  if (req.method !== 'GET') return res.status(405).end()\n  return res.status(200).json({ status: 'ok' })\n}\n"],"names":[],"mappings":";;;;AAGe,SAAS,QAAQ,GAAmB,EAAE,GAAoB;IACvE,IAAI,IAAI,MAAM,KAAK,OAAO,OAAO,IAAI,MAAM,CAAC,KAAK,GAAG;IACpD,OAAO,IAAI,MAAM,CAAC,KAAK,IAAI,CAAC;QAAE,QAAQ;IAAK;AAC7C"}}]
+}

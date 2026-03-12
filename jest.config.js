@@ -4,5 +4,12 @@ module.exports = {
   testPathIgnorePatterns: ['/node_modules/', '/.next/', '/dist/'],
   transform: {
     '^.+\\.(ts|tsx)$': 'ts-jest'
+  },
+  globals: {
+    'ts-jest': {
+      tsconfig: {
+        jsx: 'react-jsx'
+      }
+    }
   }
 }

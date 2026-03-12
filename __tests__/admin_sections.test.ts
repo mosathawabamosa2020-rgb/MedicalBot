@@ -30,7 +30,7 @@ describe('admin sections API', () => {
     const handler = require('../pages/api/admin/sections/queue').default
     await handler(req as any, res as any)
     expect(res._getStatusCode()).toBe(200)
-    expect(JSON.parse(res._getData())).toEqual(fake)
+    expect(JSON.parse(res._getData())).toEqual({ sections: fake })
   })
 
   test('detail GET returns single section', async () => {
