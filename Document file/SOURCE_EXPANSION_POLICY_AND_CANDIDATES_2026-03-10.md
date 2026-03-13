@@ -28,6 +28,7 @@ It authorizes structured technical and governance review.
 - `https://link.springer.com/`
 - `https://www.bspublications.com/`
 - `https://ar.wikipedia.org/`
+- `https://www.wikipedia.org/`
 
 ## 3. Founder Rules for Source Inclusion
 No candidate source may be added directly to the automated discovery pipeline without classification.

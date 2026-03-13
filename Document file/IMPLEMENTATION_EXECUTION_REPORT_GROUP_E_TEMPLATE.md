@@ -92,6 +92,8 @@ Document explicitly:
 - operational checks performed before browser use
 - any shell-specific issues (paths, quoting, env loading, encoding)
 - what PowerShell-based evidence proved about startup readiness and artifact generation
+- what concrete runtime blockers/errors/warnings PowerShell exposed before browser verification
+- what was fixed before proceeding to Chromium-based verification
 
 ## 11. Tests Added or Updated
 - test files added/updated

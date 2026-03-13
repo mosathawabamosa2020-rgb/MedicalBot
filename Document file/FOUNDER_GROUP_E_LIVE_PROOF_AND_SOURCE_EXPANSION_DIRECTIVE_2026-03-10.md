@@ -268,7 +268,7 @@ Use the available Chromium tooling inside Visual Studio Code as an official runt
 ## Workstream F — PowerShell-Based Operational Verification and Evidence Capture (Mandatory)
 
 ### Objective
-Adopt PowerShell inside Visual Studio Code as an official operational verification surface for command execution, service diagnostics, script-based proof, and evidence capture.
+Adopt PowerShell inside Visual Studio Code as an official operational verification surface for command execution, service diagnostics, script-based proof, evidence capture, and startup fault explanation before browser usage.
 
 ### Required actions
 1. Use PowerShell as the primary shell for:
