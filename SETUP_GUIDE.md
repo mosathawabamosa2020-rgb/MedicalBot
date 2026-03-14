@@ -76,7 +76,7 @@ Copy the exact block below into PowerShell to write the file (adjust values):
 ```powershell
 @'
 # Environment for local development
-DATABASE_URL="postgresql://postgres:postgres@localhost:5432/medical?schema=public"
+DATABASE_URL="postgresql://postgres:postgres@localhost:15432/medical?schema=public"
 NEXTAUTH_SECRET="replace-with-a-random-secret"
 OPENAI_API_KEY="your-openai-key-or-empty-for-local"
 # any other variables your app expects (API keys, etc.)
@@ -91,6 +91,29 @@ OPENAI_API_KEY="your-openai-key-or-empty-for-local"
 ```
 
 Replace the placeholder values with real ones. The `DATABASE_URL` above matches the Postgres container we create next.
+
+---
+
+## 4.1) External Verification Runtime Baseline (Quick Check)
+
+This is the minimum baseline an external verification team should be able to reproduce:
+- Required env vars: `DATABASE_URL`, `NEXTAUTH_SECRET`
+- Optional env var: `REDIS_URL` (only if Redis is running)
+- Database port assumption: 15432 (docker-compose default)
+
+Run preflight after the env file exists:
+
+```powershell
+npm run ops:preflight
+```
+
+If preflight reports missing env vars, export them in the same shell session and re-run:
+
+```powershell
+$env:DATABASE_URL="postgresql://postgres:postgres@localhost:15432/medical?schema=public"
+$env:NEXTAUTH_SECRET="replace-with-a-random-secret"
+npm run ops:preflight
+```
 
 ---
 
@@ -109,7 +132,7 @@ services:
       POSTGRES_PASSWORD: postgres
       POSTGRES_DB: medical
     ports:
-      - "5432:5432"
+      - "15432:5432"
     volumes:
       - db_data:/var/lib/postgresql/data
   adminer:
@@ -144,7 +167,7 @@ docker-compose logs -f db
 
 Wait until Postgres finishes init and shows "database system is ready to accept connections" in the logs.
 
-You can verify by connecting with Adminer at http://localhost:8080 (select PostgreSQL, server: host.docker.internal or localhost, port 5432, username: postgres, password: postgres, database: medical).
+You can verify by connecting with Adminer at http://localhost:8080 (select PostgreSQL, server: host.docker.internal or localhost, port 15432, username: postgres, password: postgres, database: medical).
 
 ---
 
@@ -160,7 +183,7 @@ npx prisma generate
 If this requires a DATABASE_URL, ensure .env.local has the `DATABASE_URL` set as above or export it to the session:
 
 ```powershell
-$env:DATABASE_URL="postgresql://postgres:postgres@localhost:5432/medical?schema=public"
+$env:DATABASE_URL="postgresql://postgres:postgres@localhost:15432/medical?schema=public"
 ```
 
 ---
@@ -175,7 +198,7 @@ git checkout main
 git pull origin main
 
 # export the DATABASE_URL into this Powershell session (so prisma can connect)
-$env:DATABASE_URL="postgresql://postgres:postgres@localhost:5432/medical?schema=public"
+$env:DATABASE_URL="postgresql://postgres:postgres@localhost:15432/medical?schema=public"
 
 # generate migration files without applying them (create-only). Replace the migration name as appropriate
 npx prisma migrate dev --name add_indexes_and_verificationlog --create-only
@@ -223,7 +246,7 @@ All tests should pass locally (the project has a comprehensive Jest suite). If t
 - "fatal: not a git repository": run `git init` and set `origin` remote as explained in Section 2.
 - Docker not starting or `docker-compose` missing: install Docker Desktop and enable WSL2 if required.
 - Prisma CLI complaining about missing `DATABASE_URL`: export it in PowerShell using the `$env:...` syntax and re-run the Prisma command in the same shell.
-- If port 5432 is in use, stop the conflicting service or change port mapping in `docker-compose.yml` and update `DATABASE_URL` accordingly.
+- If port 15432 is in use, stop the conflicting service or change port mapping in `docker-compose.yml` and update `DATABASE_URL` accordingly.
 
 ---
 

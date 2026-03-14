@@ -1,0 +1,211 @@
+{
+  "startedAt": "2026-03-14T02:43:31.815Z",
+  "baseUrl": "http://127.0.0.1:3000",
+  "deviceId": "cmmpq1f2o00012rdmbvlofh6i",
+  "queries": [
+    "infusion pump manual",
+    "ecg monitor device",
+    "ventilator medical device"
+  ],
+  "queryResults": [
+    {
+      "query": "infusion pump manual",
+      "results": [
+        {
+          "sourceName": "PubMed",
+          "title": "A Summative Usability Evaluation of an Infusion Pump Through Simulation-Based Testing With Nurses: Mixed Approach Study.",
+          "sourceUrl": "https://pubmed.ncbi.nlm.nih.gov/41802226/",
+          "reliabilityScore": 0.95
+        },
+        {
+          "sourceName": "PubMed",
+          "title": "Air in Line: An Alarming Issue.",
+          "sourceUrl": "https://pubmed.ncbi.nlm.nih.gov/41650135/",
+          "reliabilityScore": 0.95
+        },
+        {
+          "sourceName": "PubMed",
+          "title": "Successful parenteral nutrition weaning using a chyme re-infusion device: Case reports.",
+          "sourceUrl": "https://pubmed.ncbi.nlm.nih.gov/41647307/",
+          "reliabilityScore": 0.95
+        },
+        {
+          "sourceName": "PubMed",
+          "title": "Survey of glucose levels in adults with T1DM attending clinic using automated insulin delivery (AID) devices compared with manual insulin delivery.",
+          "sourceUrl": "https://pubmed.ncbi.nlm.nih.gov/41638441/",
+          "reliabilityScore": 0.95
+        },
+        {
+          "sourceName": "PubMed",
+          "title": "Reducing treatment burden in HER2+ breast cancer: Evaluating subcutaneous injection methods for pertuzumab/trastuzumab combination therapy.",
+          "sourceUrl": "https://pubmed.ncbi.nlm.nih.gov/41578485/",
+          "reliabilityScore": 0.95
+        },
+        {
+          "sourceName": "FDA",
+          "title": "UPDATED MANUAL FOR PEDS - PULMONARY EVAL. & DIAG.",
+          "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpmn/pmn.cfm?ID=K881122",
+          "reliabilityScore": 0.98
+        },
+        {
+          "sourceName": "FDA",
+          "title": "QUALTEX SUTURE BOOTIES",
+          "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpmn/pmn.cfm?ID=K911895",
+          "reliabilityScore": 0.98
+        },
+        {
+          "sourceName": "FDA",
+          "title": "ETEST/CEFTRIAXONE/HAEMOPHILUS/PNEUMOCOCCUS",
+          "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpmn/pmn.cfm?ID=K945433",
+          "reliabilityScore": 0.98
+        },
+        {
+          "sourceName": "FDA",
+          "title": "HAND-HELD IRRIGATION PUMP",
+          "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpmn/pmn.cfm?ID=K933757",
+          "reliabilityScore": 0.98
+        },
+        {
+          "sourceName": "FDA",
+          "title": "NEUROLOGICAL RONGEURS - VARIOUS TYPES",
+          "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpmn/pmn.cfm?ID=K892535",
+          "reliabilityScore": 0.98
+        }
+      ]
+    }
+  ],
+  "selectedSources": [
+    {
+      "sourceName": "PubMed",
+      "title": "A Summative Usability Evaluation of an Infusion Pump Through Simulation-Based Testing With Nurses: Mixed Approach Study.",
+      "sourceUrl": "https://pubmed.ncbi.nlm.nih.gov/41802226/",
+      "reliabilityScore": 0.95
+    },
+    {
+      "sourceName": "FDA",
+      "title": "FDA 510(k) Hand-Held Irrigation Pump",
+      "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpmn/pmn.cfm?ID=K933757",
+      "reliabilityScore": 0.98
+    }
+  ],
+  "ingestionResults": [
+    {
+      "item": {
+        "sourceName": "PubMed",
+        "title": "A Summative Usability Evaluation of an Infusion Pump Through Simulation-Based Testing With Nurses: Mixed Approach Study.",
+        "sourceUrl": "https://pubmed.ncbi.nlm.nih.gov/41802226/",
+        "reliabilityScore": 0.95
+      },
+      "first": {
+        "status": 201,
+        "data": {
+          "created": {
+            "id": "cmmpq1ige0007n33f3hyrm57f",
+            "deviceId": "cmmpq1f2o00012rdmbvlofh6i",
+            "title": "A Summative Usability Evaluation of an Infusion Pump Through Simulation-Based Testing With Nurses: Mixed Approach Study.",
+            "filePath": null,
+            "sourceUrl": "https://pubmed.ncbi.nlm.nih.gov/41802226/",
+            "sourceName": null,
+            "sourceId": null,
+            "doi": null,
+            "pmid": "41802226",
+            "arxivId": null,
+            "sourceFingerprint": "pmid:41802226",
+            "sourceReliabilityScore": 0.95,
+            "parsedText": "<!DOCTYPE html>\n\n\n\n\n<html lang=\"en\" >\n<head  itemscope itemtype=\"http://schema.org/WebPage\"  prefix=\"og: http://ogp.me/ns#\" >\n    <meta charset=\"UTF-8\">\n    <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\n\n    <!-- Mobile properties -->\n    <meta name=\"HandheldFriendly\" content=\"True\">\n    <meta name=\"MobileOptimized\" content=\"320\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n\n  \n  \n  <link rel=\"preconnect\" href=\"https://cdn.ncbi.nlm.nih.gov\">\n  <link rel=\"preconnect\" href=\"https://www.ncbi.nlm.nih.gov\">\n  <link rel=\"preconnect\" href=\"https://www.google-analytics.com\">\n\n  \n  \n    <link rel=\"stylesheet\" href=\"https://cdn.ncbi.nlm.nih.gov/pubmed/9fea6d21-07b4-4726-b151-fb89a024b8ad/CACHE/css/output.8af684516550.css\" type=\"text/css\">\n  \n\n  <link rel=\"stylesheet\" href=\"https://cdn.ncbi.nlm.nih.gov/pubmed/9fea6d21-07b4-4726-b151-fb89a024b8ad/CACHE/css/output.452c70ce66f7.css\" type=\"text/css\">\n\n  \n    \n  \n\n  \n    <link rel=\"stylesheet\" href=\"https://cdn.ncbi.nlm.nih.gov/pubmed/9fea6d21-07b4-4726-b151-fb89a024b8ad/CACHE/css/output.c71ac2b2c597.css\" type=\"text/css\">\n  \n\n  \n\n\n  <link rel=\"stylesheet\" href=\"https://cdn.ncbi.nlm.nih.gov/pubmed/9fea6d21-07b4-4726-b151-fb89a024b8ad/CACHE/css/output.663ce5c6665c.css\" type=\"text/css\">\n\n  \n\n\n    <title>A Summative Usability Evaluation of an Infusion Pump Through Simulation-Based Testing With Nurses: Mixed Approach Study - PubMed</title>\n\n  \n  \n    <link rel=\"preload\" as=\"font\" href=\"https://cdn.ncbi.nlm.nih.gov/pubmed/9fea6d21-07b4-4726-b151-fb89a024b8ad/uswds/dist/fonts/merriweather-bold-webfont.woff2\" type=\"font/woff2\" crossorigin />\n  \n\n  \n  <!-- Favicons -->\n  <link rel=\"shortcut icon\" type=\"image/ico\" href=\"https://cdn.ncbi.nlm.nih.gov/coreutils/nwds/img/favicons/favicon.ico\" />\n  <link rel=\"icon\" type=\"image/png\" href=\"https://cdn.ncbi.nlm.nih.gov/coreutils/nwds/img/favicons/favicon.png\" />\n\n  <!-- 192x192, as recommended for Android\n  http://updates.html5rocks.com/2014/11/Support-for-them",
+            "pageCount": null,
+            "status": "pending_ingestion",
+            "contentHash": "bd741576db90cea7a78ee4eaaec266f45884c72c5908e70f7f8930869f8e8f8e",
+            "uploadedAt": "2026-03-14T02:43:36.494Z",
+            "version": 1,
+            "processingDate": null,
+            "fileId": null
+          }
+        }
+      },
+      "second": {
+        "status": 409,
+        "data": {
+          "error": "duplicate source identifiers",
+          "referenceId": "cmmpq1ige0007n33f3hyrm57f"
+        }
+      }
+    },
+    {
+      "item": {
+        "sourceName": "FDA",
+        "title": "FDA 510(k) Hand-Held Irrigation Pump",
+        "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpmn/pmn.cfm?ID=K933757",
+        "reliabilityScore": 0.98
+      },
+      "first": {
+        "status": 201,
+        "data": {
+          "created": {
+            "id": "cmmpq1kbd000bn33fux9zppxm",
+            "deviceId": "cmmpq1f2o00012rdmbvlofh6i",
+            "title": "FDA 510(k) Hand-Held Irrigation Pump",
+            "filePath": null,
+            "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpmn/pmn.cfm?ID=K933757",
+            "sourceName": null,
+            "sourceId": null,
+            "doi": null,
+            "pmid": null,
+            "arxivId": null,
+            "sourceFingerprint": "url:https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpmn/pmn.cfm?id=k933757",
+            "sourceReliabilityScore": 0.98,
+            "parsedText": "\r\n\r\n\r\n\r\n\r\n \r\n\r\n\r\n\r\n\r\n\r\n\t \r\n\t\r\n\t\r\n\r\n\r\n\r\n\r\n\r\n \r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\t\t\r\n\r\n\r\n  \r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\t\r\n\r\n\r\n\r\n\t\t\t\r\n\r\n\r\n\r\n\t\r\n\r\n\r\n\r\n\t\t\t\r\n\r\n\r\n\r\n\t\t\t\r\n\r\n\r\n\r\n\t\t\r\n\r\n\r\n\r\n\t\t\r\n\r\n\r\n\r\n\t\t\r\n\r\n\r\n\r\n\t\t\r\n\r\n\r\n\r\n\t\t\r\n\r\n\r\n\r\n\t\t\r\n\r\n\r\n\r\n\t\t\t\r\n\r\n\r\n\r\n\t\t\t\r\n\r\n\r\n\r\n\t\t\t\r\n\r\n\r\n\r\n\t\t\t\r\n\r\n\r\n\r\n\t\t\t\r\n\r\n\r\n\r\n\t\t\t\r\n\r\n\r\n\r\n\t\t\t\r\n\r\n\r\n\r\n\t\t\r\n\r\n\r\n\r\n\t\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\t\r\n<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\" \"http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd\">\r\n<html xmlns=\"http://www.w3.org/1999/xhtml\" xmlns:addthis=\"http://www.addthis.com/help/api-spec\">\r\n<head>\r\n\r\n  \r\n  \r\n  \r\n  \r\n  \r\n  \r\n  \r\n  \r\n  \r\n  \r\n  \r\n  \r\n  \r\n  \r\n  \r\n  \r\n  \r\n  \r\n  \r\n  \r\n  \r\n  \r\n  \r\n  \r\n  \r\n  \r\n\r\n  <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" />\r\n  <meta http-equiv=\"X-UA-Compatible\" content=\"IE=7\" />\r\n\r\n\r\n  <script type=\"text/javascript\" src=\"/scripts/includes/js/wcm.toggle.js\"></script>\r\n  <script type=\"text/javascript\" src=\"/scripts/includes/js/ssajax_2012.js\"></script>\r\n\r\n\r\n\r\n  \r\n\r\n  <title>510(k) Premarket Notification</title>\r\n\r\n  <!-- /**** Begin CSS References ****/-->\r\n\r\n  \r\n    <link href=\"/scripts/cdrh/cfdocs/default_style.css\" rel=\"stylesheet\" media=\"all\" type=\"text/css\" />\r\n  \r\n\r\n  <link rel=\"stylesheet\" type=\"text/css\" media=\"screen\" href=\"/scripts/includes/css/css_fda_gov_stylesheet-2013.css\" />\r\n  <link rel=\"stylesheet\" type=\"text/css\" media=\"print\" href=\"/scripts/includes/css/css_fda_gov_print_stylesheet-2013.css\" />\r\n  <!--[if lt IE 9]>\r\n    <link rel=\"stylesheet\" type=\"text/css\" media=\"screen\" href=\"/scripts/includes/css/css_fda_gov_stylesheet_ie-2013.css\" />\r\n  <![endif]-->\r\n\r\n  \r\n  <!-- /**** Begin Script Library References ****/-->\r\n  <script type=\"text/javascript\" src=\"/scripts/includes/js/js_jquery_142.js\" language=\"JavaScript\"></script>\r\n  \r\n  <!--[if lt IE 7]>\r\n    <script defer type=\"text/javascript\" src=\"/scripts/includes/js/js_pngfix_fdagov.js\"></script>\r\n  <![endif]-->\r\n\r\n  \r\n  <script type=\"text/javascript\" src=",
+            "pageCount": null,
+            "status": "pending_ingestion",
+            "contentHash": "339b3f6156ed27cdbae18cf4ca279bf87c7ba27e465744c43ad13401f7f1732a",
+            "uploadedAt": "2026-03-14T02:43:38.904Z",
+            "version": 1,
+            "processingDate": null,
+            "fileId": null
+          }
+        }
+      },
+      "second": {
+        "status": 409,
+        "data": {
+          "error": "duplicate source identifiers",
+          "referenceId": "cmmpq1kbd000bn33fux9zppxm"
+        }
+      }
+    }
+  ],
+  "persisted": [
+    {
+      "id": "cmmpq1kbd000bn33fux9zppxm",
+      "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpmn/pmn.cfm?ID=K933757",
+      "status": "pending_ingestion",
+      "contentHash": "339b3f6156ed27cdbae18cf4ca279bf87c7ba27e465744c43ad13401f7f1732a",
+      "uploadedAt": "2026-03-14T02:43:38.904Z"
+    },
+    {
+      "id": "cmmpq1ige0007n33f3hyrm57f",
+      "sourceUrl": "https://pubmed.ncbi.nlm.nih.gov/41802226/",
+      "status": "pending_ingestion",
+      "contentHash": "bd741576db90cea7a78ee4eaaec266f45884c72c5908e70f7f8930869f8e8f8e",
+      "uploadedAt": "2026-03-14T02:43:36.494Z"
+    }
+  ],
+  "ingestionLogs": [
+    {
+      "id": "cmmpq1kpz000dn33f3nlbvluw",
+      "referenceId": "cmmpq1kbd000bn33fux9zppxm",
+      "message": "discovery duplicate by identifiers",
+      "createdAt": "2026-03-14T02:43:39.431Z"
+    },
+    {
+      "id": "cmmpq1j5h0009n33f4xwmyufz",
+      "referenceId": "cmmpq1ige0007n33f3hyrm57f",
+      "message": "discovery duplicate by identifiers",
+      "createdAt": "2026-03-14T02:43:37.397Z"
+    }
+  ],
+  "libraryCheck": {
+    "status": 200,
+    "items": 5
+  }
+}

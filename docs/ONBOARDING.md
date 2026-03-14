@@ -5,7 +5,9 @@ This document describes how to bring the repository up to a state where an admin
 
 Prereqs
 - Node 18+, npm
-- A running PostgreSQL database and DATABASE_URL set in `.env.local`
+- A running PostgreSQL database on port 15432 (docker-compose default)
+- DATABASE_URL set in `.env.local` or provided in the shell
+- NEXTAUTH_SECRET set in `.env.local` or provided in the shell
 
 Steps
 

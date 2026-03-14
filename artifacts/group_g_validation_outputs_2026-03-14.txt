@@ -1,0 +1,454 @@
+﻿GeneratedAt: 2026-03-14T04:54:26.6006393+03:00
+Node: v24.13.0
+Platform: Windows_NT
+
+$ npx prisma generate
+Environment variables loaded from .env
+Prisma schema loaded from prisma\schema.prisma
+
+✔ Generated Prisma Client (v5.22.0) to .\node_modules\@prisma\client in 1.15s
+
+Start by importing your Prisma Client (See: https://pris.ly/d/importing-client)
+
+Tip: Want to react to database changes in your app as they happen? Discover how with Pulse: https://pris.ly/tip-1-pulse
+
+cmd : ┌─────────────────────────────────────────────────────────┐
+At line:2 char:139
++ ... ath -Append -Encoding utf8; cmd /c "npx prisma generate" 2>&1 | Out-F ...
++                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (┌──────────────...──────────────┐:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+│  Update available 5.22.0 -> 7.5.0                       │
+│                                                         │
+│  This is a major update - please follow the guide at    │
+│  https://pris.ly/d/major-version-upgrade                │
+│                                                         │
+│  Run the following to update                            │
+│    npm i --save-dev prisma@latest                       │
+│    npm i @prisma/client@latest                          │
+└─────────────────────────────────────────────────────────┘
+exit_code: 0
+========================================================================================================================
+$ npx prisma migrate deploy
+Environment variables loaded from .env
+Prisma schema loaded from prisma\schema.prisma
+Datasource "db": PostgreSQL database "medical", schema "public" at "localhost:15432"
+
+7 migrations found in prisma/migrations
+
+
+No pending migrations to apply.
+exit_code: 0
+========================================================================================================================
+$ npx prisma migrate status
+Environment variables loaded from .env
+Prisma schema loaded from prisma\schema.prisma
+Datasource "db": PostgreSQL database "medical", schema "public" at "localhost:15432"
+
+7 migrations found in prisma/migrations
+
+Database schema is up to date!
+exit_code: 0
+========================================================================================================================
+$ npm run typecheck
+
+> medical-content-platform@0.1.0 typecheck
+> tsc --noEmit
+
+scripts/master_scraper.ts(58,19): error TS2532: Object is possibly 'undefined'.
+scripts/master_scraper.ts(77,42): error TS7006: Parameter 'p' implicitly has an 'any' type.
+scripts/master_scraper.ts(117,40): error TS7006: Parameter 'p' implicitly has an 'any' type.
+scripts/master_scraper.ts(125,45): error TS7006: Parameter 'p' implicitly has an 'any' type.
+scripts/master_scraper.ts(162,57): error TS7006: Parameter 'p' implicitly has an 'any' type.
+exit_code: 2
+========================================================================================================================
+$ npm run lint
+
+> medical-content-platform@0.1.0 lint
+> eslint .
+
+
+C:\Users\mosat\medical-content-platform\eslint.config.mjs
+  4:1  warning  Assign array to a variable before exporting as module default  import/no-anonymous-default-export
+
+C:\Users\mosat\medical-content-platform\lib\auth.ts
+  12:3   warning  Unused eslint-disable directive (no problems were reported from '@typescript-eslint/no-var-requires')
+  15:10  warning  'e' is defined but never used                                                                          @typescript-eslint/no-unused-vars
+
+C:\Users\mosat\medical-content-platform\lib\env.ts
+  26:5  warning  Unused eslint-disable directive (no problems were reported from 'no-console')
+
+C:\Users\mosat\medical-content-platform\lib\logger.ts
+  14:14  warning  'e' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\mosat\medical-content-platform\lib\prisma.ts
+  6:3  warning  Unused eslint-disable directive (no problems were reported from 'no-var')
+
+C:\Users\mosat\medical-content-platform\lib\queue\queues.ts
+  11:5  warning  Unused eslint-disable directive (no problems were reported from '@typescript-eslint/no-require-imports')
+
+C:\Users\mosat\medical-content-platform\lib\services\retrieval\retrieve.ts
+  15:3  warning  'page' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\mosat\medical-content-platform\lib\sources\FdaAdapter.ts
+  38:23  warning  '_id' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\mosat\medical-content-platform\lib\sources\ManufacturerDocsAdapter.ts
+  28:23  warning  '_id' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\mosat\medical-content-platform\lib\sources\OpenMedicalLibrariesAdapter.ts
+  27:23  warning  '_id' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\mosat\medical-content-platform\lib\sources\PubMedAdapter.ts
+  50:14  warning  'e' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\mosat\medical-content-platform\lib\sources\WikimediaAdapter.ts
+  27:23  warning  '_id' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\mosat\medical-content-platform\lib\workers\ingestionWorker.ts
+  84:1  warning  Assign object to a variable before exporting as module default  import/no-anonymous-default-export
+
+C:\Users\mosat\medical-content-platform\pages\admin\dashboard.tsx
+  8:17  warning  'session' is assigned a value but never used  @typescript-eslint/no-unused-vars
+  9:17  warning  'error' is assigned a value but never used    @typescript-eslint/no-unused-vars
+
+C:\Users\mosat\medical-content-platform\pages\admin\ingestion-monitor.tsx
+   8:17  warning  'session' is assigned a value but never used                           @typescript-eslint/no-unused-vars
+  47:13  warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+
+C:\Users\mosat\medical-content-platform\pages\admin\scraper.tsx
+  7:10  warning  'stream' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\mosat\medical-content-platform\pages\api\admin\ingestion\import.ts
+  10:34  warning  'authors' is assigned a value but never used  @typescript-eslint/no-unused-vars
+  10:43  warning  'pubDate' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\mosat\medical-content-platform\pages\api\admin\scraper\logs.ts
+  30:39  warning  'event' is defined but never used  @typescript-eslint/no-unused-vars
+  43:14  warning  'e' is defined but never used      @typescript-eslint/no-unused-vars
+
+C:\Users\mosat\medical-content-platform\pages\library_new.tsx
+  42:16  warning  'err' is defined but never used  @typescript-eslint/no-unused-vars
+
+✖ 24 problems (0 errors, 24 warnings)
+  0 errors and 4 warnings potentially fixable with the `--fix` option.
+
+exit_code: 0
+========================================================================================================================
+$ npm test -- --runInBand
+
+> medical-content-platform@0.1.0 test
+> jest --runInBand
+
+cmd : ts-jest[ts-jest-transformer] (WARN) Define `ts-jest` config under `globals` is deprecated. Please do
+At line:2 char:143
++ ... -Append -Encoding utf8; cmd /c "npm test -- --runInBand" 2>&1 | Out-F ...
++                             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (ts-jest[ts-jest...ated. Please do:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+transform: {
+    <transform_regex>: ['ts-jest', { /* ts-jest config goes here in Jest */ }],
+},
+See more at https://kulshekhar.github.io/ts-jest/docs/getting-started/presets#advanced
+FAIL __tests__/health.test.ts (10.545 s)
+  ● health endpoint returns ok when services reachable
+
+    thrown: "Exceeded timeout of 5000 ms for a test.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See 
+https://jestjs.io/docs/api#testname-fn-timeout."
+
+    [0m [90m 2 |[39m [36mimport[39m handler [36mfrom[39m [32m'../pages/api/health'[39m
+     [90m 3 |[39m
+    [31m[1m>[22m[39m[90m 4 |[39m test([32m'health endpoint returns ok when services reachable'[39m[33m,[39m 
+[36masync[39m () [33m=>[39m {
+     [90m   |[39m [31m[1m^[22m[39m
+     [90m 5 |[39m   [36mconst[39m { req[33m,[39m res } [33m=[39m createMocks({ method[33m:[39m 
+[32m'GET'[39m })
+     [90m 6 |[39m   [36mawait[39m handler(req [36mas[39m any[33m,[39m res [36mas[39m any)
+     [90m 7 |[39m   expect([[35m200[39m[33m,[39m 
+[35m503[39m])[33m.[39mtoContain(res[33m.[39m_getStatusCode())[0m
+
+      at Object.<anonymous> (__tests__/health.test.ts:4:1)
+
+PASS __tests__/phase2a_flow.test.ts
+  ● Console
+
+    console.warn
+      Environment validation issues (TEST): DATABASE_URL: Required; NEXTAUTH_SECRET: Required
+
+    [0m [90m 25 |[39m   [36mif[39m (process[33m.[39menv[33m.[39m[33mNODE_ENV[39m [33m===[39m 
+[32m'test'[39m) {
+     [90m 26 |[39m     [90m// eslint-disable-next-line no-console[39m
+    [31m[1m>[22m[39m[90m 27 |[39m     console[33m.[39mwarn([32m'Environment validation issues 
+(TEST):'[39m[33m,[39m issues)
+     [90m    |[39m             [31m[1m^[22m[39m
+     [90m 28 |[39m   } [36melse[39m {
+     [90m 29 |[39m     [36mthrow[39m [36mnew[39m [33mError[39m([32m`Environment validation failed: 
+${issues}`[39m)
+     [90m 30 |[39m   }[0m
+
+      at Object.<anonymous> (lib/env.ts:27:13)
+      at Object.<anonymous> (lib/prisma.ts:3:1)
+      at Object.<anonymous> (lib/workers/ingestionWorker.ts:1:1)
+      at Object.<anonymous> (__tests__/phase2a_flow.test.ts:87:32)
+
+    console.log
+      references state after import [
+        {
+          id: 'ref1',
+          status: 'pending_ingestion',
+          deviceId: 'dev1',
+          title: 'Stent study',
+          sourceName: 'PubMed',
+          sourceId: 'pmid123',
+          pmid: 'pmid123',
+          doi: undefined,
+          arxivId: undefined,
+          sourceFingerprint: 'pmid:pmid123',
+          sourceUrl: 'http://example',
+          sourceReliabilityScore: 0,
+          contentHash: '8a4f2bfa242a9b1f95d55c656860cfe4f8e76eec11ff5d5251075437ba60026c'
+        }
+      ]
+
+      at Object.<anonymous> (__tests__/phase2a_flow.test.ts:138:13)
+
+PASS __tests__/discovery_duplicates.test.ts
+PASS __tests__/home.test.ts
+PASS __tests__/library_api.test.ts
+  ● Console
+
+    console.warn
+      Environment validation issues (TEST): DATABASE_URL: Required; NEXTAUTH_SECRET: Required
+
+    [0m [90m 25 |[39m   [36mif[39m (process[33m.[39menv[33m.[39m[33mNODE_ENV[39m [33m===[39m 
+[32m'test'[39m) {
+     [90m 26 |[39m     [90m// eslint-disable-next-line no-console[39m
+    [31m[1m>[22m[39m[90m 27 |[39m     console[33m.[39mwarn([32m'Environment validation issues 
+(TEST):'[39m[33m,[39m issues)
+     [90m    |[39m             [31m[1m^[22m[39m
+     [90m 28 |[39m   } [36melse[39m {
+     [90m 29 |[39m     [36mthrow[39m [36mnew[39m [33mError[39m([32m`Environment validation failed: 
+${issues}`[39m)
+     [90m 30 |[39m   }[0m
+
+      at Object.<anonymous> (lib/env.ts:27:13)
+      at Object.<anonymous> (lib/prisma.ts:3:1)
+      at Object.<anonymous> (pages/api/references/library.ts:2:1)
+      at Object.<anonymous> (__tests__/library_api.test.ts:31:21)
+
+PASS __tests__/health_endpoints.test.ts
+  ● Console
+
+    console.warn
+      Environment validation issues (TEST): DATABASE_URL: Required; NEXTAUTH_SECRET: Required
+
+    [0m [90m 25 |[39m   [36mif[39m (process[33m.[39menv[33m.[39m[33mNODE_ENV[39m [33m===[39m 
+[32m'test'[39m) {
+     [90m 26 |[39m     [90m// eslint-disable-next-line no-console[39m
+    [31m[1m>[22m[39m[90m 27 |[39m     console[33m.[39mwarn([32m'Environment validation issues 
+(TEST):'[39m[33m,[39m issues)
+     [90m    |[39m             [31m[1m^[22m[39m
+     [90m 28 |[39m   } [36melse[39m {
+     [90m 29 |[39m     [36mthrow[39m [36mnew[39m [33mError[39m([32m`Environment validation failed: 
+${issues}`[39m)
+     [90m 30 |[39m   }[0m
+
+      at Object.<anonymous> (lib/env.ts:27:13)
+      at Object.<anonymous> (lib/prisma.ts:3:1)
+      at Object.<anonymous> (pages/api/health/database.ts:2:1)
+      at Object.<anonymous> (__tests__/health_endpoints.test.ts:5:1)
+
+PASS __tests__/retrieval_engine.test.ts
+PASS __tests__/upload_duplicate_and_rollback.test.ts
+PASS __tests__/admin_sections.test.ts
+  ● Console
+
+    console.warn
+      Environment validation issues (TEST): DATABASE_URL: Required; NEXTAUTH_SECRET: Required
+
+    [0m [90m 25 |[39m   [36mif[39m (process[33m.[39menv[33m.[39m[33mNODE_ENV[39m [33m===[39m 
+[32m'test'[39m) {
+     [90m 26 |[39m     [90m// eslint-disable-next-line no-console[39m
+    [31m[1m>[22m[39m[90m 27 |[39m     console[33m.[39mwarn([32m'Environment validation issues 
+(TEST):'[39m[33m,[39m issues)
+     [90m    |[39m             [31m[1m^[22m[39m
+     [90m 28 |[39m   } [36melse[39m {
+     [90m 29 |[39m     [36mthrow[39m [36mnew[39m [33mError[39m([32m`Environment validation failed: 
+${issues}`[39m)
+     [90m 30 |[39m   }[0m
+
+      at Object.<anonymous> (lib/env.ts:27:13)
+      at Object.<anonymous> (lib/prisma.ts:3:1)
+      at Object.<anonymous> (pages/api/admin/sections/queue.ts:3:1)
+      at Object.<anonymous> (__tests__/admin_sections.test.ts:30:21)
+
+PASS __tests__/retrieval_policy.test.ts
+PASS __tests__/pending_review_api.test.ts
+  ● Console
+
+    console.warn
+      Environment validation issues (TEST): DATABASE_URL: Required; NEXTAUTH_SECRET: Required
+
+    [0m [90m 25 |[39m   [36mif[39m (process[33m.[39menv[33m.[39m[33mNODE_ENV[39m [33m===[39m 
+[32m'test'[39m) {
+     [90m 26 |[39m     [90m// eslint-disable-next-line no-console[39m
+    [31m[1m>[22m[39m[90m 27 |[39m     console[33m.[39mwarn([32m'Environment validation issues 
+(TEST):'[39m[33m,[39m issues)
+     [90m    |[39m             [31m[1m^[22m[39m
+     [90m 28 |[39m   } [36melse[39m {
+     [90m 29 |[39m     [36mthrow[39m [36mnew[39m [33mError[39m([32m`Environment validation failed: 
+${issues}`[39m)
+     [90m 30 |[39m   }[0m
+
+      at Object.<anonymous> (lib/env.ts:27:13)
+      at Object.<anonymous> (lib/prisma.ts:3:1)
+      at Object.<anonymous> (pages/api/admin/references/pending_review.ts:3:1)
+      at Object.<anonymous> (__tests__/pending_review_api.test.ts:19:21)
+
+PASS __tests__/taxonomy_models_api.test.ts
+PASS __tests__/taxonomy_departments_detail_api.test.ts
+PASS __tests__/verification_reference_ui_guard.test.ts
+PASS __tests__/admin_dashboard.test.tsx
+PASS __tests__/references_query_api.test.ts
+PASS __tests__/verification_api.test.ts
+  ● Console
+
+    console.warn
+      Environment validation issues (TEST): DATABASE_URL: Required; NEXTAUTH_SECRET: Required
+
+    [0m [90m 25 |[39m   [36mif[39m (process[33m.[39menv[33m.[39m[33mNODE_ENV[39m [33m===[39m 
+[32m'test'[39m) {
+     [90m 26 |[39m     [90m// eslint-disable-next-line no-console[39m
+    [31m[1m>[22m[39m[90m 27 |[39m     console[33m.[39mwarn([32m'Environment validation issues 
+(TEST):'[39m[33m,[39m issues)
+     [90m    |[39m             [31m[1m^[22m[39m
+     [90m 28 |[39m   } [36melse[39m {
+     [90m 29 |[39m     [36mthrow[39m [36mnew[39m [33mError[39m([32m`Environment validation failed: 
+${issues}`[39m)
+     [90m 30 |[39m   }[0m
+
+      at Object.<anonymous> (lib/env.ts:27:13)
+      at Object.<anonymous> (lib/prisma.ts:3:1)
+      at Object.<anonymous> (pages/api/admin/verification/[id].ts:3:1)
+      at Object.<anonymous> (__tests__/verification_api.test.ts:33:21)
+
+PASS __tests__/run_worker_api.test.ts
+PASS __tests__/search_aggregator.test.ts
+PASS __tests__/profile_api.test.ts
+PASS __tests__/taxonomy_devices_detail_api.test.ts
+PASS __tests__/taxonomy_departments_api.test.ts
+PASS __tests__/devices_api.test.ts
+PASS __tests__/scheduler_api.test.ts
+PASS __tests__/search_api.test.ts
+PASS __tests__/discovery_ssrf_guard.test.ts
+PASS __tests__/admin_stats.test.ts
+PASS __tests__/settings_api.test.ts
+PASS __tests__/ingestion_import_api.test.ts
+  ● Console
+
+    console.warn
+      Environment validation issues (TEST): DATABASE_URL: Required; NEXTAUTH_SECRET: Required
+
+    [0m [90m 25 |[39m   [36mif[39m (process[33m.[39menv[33m.[39m[33mNODE_ENV[39m [33m===[39m 
+[32m'test'[39m) {
+     [90m 26 |[39m     [90m// eslint-disable-next-line no-console[39m
+    [31m[1m>[22m[39m[90m 27 |[39m     console[33m.[39mwarn([32m'Environment validation issues 
+(TEST):'[39m[33m,[39m issues)
+     [90m    |[39m             [31m[1m^[22m[39m
+     [90m 28 |[39m   } [36melse[39m {
+     [90m 29 |[39m     [36mthrow[39m [36mnew[39m [33mError[39m([32m`Environment validation failed: 
+${issues}`[39m)
+     [90m 30 |[39m   }[0m
+
+      at Object.<anonymous> (lib/env.ts:27:13)
+      at Object.<anonymous> (lib/prisma.ts:3:1)
+      at Object.<anonymous> (pages/api/admin/ingestion/import.ts:3:1)
+      at Object.<anonymous> (__tests__/ingestion_import_api.test.ts:27:21)
+
+PASS __tests__/ingestion_worker.test.ts
+PASS __tests__/profile_content.test.ts
+PASS __tests__/ingestion_logs_api.test.ts
+PASS __tests__/admin_auth_coverage.test.ts
+PASS __tests__/readiness_classification.test.ts
+PASS __tests__/reference_state.test.ts
+PASS __tests__/reference_state_lifecycle.test.ts
+PASS __tests__/auth_callbacks.test.ts
+PASS __tests__/tools/reextract_sections.test.js
+  ● Console
+
+    console.log
+      ref r1: wrote 2 sections
+
+      at reextractAll (tools/reextract_sections.js:39:15)
+
+PASS __tests__/source_identifiers.test.ts
+PASS __tests__/devices_route.test.ts
+PASS __tests__/tools/show_project_metrics.test.ts
+PASS __tests__/ingestion_monitor.test.tsx
+PASS __tests__/ops_readiness.test.ts
+PASS __tests__/create_route.test.ts
+
+Summary of all failing tests
+FAIL __tests__/health.test.ts (10.545 s)
+  ● health endpoint returns ok when services reachable
+
+    thrown: "Exceeded timeout of 5000 ms for a test.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See 
+https://jestjs.io/docs/api#testname-fn-timeout."
+
+    [0m [90m 2 |[39m [36mimport[39m handler [36mfrom[39m [32m'../pages/api/health'[39m
+     [90m 3 |[39m
+    [31m[1m>[22m[39m[90m 4 |[39m test([32m'health endpoint returns ok when services reachable'[39m[33m,[39m 
+[36masync[39m () [33m=>[39m {
+     [90m   |[39m [31m[1m^[22m[39m
+     [90m 5 |[39m   [36mconst[39m { req[33m,[39m res } [33m=[39m createMocks({ method[33m:[39m 
+[32m'GET'[39m })
+     [90m 6 |[39m   [36mawait[39m handler(req [36mas[39m any[33m,[39m res [36mas[39m any)
+     [90m 7 |[39m   expect([[35m200[39m[33m,[39m 
+[35m503[39m])[33m.[39mtoContain(res[33m.[39m_getStatusCode())[0m
+
+      at Object.<anonymous> (__tests__/health.test.ts:4:1)
+
+
+Test Suites: 1 failed, 43 passed, 44 total
+Tests:       1 failed, 112 passed, 113 total
+Snapshots:   0 total
+Time:        44.147 s
+Ran all test suites.
+exit_code: 1
+========================================================================================================================
+$ npm run build
+
+> medical-content-platform@0.1.0 build
+> node tools/clean_next_lock.js && next build --webpack
+
+▲ Next.js 16.1.6 (webpack)
+- Environments: .env.local, .env
+
+  Running TypeScript ...
+cmd : Failed to compile.
+At line:2 char:133
++ ... ath $path -Append -Encoding utf8; cmd /c "npm run build" 2>&1 | Out-F ...
++                                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Failed to compile.:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+
+./scripts/master_scraper.ts:58:19
+Type error: Object is possibly 'undefined'.
+
+[0m [90m 56 |[39m       [36mif[39m ([35m/^User-agent:/i[39m[33m.[39mtest(l) [33m&&[39m inStar) 
+[36mbreak[39m
+ [90m 57 |[39m       [36mif[39m (inStar [33m&&[39m [35m/^Disallow:/i[39m[33m.[39mtest(l)) {
+[31m[1m>[22m[39m[90m 58 |[39m         [36mconst[39m p [33m=[39m 
+l[33m.[39msplit([32m':'[39m)[[35m1[39m][33m.[39mtrim()
+ [90m    |[39m                   [31m[1m^[22m[39m
+ [90m 59 |[39m         disallows[33m.[39mpush(p)
+ [90m 60 |[39m       }
+ [90m 61 |[39m     }[0m
+Next.js build worker exited with code: 1 and signal: null
+exit_code: 1
+========================================================================================================================

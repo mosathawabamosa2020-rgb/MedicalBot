@@ -1,0 +1,100 @@
+﻿
+> medical-content-platform@0.1.0 ops:preflight
+> node tools/ops_preflight.js
+
+Startup Preflight Diagnostics
+GeneratedAt: 2026-03-14T01:53:35.426Z
+Overall: OK
+
+[OK] environment | required=yes | required env vars are present
+  - classification: ok
+[OK] database | required=yes | database query succeeded
+  - classification: ok
+[OK] redis | required=no | redis ping succeeded
+  - classification: ok
+[OK] settings_store | required=yes | data\platform-settings.json writable
+  - classification: ok
+[OK] audit_trail | required=yes | data\audit-trail.log writable
+  - classification: ok
+[OK] backup_manifest | required=no | backup manifest found
+  - classification: ok
+
+Details (full snapshot JSON):
+{
+  "generatedAt": "2026-03-14T01:53:35.426Z",
+  "timeoutMs": 3000,
+  "checks": {
+    "environment": {
+      "name": "environment",
+      "required": true,
+      "status": "ok",
+      "message": "required env vars are present",
+      "details": null,
+      "classification": "ok",
+      "remediation": null,
+      "durationMs": 0
+    },
+    "database": {
+      "name": "database",
+      "required": true,
+      "status": "ok",
+      "message": "database query succeeded",
+      "details": null,
+      "classification": "ok",
+      "remediation": null,
+      "durationMs": 589
+    },
+    "redis": {
+      "name": "redis",
+      "required": false,
+      "status": "ok",
+      "message": "redis ping succeeded",
+      "details": null,
+      "classification": "ok",
+      "remediation": null,
+      "durationMs": 790
+    },
+    "settings_store": {
+      "name": "settings_store",
+      "required": true,
+      "status": "ok",
+      "message": "data\\platform-settings.json writable",
+      "details": {
+        "path": "data\\platform-settings.json"
+      },
+      "classification": "ok",
+      "remediation": null,
+      "durationMs": 2
+    },
+    "audit_trail": {
+      "name": "audit_trail",
+      "required": true,
+      "status": "ok",
+      "message": "data\\audit-trail.log writable",
+      "details": {
+        "path": "data\\audit-trail.log"
+      },
+      "classification": "ok",
+      "remediation": null,
+      "durationMs": 3
+    },
+    "backup_manifest": {
+      "name": "backup_manifest",
+      "required": false,
+      "status": "ok",
+      "message": "backup manifest found",
+      "details": {
+        "path": "artifacts\\backups\\latest.json"
+      },
+      "classification": "ok",
+      "remediation": null,
+      "durationMs": 1
+    }
+  },
+  "overallStatus": "ok",
+  "summary": {
+    "requiredOk": 4,
+    "requiredTotal": 4,
+    "optionalIssues": 0
+  }
+}

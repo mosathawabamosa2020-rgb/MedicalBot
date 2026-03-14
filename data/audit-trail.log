@@ -90,3 +90,15 @@
 {"event":"verification.reference.decision","actorId":"u2","entityType":"reference","entityId":"r2","payload":{"decision":"approved","hasComment":true},"at":"2026-03-12T00:05:19.220Z"}
 {"event":"taxonomy.department.created","actorId":"","entityType":"department","entityId":"dep2","payload":{"name":"ICU"},"at":"2026-03-12T00:05:31.727Z"}
 {"event":"taxonomy.model.created","actorId":"","entityType":"deviceModel","entityId":"m2","payload":{"deviceId":"d1","modelName":"X200"},"at":"2026-03-12T00:05:37.533Z"}
+{"event":"verification.reference.decision","actorId":"u","entityType":"reference","entityId":"ref1","payload":{"decision":"approved","hasComment":true},"at":"2026-03-13T03:57:02.771Z"}
+{"event":"taxonomy.model.created","actorId":"","entityType":"deviceModel","entityId":"m2","payload":{"deviceId":"d1","modelName":"X200"},"at":"2026-03-13T03:57:11.720Z"}
+{"event":"taxonomy.department.created","actorId":"","entityType":"department","entityId":"dep2","payload":{"name":"ICU"},"at":"2026-03-13T03:57:18.959Z"}
+{"event":"verification.reference.decision","actorId":"u2","entityType":"reference","entityId":"r2","payload":{"decision":"approved","hasComment":true},"at":"2026-03-13T03:57:19.415Z"}
+{"event":"verification.reference.decision","actorId":"u","entityType":"reference","entityId":"ref1","payload":{"decision":"approved","hasComment":true},"at":"2026-03-13T22:40:29.268Z"}
+{"event":"taxonomy.model.created","actorId":"","entityType":"deviceModel","entityId":"m2","payload":{"deviceId":"d1","modelName":"X200"},"at":"2026-03-13T22:40:36.719Z"}
+{"event":"verification.reference.decision","actorId":"u2","entityType":"reference","entityId":"r2","payload":{"decision":"approved","hasComment":true},"at":"2026-03-13T22:40:41.737Z"}
+{"event":"taxonomy.department.created","actorId":"","entityType":"department","entityId":"dep2","payload":{"name":"ICU"},"at":"2026-03-13T22:40:43.166Z"}
+{"event":"verification.reference.decision","actorId":"u","entityType":"reference","entityId":"ref1","payload":{"decision":"approved","hasComment":true},"at":"2026-03-14T01:59:00.638Z"}
+{"event":"taxonomy.model.created","actorId":"","entityType":"deviceModel","entityId":"m2","payload":{"deviceId":"d1","modelName":"X200"},"at":"2026-03-14T01:59:09.454Z"}
+{"event":"verification.reference.decision","actorId":"u2","entityType":"reference","entityId":"r2","payload":{"decision":"approved","hasComment":true},"at":"2026-03-14T01:59:13.041Z"}
+{"event":"taxonomy.department.created","actorId":"","entityType":"department","entityId":"dep2","payload":{"name":"ICU"},"at":"2026-03-14T01:59:15.843Z"}

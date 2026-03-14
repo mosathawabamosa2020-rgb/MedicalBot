@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-import path from 'path'
+import prisma from '../../../lib/prisma'
 import logger from '../../../lib/logger'
 
 const OPENAI_URL = 'https://api.openai.com/v1/chat/completions'
@@ -8,8 +8,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   if (req.method !== 'POST') return res.status(405).end()
   const { suggestionId, contentType } = req.body as { suggestionId?: string; contentType?: string }
   if (!suggestionId) return res.status(400).json({ error: 'suggestionId required' })
-
-  const { prisma } = require(path.join(process.cwd(), 'lib', 'prisma'))
 
   try {
     const sug = await prisma.plannerSuggestion.findUnique({ where: { id: suggestionId }, include: { device: true } })

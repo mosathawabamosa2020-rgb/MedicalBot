@@ -41,7 +41,7 @@ function loadEmbeddingsLib() {
 
 const prisma = new PrismaClient()
 const logger = loadLogger()
-const { embedText, saveReferenceEmbedding } = loadEmbeddingsLib()
+const { embedText, saveSectionEmbedding } = loadEmbeddingsLib()
 
 const BASE_HOST = 'https://www.accessdata.fda.gov'
 const BASE_URL = `${BASE_HOST}/scripts/cdrh/cfdocs/cfPMN/pmn.cfm`
@@ -126,11 +126,27 @@ async function parseAndIndexPdf(buffer, deviceId, referenceId, kNumber) {
       const pageText = pages[i]
       if (!pageText) continue
       const embedHelper = ensureEmbedLib()
-      const emb = await embedHelper.embedText(pageText)
+      let section = null
       try {
-        await embedHelper.saveReferenceEmbedding(referenceId, emb)
+        section = await prisma.section.create({
+          data: {
+            deviceId,
+            referenceId,
+            title: `Page ${i + 1}`,
+            content: pageText,
+            order: i + 1,
+          },
+        })
       } catch (e) {
-        logger.error({ err: e.message, referenceId }, 'Failed to update reference embedding')
+        logger.error({ err: e.message, referenceId }, 'Failed to create section for embedding')
+      }
+      if (section) {
+        const emb = await embedHelper.embedText(pageText)
+        try {
+          await embedHelper.saveSectionEmbedding(section.id, emb)
+        } catch (e) {
+          logger.error({ err: e.message, referenceId, sectionId: section.id }, 'Failed to update section embedding')
+        }
       }
       // polite delay
       await new Promise(r => setTimeout(r, 200))

@@ -1,4 +1,7 @@
 #!/usr/bin/env node
+const dotenv = require('dotenv')
+dotenv.config({ path: '.env' })
+dotenv.config({ path: '.env.local', override: true })
 const { getReadinessSnapshot } = require('../lib/ops/readiness')
 
 function icon(status) {

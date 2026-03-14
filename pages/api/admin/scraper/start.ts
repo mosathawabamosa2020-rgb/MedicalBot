@@ -3,6 +3,7 @@ import path from 'path'
 import fs from 'fs'
 import { withAdminAuth } from '../../../../lib/adminAuth'
 import logger from '../../../../lib/logger'
+import { runScraper } from '../../../../scripts/master_scraper'
 // import { getQueue } from '../../../../lib/queue'
 
 const PID_PATH = path.join(process.cwd(), 'data', 'scraper_pid.json')
@@ -23,12 +24,9 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (!termsArr.length) return res.status(400).json({ error: 'no search terms provided' })
   if (fs.existsSync(PID_PATH) || controllerRunning) return res.status(400).json({ error: 'Scraper already running' })
 
-  // Single-process direct execution model: import compiled runScraper and call sequentially
+  // Single-process direct execution model: call the shared scraper entrypoint sequentially
   controllerRunning = true
   try {
-    const scraperModulePath = path.join(process.cwd(), 'dist', 'scripts', 'master_scraper')
-    const { runScraper } = require(scraperModulePath)
-
     for (const term of termsArr) {
       if (fs.existsSync(STOP_FLAG)) break
       await runScraper(term)

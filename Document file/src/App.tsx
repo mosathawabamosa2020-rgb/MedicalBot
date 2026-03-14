@@ -1,8 +1,8 @@
 const metadata = [
-  { label: 'حالة التسليم', value: 'تمت إضافة مراجعة مؤسسية جديدة بعد أحدث تقارير الفريق، مع تحويل التركيز إلى قوة العمود الفقري للمشروع: ثبات البناء، التحقق الحي، سلسلة القيمة المعرفية، والاستدامة التشغيلية، وإضافة حزمة تحقق خارجية عامة قابلة للإرسال لأي فريق تدقيق' },
+  { label: 'حالة التسليم', value: 'تمت مراجعة ردَّي فريقي التحقق معاً: تقرير تحقق خارجي فعلي + اقتراح CodeRabbit الأداتي، وتم دمجهما في مراجعة مؤسسية واحدة وتوجيه تطويري مدمج واحد؛ الخطوة الحالية أصبحت إرسال ملف الوثيقة إلى فريق التطوير لمعالجة blockers التشغيلية وإغلاق التناقضات وتنفيذ الإثبات الحي متعدد المصادر' },
   { label: 'فهرس ملف الوثيقة / الحزمة الكاملة', value: 'DOCUMENT_PACKAGE_INDEX.md' },
   { label: 'التوجيه النشط الحالي لفريق التحقق', value: 'EXTERNAL_VERIFICATION_TEAM_FULL_PLATFORM_AUDIT_AND_VERIFICATION_DIRECTIVE_2026-03-12.md + EXTERNAL_VERIFICATION_TEAM_FULL_PLATFORM_AUDIT_REPORT_TEMPLATE.md' },
-  { label: 'التوجيه النشط الحالي لفريق التطوير', value: 'FOUNDER_GROUP_E_LIVE_PROOF_AND_SOURCE_EXPANSION_DIRECTIVE_2026-03-10.md + IMPLEMENTATION_EXECUTION_REPORT_GROUP_E_TEMPLATE.md' },
+  { label: 'التوجيه النشط الحالي لفريق التطوير', value: 'FOUNDER_GROUP_G_DEVELOPMENT_MERGED_RESPONSE_DIRECTIVE_2026-03-13.md + IMPLEMENTATION_EXECUTION_REPORT_GROUP_G_TEMPLATE.md' },
   { label: 'المرجع التنفيذي', value: 'TEAM_IMPLEMENTATION_GUIDE.md' },
   { label: 'المرجع التشخيصي', value: 'IMPLEMENTATION_GAP_ANALYSIS_2026-03-07.md' },
   { label: 'خطة المعالجة', value: 'REMEDIATION_EXECUTION_PLAN.md + development-backlog-recovery.yaml' },
@@ -29,6 +29,12 @@ const metadata = [
   { label: 'توجيه المجموعة E (الإثبات الحي وتوسيع المصادر)', value: 'FOUNDER_GROUP_E_LIVE_PROOF_AND_SOURCE_EXPANSION_DIRECTIVE_2026-03-10.md' },
   { label: 'قالب تقرير المجموعة E', value: 'IMPLEMENTATION_EXECUTION_REPORT_GROUP_E_TEMPLATE.md' },
   { label: 'سياسة وتقييم المصادر الجديدة', value: 'SOURCE_EXPANSION_POLICY_AND_CANDIDATES_2026-03-10.md' },
+  { label: 'مراجعة المجموعة F بعد تقرير فريق التحقق', value: 'FOUNDER_GROUP_F_EXTERNAL_VERIFICATION_AUDIT_2026-03-13.md' },
+  { label: 'توجيه تنفيذ المجموعة F لفريق التطوير', value: 'FOUNDER_GROUP_F_DEVELOPMENT_RESPONSE_DIRECTIVE_2026-03-13.md' },
+  { label: 'قالب تقرير المجموعة F', value: 'IMPLEMENTATION_EXECUTION_REPORT_GROUP_F_TEMPLATE.md' },
+  { label: 'المراجعة المدمجة لردَّي فريقي التحقق', value: 'FOUNDER_GROUP_G_COMBINED_VERIFICATION_SYNTHESIS_2026-03-13.md' },
+  { label: 'التوجيه التطويري المدمج الحالي (Group G)', value: 'FOUNDER_GROUP_G_DEVELOPMENT_MERGED_RESPONSE_DIRECTIVE_2026-03-13.md' },
+  { label: 'قالب تقرير المجموعة G', value: 'IMPLEMENTATION_EXECUTION_REPORT_GROUP_G_TEMPLATE.md' },
   { label: 'التوجيه الشامل العام لفريق تحقق خارجي', value: 'EXTERNAL_VERIFICATION_TEAM_FULL_PLATFORM_AUDIT_AND_VERIFICATION_DIRECTIVE_2026-03-12.md' },
   { label: 'قالب التقرير الشامل لفريق تحقق خارجي', value: 'EXTERNAL_VERIFICATION_TEAM_FULL_PLATFORM_AUDIT_REPORT_TEMPLATE.md' },
   { label: 'التوجيه السابق المخصص لفريق Devin', value: 'DEVIN_FULL_PLATFORM_AUDIT_AND_VERIFICATION_DIRECTIVE_2026-03-12.md' },
@@ -58,8 +64,12 @@ const reviewConclusions = [
   'كما تم اعتماد استخدام Chromium داخل VS Code كأداة تحقق حي رسمية يجب أن يستخدمها الفريق لفحص الصفحات والخدمات والتدفقات التشغيلية أثناء الاختبار، لاكتساب ثقة تشغيلية حقيقية قبل اعتبار أي Route أو Flow مثبتاً فعلياً.',
   'وتم أيضاً اعتماد PowerShell داخل VS Code كأداة تحقق وتشخيص وتشغيل رسمية، بحيث يستخدمها الفريق في تشغيل أوامر preflight والمهاجرات والاختبارات وتصدير الأدلة وفحص حالة الخدمات قبل الانتقال إلى التحقق الحي داخل المتصفح.',
   'كما تمت إضافة حزمة توجيه تدقيق شاملة للمشروع من قاعدة البيانات والمهاجرات والخدمات والبحث والجلب والمعالجة وحتى العرض في الواجهات، ثم جرى تعميمها في نسخة محايدة قابلة للإرسال إلى أي فريق تحقق خارجي مع إلزامهم بتقرير تدقيقي نهائي شديد الدقة مبني على الأدلة لا على الملخصات العامة.',
+  'كما تمت مراجعة اقتراح دمج CodeRabbit واعتباره فكرة أدواتية مؤجلة وغير معتمدة في المرحلة الحالية، حتى لا يشتت الحوكمة أو يضعف التركيز عن أولويات الإثبات الحي والاستدامة وإغلاق تناقضات العمود الفقري.',
   'وأضيف الآن ملف فهرس رئيسي رسمي للحزمة يعرّف معنى "ملف الوثيقة" بوصفه مجموعة الملفات المرجعية الكاملة، ويحدد ترتيب القراءة لكل من فريق التحقق وفريق التطوير، ويضبط دورة المراجعة والتحديث والتزامن بين جميع الوثائق داخل المشروع.',
   'كما تم تثبيت التوجيه النشط الحالي لكل من فريق التحقق وفريق التطوير داخل فهرس الحزمة نفسه، مع إضافة قاعدة صريحة تمنع أي تحديث من إضعاف مبدأ الاستدامة أو إسقاط الذاكرة المعمارية أو تجاهل ما تم اعتماده سابقاً دون توثيق superseding واضح.',
+  'ولم يقتصر ذلك على الفهرسة النظرية فقط، بل تمت أيضاً إضافة طبقة حوكمة فعلية داخل docs/00-governance تشمل SOURCE_OF_TRUTH وCURRENT_PROJECT_STATUS وREPORTS_INDEX بحيث تصبح الحزمة قابلة للتسليم والمراجعة بصورة أوضح وأكثر اتساقاً.',
+  'وبعد استلام تقرير فريق التحقق الخارجي، أصبح واضحاً أن الخطوة الحالية ليست إعادة الإرسال إلى فريق تحقق جديد، بل إعادة ملف الوثيقة إلى فريق التطوير لمعالجة ثلاثة محاور حرجة: جاهزية البيئة التشغيلية للتحقق الخارجي، إغلاق تناقض Reference.embedding مع Prisma schema، وتنفيذ إثبات حي صغير متعدد المصادر مع تخزين فعلي وإظهار downstream visibility.',
+  'كما تمت مراجعة رد فريق التحقق الآخر المرتبط بـ CodeRabbit، واعتباره مدخلاً أدواتياً وتنظيمياً مفيداً جزئياً لكنه غير معتمد كتقرير تحقق للمنصة؛ لذلك دُمج فقط كقرار حوكمي مؤجل داخل ملف الوثيقة، بينما أصبح تقرير التحقق الخارجي الفعلي هو المرجع المعتمد لإصدار التوجيه التطويري المدمج الحالي (Group G).',
 ];
 
 const principles = [

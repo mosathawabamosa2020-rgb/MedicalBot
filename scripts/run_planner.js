@@ -87,10 +87,11 @@ async function main() {
       await prisma.plannerSuggestion.deleteMany({ where: { deviceId: device.id, topic } })
 
       for (const s of top) {
+        const referenceId = s.referenceId || s.id
         await prisma.plannerSuggestion.create({ data: {
           deviceId: device.id,
           topic,
-          referenceId: s.id,
+          referenceId,
           page: s.page || null,
           snippet: (s.pageContent || '').slice(0,1000),
           score: s.similarity || s.score || 0,

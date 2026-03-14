@@ -4,17 +4,8 @@ const { chromium } = require('playwright')
 const fetch = require('node-fetch')
 const { PrismaClient } = require('@prisma/client')
 
-function loadEmbeddingsLib() {
-  try {
-    return require(path.join(process.cwd(), 'lib', 'embeddings'))
-  } catch {
-    return require(path.join(process.cwd(), 'dist', 'lib', 'embeddings'))
-  }
-}
-
 const prisma = new PrismaClient()
 const logger = console
-const { embedText, saveReferenceEmbedding } = loadEmbeddingsLib()
 
 // Usage: node scripts/scrape_fda.js "chemistry analyzer"
 const SEARCH_TERM = process.argv[2] || 'chemistry analyzer'

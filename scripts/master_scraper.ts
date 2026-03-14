@@ -13,7 +13,7 @@ export async function runScraper(input: string) {
   } catch {
     embedHelpers = require(path.join(process.cwd(), 'dist', 'lib', 'embeddings'))
   }
-  const { embedText, saveReferenceEmbedding } = embedHelpers
+  const { embedText } = embedHelpers
 
   const BASE_HOST = 'https://www.accessdata.fda.gov'
   const BASE_URL = `${BASE_HOST}/scripts/cdrh/cfdocs/cfPMN/pmn.cfm`

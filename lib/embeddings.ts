@@ -57,13 +57,13 @@ export async function embedText(text: string) {
   return emb
 }
 
-export async function saveReferenceEmbedding(referenceId: string, embedding: number[]) {
-  assertEmbeddingDimension(embedding, 'saveReferenceEmbedding')
+export async function saveSectionEmbedding(sectionId: string, embedding: number[]) {
+  assertEmbeddingDimension(embedding, 'saveSectionEmbedding')
   const vecLiteral = '[' + embedding.join(',') + ']'
   return prisma.$executeRaw`
-    UPDATE "Reference"
+    UPDATE "Section"
     SET embedding = ${vecLiteral}::vector
-    WHERE id = ${referenceId}
+    WHERE id = ${sectionId}
   `
 }
 
@@ -71,9 +71,16 @@ export async function queryVectors(queryEmbedding: number[], topK = 5) {
   const vecLiteral = '[' + queryEmbedding.join(',') + ']'
   const safeTopK = Math.max(1, Math.min(100, Math.floor(topK)))
   const rows: any[] = await prisma.$queryRawUnsafe(`
-    SELECT id, "parsedText" as "pageContent", "deviceId", 1 - (embedding <=> ${vecLiteral}::vector) as similarity
-    FROM "Reference"
-    WHERE embedding IS NOT NULL
+    SELECT
+      s.id as "sectionId",
+      s."referenceId" as "referenceId",
+      s.content as "pageContent",
+      r."deviceId" as "deviceId",
+      s.order as "page",
+      1 - (s.embedding <=> ${vecLiteral}::vector) as similarity
+    FROM "Section" s
+    JOIN "Reference" r ON r.id = s."referenceId"
+    WHERE s.embedding IS NOT NULL
     ORDER BY similarity DESC
     LIMIT ${safeTopK}
   `)

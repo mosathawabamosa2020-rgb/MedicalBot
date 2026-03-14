@@ -62,6 +62,13 @@ The Document Package must always remain:
 No major directive, verification result, or implementation conclusion should exist only in chat form.
 It must be reflected in the package.
 
+The governance layer is now materially present inside the repository under:
+- `docs/00-governance/SOURCE_OF_TRUTH.md`
+- `docs/00-governance/CURRENT_PROJECT_STATUS.md`
+- `docs/00-governance/REPORTS_INDEX.md`
+
+These files must remain synchronized with this package index.
+
 ---
 
 ## 4. Primary Audiences of the Document Package
@@ -150,8 +157,12 @@ The current development handoff for the implementation team must be based on:
 - `development-backlog-recovery.yaml`
 - `docs/02-validation/CUMULATIVE_EXECUTION_AND_VERIFICATION_REPORT.md`
 - `docs/00-governance/CURRENT_PROJECT_STATUS.md`
-- `FOUNDER_GROUP_E_LIVE_PROOF_AND_SOURCE_EXPANSION_DIRECTIVE_2026-03-10.md`
-- `IMPLEMENTATION_EXECUTION_REPORT_GROUP_E_TEMPLATE.md`
+- `FOUNDER_GROUP_G_DEVELOPMENT_MERGED_RESPONSE_DIRECTIVE_2026-03-13.md`
+- `IMPLEMENTATION_EXECUTION_REPORT_GROUP_G_TEMPLATE.md`
+- `docs/02-validation/EXTERNAL_VERIFICATION_TEAM_FULL_PLATFORM_AUDIT_AND_VERIFICATION_REPORT.md`
+- `docs/02-validation/EXTERNAL_VERIFICATION_TEAM_EXECUTION_REPORT_2026-03-12.md`
+- `FOUNDER_GROUP_G_COMBINED_VERIFICATION_SYNTHESIS_2026-03-13.md`
+- `FOUNDER_CODERABBIT_INTEGRATION_AUDIT_AND_DECISION_2026-03-13.md` (tooling/governance suggestion only; deferred, non-authoritative for runtime verification)
 
 This means that when the founder/project owner says:
 > "Send the Document Package to the development team"

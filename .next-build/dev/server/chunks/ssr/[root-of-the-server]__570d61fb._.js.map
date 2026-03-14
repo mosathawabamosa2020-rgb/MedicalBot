@@ -1,6 +1,0 @@
-{
-  "version": 3,
-  "sources": [],
-  "sections": [
-    {"offset": {"line": 10, "column": 0}, "map": {"version":3,"sources":["file:///C:/Users/mosat/medical-content-platform/pages/_app.tsx"],"sourcesContent":["import { SessionProvider } from 'next-auth/react'\r\nimport type { AppProps } from 'next/app'\r\nimport '../styles/globals.css'\r\n\r\nfunction MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {\r\n  return (\r\n    <SessionProvider session={session}>\r\n      <Component {...pageProps} />\r\n    </SessionProvider>\r\n  )\r\n}\r\n\r\nexport default MyApp\r\n"],"names":[],"mappings":";;;;;AAAA;;;;AAIA,SAAS,MAAM,EAAE,SAAS,EAAE,WAAW,EAAE,OAAO,EAAE,GAAG,WAAW,EAAY;IAC1E,qBACE,qKAAC,yMAAe;QAAC,SAAS;kBACxB,cAAA,qKAAC;YAAW,GAAG,SAAS;;;;;;;;;;;AAG9B;uCAEe"}}]
-}

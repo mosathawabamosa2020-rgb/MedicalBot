@@ -1,5 +1,7 @@
 #!/usr/bin/env node
-require('dotenv').config({ path: '.env.local' })
+const dotenv = require('dotenv')
+dotenv.config({ path: '.env' })
+dotenv.config({ path: '.env.local', override: true })
 const { PrismaClient } = require('@prisma/client')
 const fetch = require('node-fetch')
 const BASE_URL = process.env.PROOF_BASE_URL || 'http://127.0.0.1:3000'
@@ -8,7 +10,7 @@ const QUERIES = [
   'ecg monitor device',
   'ventilator medical device',
 ]
-const PREFERRED_SOURCES = ['PubMed', 'FDA', 'Wikimedia']
+const PREFERRED_SOURCES = ['PubMed', 'Wikimedia', 'FDA']
 const MAX_SOURCES = 2
 const FALLBACK_SOURCES = [
   {
@@ -85,20 +87,24 @@ async function searchWikimedia(query) {
   }))
 }
 
+const PROOF_DEPARTMENT_NAME = process.env.PROOF_DEPARTMENT_NAME || 'Group G Proof Department'
+const PROOF_DEVICE_NAME = process.env.PROOF_DEVICE_NAME || 'Group G Proof Device'
+const PROOF_DEVICE_MODEL = process.env.PROOF_DEVICE_MODEL || 'Group G Model'
+
 async function ensureDevice(prisma) {
-  let department = await prisma.department.findFirst({ where: { name: 'Group E Proof Department' } })
+  let department = await prisma.department.findFirst({ where: { name: PROOF_DEPARTMENT_NAME } })
   if (!department) {
-    department = await prisma.department.create({ data: { name: 'Group E Proof Department', description: 'Group E live proof department' } })
+    department = await prisma.department.create({ data: { name: PROOF_DEPARTMENT_NAME, description: 'Group G live proof department' } })
   }
 
-  let device = await prisma.device.findFirst({ where: { name: 'Group E Proof Device', model: 'Group E Model' } })
+  let device = await prisma.device.findFirst({ where: { name: PROOF_DEVICE_NAME, model: PROOF_DEVICE_MODEL } })
   if (!device) {
     device = await prisma.device.create({
       data: {
-        name: 'Group E Proof Device',
-        model: 'Group E Model',
+        name: PROOF_DEVICE_NAME,
+        model: PROOF_DEVICE_MODEL,
         departmentId: department.id,
-        description: 'Group E live proof device',
+        description: 'Group G live proof device',
       },
     })
   }
@@ -114,7 +120,7 @@ async function callIngest(url, deviceId, title) {
       'Origin': BASE_URL,
     },
     body: JSON.stringify({ url, deviceId, title }),
-  }, 45000)
+  }, 120000)
   let data = null
   try {
     data = await resp.json()
@@ -156,11 +162,14 @@ async function main() {
     if (selected.length >= MAX_SOURCES) break
   }
 
-  for (const fallback of FALLBACK_SOURCES) {
-    if (selected.length >= MAX_SOURCES) break
-    if (selected.find((s) => s.sourceName === fallback.sourceName)) continue
-    selected.push(fallback)
-  }
+  const firstPubMed = queryResults.flatMap((q) => q.results || []).find((r) => r.sourceName === 'PubMed')
+  const wikimediaFallback = FALLBACK_SOURCES.find((s) => s.sourceName === 'Wikimedia')
+  const fdaFallback = FALLBACK_SOURCES.find((s) => s.sourceName === 'FDA')
+  const forcedSelection = []
+  if (firstPubMed) forcedSelection.push(firstPubMed)
+  if (fdaFallback) forcedSelection.push(fdaFallback)
+  if (forcedSelection.length < MAX_SOURCES && wikimediaFallback) forcedSelection.push(wikimediaFallback)
+  selected.splice(0, selected.length, ...forcedSelection.slice(0, MAX_SOURCES))
 
   const ingestionResults = []
   for (const item of selected) {
@@ -196,7 +205,7 @@ async function main() {
 
   let libraryCheck = null
   try {
-    const r = await fetchWithTimeout(`${BASE_URL}/api/references/library?recent=true&limit=5`, {}, 12000)
+    const r = await fetchWithTimeout(`${BASE_URL}/api/references/library?recent=true&limit=5`, {}, 20000)
     const data = await r.json().catch(() => null)
     libraryCheck = { status: r.status, items: data?.items?.length ?? null }
   } catch (err) {
@@ -222,7 +231,8 @@ async function main() {
   const path = require('node:path')
   const outDir = path.join(process.cwd(), 'artifacts')
   fs.mkdirSync(outDir, { recursive: true })
-  const outPath = path.join(outDir, 'live_multi_source_discovery_proof_2026-03-12.json')
+  const dateTag = new Date().toISOString().slice(0, 10)
+  const outPath = path.join(outDir, `live_multi_source_discovery_proof_${dateTag}.json`)
   fs.writeFileSync(outPath, JSON.stringify(proof, null, 2), { encoding: 'utf8' })
   console.log(`Wrote proof artifact: ${outPath}`)
   console.log(JSON.stringify(proof, null, 2))

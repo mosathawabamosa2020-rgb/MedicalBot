@@ -22,6 +22,8 @@ Date: 2026-03-12
 - docs/02-validation/IMPLEMENTATION_EXECUTION_REPORT_GROUP_E.md
 - docs/02-validation/PLATFORM_DEEP_VERIFICATION_AND_ALERTING_REPORT.md
 - docs/02-validation/PLATFORM_LIVE_MULTI_SOURCE_PROOF_REPORT.md
+- docs/02-validation/EXTERNAL_VERIFICATION_TEAM_FULL_PLATFORM_AUDIT_AND_VERIFICATION_REPORT.md
+- docs/02-validation/EXTERNAL_VERIFICATION_TEAM_EXECUTION_REPORT_2026-03-12.md
 - docs/03-operations/backup-restore-runbook.md
 - docs/03-operations/readiness-model.md
 
