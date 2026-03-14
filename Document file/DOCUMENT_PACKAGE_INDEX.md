@@ -5,6 +5,14 @@ Status: Active
 Owner: Founder / Technical Architecture Authority
 Applies To: Development Team, External Verification Team, Founder Review Cycle
 
+## 0. Canonical Package Base Path
+**CRITICAL UPDATE**: As per the External Verification Team Audit (2026-03-14), the primary governed documents are located within the `Document file/` directory.
+All references to Layer A, C, and D documents in this index implicitly resolve to this base path unless otherwise specified (e.g., `docs/`).
+
+**Base Path**: `Document file/`
+
+---
+
 ## 1. Purpose of This File
 This file defines the official meaning of the **Document Package** used in this project.
 
@@ -103,16 +111,16 @@ Every team receiving the Document Package should review it in the following orde
 
 ### Step 1 — Understand the project baseline
 Read first:
-1. `TEAM_IMPLEMENTATION_GUIDE.md`
-2. `development-backlog.yaml`
-3. `development-backlog-recovery.yaml`
+1. `Document file/TEAM_IMPLEMENTATION_GUIDE.md`
+2. `Document file/development-backlog.yaml`
+3. `Document file/development-backlog-recovery.yaml`
 
 ### Step 2 — Understand current state and governance
 Then read:
 4. `docs/00-governance/SOURCE_OF_TRUTH.md`
 5. `docs/00-governance/CURRENT_PROJECT_STATUS.md`
 6. `docs/00-governance/REPORTS_INDEX.md`
-7. `DOCUMENT_PACKAGE_INDEX.md`
+7. `Document file/DOCUMENT_PACKAGE_INDEX.md`
 
 ### Step 3 — Understand cumulative execution and verification state
 Then read:
@@ -120,10 +128,10 @@ Then read:
 
 ### Step 4 — Read the latest active founder directive relevant to the receiving team
 For development execution:
-- read the latest applicable `FOUNDER_*_DIRECTIVE_*.md`
+- read the latest applicable `Document file/FOUNDER_*_DIRECTIVE_*.md`
 
 For external verification:
-- read the latest applicable external verification directive
+- read the latest applicable `Document file/` external verification directive
 
 ### Step 5 — Review supporting reports and evidence
 Then read:
@@ -139,11 +147,11 @@ Then read:
 
 ### A. Current Active Verification Team Directive
 The current verification handoff for any external verification team must be based on:
-- `EXTERNAL_VERIFICATION_TEAM_FULL_PLATFORM_AUDIT_AND_VERIFICATION_DIRECTIVE_2026-03-12.md`
-- `EXTERNAL_VERIFICATION_TEAM_FULL_PLATFORM_AUDIT_REPORT_TEMPLATE.md`
+- `Document file/EXTERNAL_VERIFICATION_TEAM_FULL_PLATFORM_AUDIT_AND_VERIFICATION_DIRECTIVE_2026-03-12.md`
+- `Document file/EXTERNAL_VERIFICATION_TEAM_FULL_PLATFORM_AUDIT_REPORT_TEMPLATE.md`
 - `docs/02-validation/CUMULATIVE_EXECUTION_AND_VERIFICATION_REPORT.md`
 - `docs/00-governance/CURRENT_PROJECT_STATUS.md`
-- `SOURCE_EXPANSION_POLICY_AND_CANDIDATES_2026-03-10.md`
+- `Document file/SOURCE_EXPANSION_POLICY_AND_CANDIDATES_2026-03-10.md`
 
 This means that when the founder/project owner says:
 > "Send the Document Package to the verification team"
@@ -152,17 +160,17 @@ the receiving verification team must treat the above set as the current active v
 
 ### B. Current Active Development Team Directive
 The current development handoff for the implementation team must be based on:
-- `TEAM_IMPLEMENTATION_GUIDE.md`
-- `development-backlog.yaml`
-- `development-backlog-recovery.yaml`
+- `Document file/TEAM_IMPLEMENTATION_GUIDE.md`
+- `Document file/development-backlog.yaml`
+- `Document file/development-backlog-recovery.yaml`
 - `docs/02-validation/CUMULATIVE_EXECUTION_AND_VERIFICATION_REPORT.md`
 - `docs/00-governance/CURRENT_PROJECT_STATUS.md`
-- `FOUNDER_GROUP_G_DEVELOPMENT_MERGED_RESPONSE_DIRECTIVE_2026-03-13.md`
-- `IMPLEMENTATION_EXECUTION_REPORT_GROUP_G_TEMPLATE.md`
+- `Document file/FOUNDER_GROUP_G_DEVELOPMENT_MERGED_RESPONSE_DIRECTIVE_2026-03-13.md`
+- `Document file/IMPLEMENTATION_EXECUTION_REPORT_GROUP_G_TEMPLATE.md`
 - `docs/02-validation/EXTERNAL_VERIFICATION_TEAM_FULL_PLATFORM_AUDIT_AND_VERIFICATION_REPORT.md`
 - `docs/02-validation/EXTERNAL_VERIFICATION_TEAM_EXECUTION_REPORT_2026-03-12.md`
-- `FOUNDER_GROUP_G_COMBINED_VERIFICATION_SYNTHESIS_2026-03-13.md`
-- `FOUNDER_CODERABBIT_INTEGRATION_AUDIT_AND_DECISION_2026-03-13.md` (tooling/governance suggestion only; deferred, non-authoritative for runtime verification)
+- `Document file/FOUNDER_GROUP_G_COMBINED_VERIFICATION_SYNTHESIS_2026-03-13.md`
+- `Document file/FOUNDER_CODERABBIT_INTEGRATION_AUDIT_AND_DECISION_2026-03-13.md` (tooling/governance suggestion only; deferred, non-authoritative for runtime verification)
 
 This means that when the founder/project owner says:
 > "Send the Document Package to the development team"
@@ -182,43 +190,43 @@ The package is not only a reporting layer; it is also a continuity and sustainab
 ## 7. Current Document Package Layers
 
 ### Layer A — Strategic and execution baseline
-- `TEAM_IMPLEMENTATION_GUIDE.md`
-- `development-backlog.yaml`
-- `development-backlog-recovery.yaml`
-- `REMEDIATION_EXECUTION_PLAN.md`
-- `IMPLEMENTATION_GAP_ANALYSIS_2026-03-07.md`
+- `Document file/TEAM_IMPLEMENTATION_GUIDE.md`
+- `Document file/development-backlog.yaml`
+- `Document file/development-backlog-recovery.yaml`
+- `Document file/REMEDIATION_EXECUTION_PLAN.md`
+- `Document file/IMPLEMENTATION_GAP_ANALYSIS_2026-03-07.md`
 
 ### Layer B — Governance and source-of-truth control
 - `docs/00-governance/SOURCE_OF_TRUTH.md`
 - `docs/00-governance/CURRENT_PROJECT_STATUS.md`
 - `docs/00-governance/REPORTS_INDEX.md`
 - `docs/00-governance/DOCUMENT_RETENTION_AND_ARCHIVE_POLICY.md`
-- `DOCUMENT_PACKAGE_INDEX.md`
+- `Document file/DOCUMENT_PACKAGE_INDEX.md`
 
 ### Layer C — Founder directives and execution control
 This includes the founder-issued directives that define execution or verification expectations.
 Examples include:
-- `CODEX_TEAM_DIRECTIVE_2026-03-08.md`
-- `CODEX_PARALLEL_EXECUTION_AND_VALIDATION_DIRECTIVE_2026-03-08.md`
-- `FOUNDER_PHASE2_EXECUTION_DIRECTIVE_2026-03-08.md`
-- `FOUNDER_FINAL_VALIDATION_AND_CLOSURE_DIRECTIVE_2026-03-08.md`
-- `FOUNDER_BACKBONE_REVIEW_AND_NEXT_DIRECTIVE_2026-03-08.md`
-- `FOUNDER_EXECUTION_AUDIT_AND_DOCUMENT_GOVERNANCE_DIRECTIVE_2026-03-09.md`
-- `FOUNDER_GROUP_A_*`
-- `FOUNDER_GROUP_B_*`
-- `FOUNDER_GROUP_C_*`
-- `FOUNDER_GROUP_D_*`
-- `FOUNDER_GROUP_E_*`
+- `Document file/CODEX_TEAM_DIRECTIVE_2026-03-08.md`
+- `Document file/CODEX_PARALLEL_EXECUTION_AND_VALIDATION_DIRECTIVE_2026-03-08.md`
+- `Document file/FOUNDER_PHASE2_EXECUTION_DIRECTIVE_2026-03-08.md`
+- `Document file/FOUNDER_FINAL_VALIDATION_AND_CLOSURE_DIRECTIVE_2026-03-08.md`
+- `Document file/FOUNDER_BACKBONE_REVIEW_AND_NEXT_DIRECTIVE_2026-03-08.md`
+- `Document file/FOUNDER_EXECUTION_AUDIT_AND_DOCUMENT_GOVERNANCE_DIRECTIVE_2026-03-09.md`
+- `Document file/FOUNDER_GROUP_A_*`
+- `Document file/FOUNDER_GROUP_B_*`
+- `Document file/FOUNDER_GROUP_C_*`
+- `Document file/FOUNDER_GROUP_D_*`
+- `Document file/FOUNDER_GROUP_E_*`
 
 ### Layer D — Team-facing templates and structured report formats
 Examples:
-- `CUMULATIVE_EXECUTION_AND_VERIFICATION_REPORT_TEMPLATE.md`
-- `IMPLEMENTATION_EXECUTION_REPORT_GROUP_A_TEMPLATE.md`
-- `IMPLEMENTATION_EXECUTION_REPORT_GROUP_B_TEMPLATE.md`
-- `IMPLEMENTATION_EXECUTION_REPORT_GROUP_C_TEMPLATE.md`
-- `IMPLEMENTATION_EXECUTION_REPORT_GROUP_D_TEMPLATE.md`
-- `IMPLEMENTATION_EXECUTION_REPORT_GROUP_E_TEMPLATE.md`
-- `EXTERNAL_VERIFICATION_TEAM_FULL_PLATFORM_AUDIT_REPORT_TEMPLATE.md`
+- `Document file/CUMULATIVE_EXECUTION_AND_VERIFICATION_REPORT_TEMPLATE.md`
+- `Document file/IMPLEMENTATION_EXECUTION_REPORT_GROUP_A_TEMPLATE.md`
+- `Document file/IMPLEMENTATION_EXECUTION_REPORT_GROUP_B_TEMPLATE.md`
+- `Document file/IMPLEMENTATION_EXECUTION_REPORT_GROUP_C_TEMPLATE.md`
+- `Document file/IMPLEMENTATION_EXECUTION_REPORT_GROUP_D_TEMPLATE.md`
+- `Document file/IMPLEMENTATION_EXECUTION_REPORT_GROUP_E_TEMPLATE.md`
+- `Document file/EXTERNAL_VERIFICATION_TEAM_FULL_PLATFORM_AUDIT_REPORT_TEMPLATE.md`
 
 ### Layer E — Verification and evidence outputs
 Examples:
@@ -275,7 +283,7 @@ When the Document Package is sent to the development team, they are expected to:
 
 ---
 
-## 9. Operating Cycle of the Project
+## 10. Operating Cycle of the Project
 This project is governed in a recurring loop:
 
 1. Founder sends the Document Package to the verification team.
@@ -293,7 +301,7 @@ This loop continues until the platform reaches the required confidence and closu
 
 ---
 
-## 10. Synchronization Rule
+## 11. Synchronization Rule
 Whenever any major new finding appears from:
 - development implementation,
 - external verification,
@@ -312,7 +320,7 @@ No critical execution truth should remain outside the package.
 
 ---
 
-## 11. Report Discipline Rule
+## 12. Report Discipline Rule
 The project must avoid uncontrolled report sprawl.
 
 ### Required principle
@@ -326,7 +334,7 @@ Special reports may still exist, but they must:
 
 ---
 
-## 12. Document Package Hygiene Rules
+## 13. Document Package Hygiene Rules
 The package must always satisfy the following:
 1. stable filenames for current-state documents where possible,
 2. dated historical artifacts only where historically necessary,
@@ -337,56 +345,56 @@ The package must always satisfy the following:
 
 ---
 
-## 13. Required Minimum Files That Must Stay Synchronized
+## 14. Required Minimum Files That Must Stay Synchronized
 The following files are especially critical and must remain aligned:
-- `TEAM_IMPLEMENTATION_GUIDE.md`
-- `development-backlog.yaml`
-- `development-backlog-recovery.yaml`
+- `Document file/TEAM_IMPLEMENTATION_GUIDE.md`
+- `Document file/development-backlog.yaml`
+- `Document file/development-backlog-recovery.yaml`
 - `docs/00-governance/SOURCE_OF_TRUTH.md`
 - `docs/00-governance/CURRENT_PROJECT_STATUS.md`
 - `docs/00-governance/REPORTS_INDEX.md`
 - `docs/02-validation/CUMULATIVE_EXECUTION_AND_VERIFICATION_REPORT.md`
-- the latest active founder directive relevant to the receiving team
-- the latest active verification/report template relevant to that directive
+- the latest active founder directive relevant to the receiving team (located in `Document file/`)
+- the latest active verification/report template relevant to that directive (located in `Document file/`)
 
 ---
 
-## 14. Current External Verification Entry Point
+## 15. Current External Verification Entry Point
 If a new external verification team is engaged, the recommended entry sequence is:
-1. `DOCUMENT_PACKAGE_INDEX.md`
-2. `TEAM_IMPLEMENTATION_GUIDE.md`
+1. `Document file/DOCUMENT_PACKAGE_INDEX.md`
+2. `Document file/TEAM_IMPLEMENTATION_GUIDE.md`
 3. `docs/00-governance/SOURCE_OF_TRUTH.md`
 4. `docs/00-governance/CURRENT_PROJECT_STATUS.md`
 5. `docs/02-validation/CUMULATIVE_EXECUTION_AND_VERIFICATION_REPORT.md`
-6. `EXTERNAL_VERIFICATION_TEAM_FULL_PLATFORM_AUDIT_AND_VERIFICATION_DIRECTIVE_2026-03-12.md`
-7. `EXTERNAL_VERIFICATION_TEAM_FULL_PLATFORM_AUDIT_REPORT_TEMPLATE.md`
-8. `SOURCE_EXPANSION_POLICY_AND_CANDIDATES_2026-03-10.md`
+6. `Document file/EXTERNAL_VERIFICATION_TEAM_FULL_PLATFORM_AUDIT_AND_VERIFICATION_DIRECTIVE_2026-03-12.md`
+7. `Document file/EXTERNAL_VERIFICATION_TEAM_FULL_PLATFORM_AUDIT_REPORT_TEMPLATE.md`
+8. `Document file/SOURCE_EXPANSION_POLICY_AND_CANDIDATES_2026-03-10.md`
 
 ---
 
-## 15. Current Development Execution Entry Point
+## 16. Current Development Execution Entry Point
 If the development team is the receiving side, the recommended entry sequence is:
-1. `DOCUMENT_PACKAGE_INDEX.md`
-2. `TEAM_IMPLEMENTATION_GUIDE.md`
+1. `Document file/DOCUMENT_PACKAGE_INDEX.md`
+2. `Document file/TEAM_IMPLEMENTATION_GUIDE.md`
 3. `docs/00-governance/CURRENT_PROJECT_STATUS.md`
 4. `docs/02-validation/CUMULATIVE_EXECUTION_AND_VERIFICATION_REPORT.md`
-5. the latest active founder group directive
-6. the matching implementation execution report template
+5. the latest active founder group directive (located in `Document file/`)
+6. the matching implementation execution report template (located in `Document file/`)
 7. any linked verification reports that justify the directive
 
 ---
 
-## 16. Founder-Level Enforcement Rule
+## 17. Founder-Level Enforcement Rule
 If a team performs work but does not reflect it properly into the Document Package, the work should be treated as incomplete from a governance and review standpoint.
 
 Code alone is not enough.
 Evidence alone is not enough.
-Reports alone are not enough.
+Reports alone is not enough.
 The full Document Package must remain synchronized.
 
 ---
 
-## 17. Final Position
+## 18. Final Position
 The Document Package is the operational memory of the project.
 It is the medium through which:
 - strategy becomes execution,

@@ -1,13 +1,60 @@
+# Dependencies
 node_modules/
-dist/
+.pnpm-store/
+
+# Next.js
 .next/
 .next-build/
-.prisma/
-.env*
-!.env.local.example
-!.env.example
+out/
+build/
+dist/
+
+# Production
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Local env files
+.env
+.env*.local
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Vercel
+.vercel
+
+# TypeScript
+*.tsbuildinfo
+next-env.d.ts
+
+# Database & Data
 uploads/
-artifacts/_next_dev_log.txt
-dev.db
+data/
+*.db
+*.db-journal
 prisma/dev.db
-prisma/dev.db-journal
+prisma/migrations/
+
+# Artifacts & Logs
+artifacts/
+.playwright-mcp/
+tmp_*.js
+*.png
+e2e_lifecycle_proof.json
+hnsw_eval_output.txt
+retrieval_explain.txt
+structure.txt
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
