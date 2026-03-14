@@ -4,13 +4,34 @@ import prisma from '../../../../lib/prisma'
 import type { ReferenceDetailResponse, VerificationDecisionPayload } from '../../../../lib/contracts/api'
 import { applyReferenceVerificationDecision } from '../../../../lib/services/verificationService'
 import logger from '../../../../lib/logger'
+import { z } from 'zod'
+
+// Schema for route parameters (e.g., /api/admin/reference/123)
+const ParamsSchema = z.object({
+  id: z.string().min(1, 'ID is required'),
+})
+
+// Schema for PATCH request body
+const PatchBodySchema = z.object({
+  decision: z.enum(['approved', 'rejected'], { 
+    errorMap: () => ({ message: 'Decision must be either "approved" or "rejected"' }) 
+  }),
+  reason: z.string().optional(),
+})
 
 async function handler(req: NextApiRequest, res: NextApiResponse, session?: any) {
-  const { id } = req.query
-  if (!id || Array.isArray(id)) return res.status(400).json({ error: 'invalid id' })
+  // 1. Validate Route Parameters
+  const paramsValidation = ParamsSchema.safeParse(req.query)
+  if (!paramsValidation.success) {
+    return res.status(400).json({ 
+      error: 'Invalid request parameters', 
+      details: paramsValidation.error.errors 
+    })
+  }
+  const { id } = paramsValidation.data
 
   if (req.method === 'GET') {
-    const ref = await prisma.reference.findUnique({ where: { id: String(id) } })
+    const ref = await prisma.reference.findUnique({ where: { id } })
     if (!ref) return res.status(404).json({ error: 'not found' })
     const payload: ReferenceDetailResponse = {
       ...ref,
@@ -21,19 +42,25 @@ async function handler(req: NextApiRequest, res: NextApiResponse, session?: any)
   }
 
   if (req.method === 'PATCH') {
-    const body = req.body as VerificationDecisionPayload
-    if (!body.decision || (body.decision !== 'approved' && body.decision !== 'rejected')) {
-      return res.status(400).json({ error: 'invalid decision' })
+    // 2. Validate Request Body for PATCH
+    const bodyValidation = PatchBodySchema.safeParse(req.body)
+    if (!bodyValidation.success) {
+      return res.status(400).json({ 
+        error: 'Invalid request body', 
+        details: bodyValidation.error.errors 
+      })
     }
+    const body = bodyValidation.data
+
     try {
       const status = await applyReferenceVerificationDecision(
         prisma as any,
-        String(id),
+        id,
         String(session?.user?.id),
-        body
+        body as VerificationDecisionPayload
       )
       if (status === 'conflict') return res.status(409).json({ error: 'state conflict' })
-      const ref = await prisma.reference.findUnique({ where: { id: String(id) } })
+      const ref = await prisma.reference.findUnique({ where: { id } })
       if (!ref) return res.status(404).json({ error: 'not found' })
       const payload: ReferenceDetailResponse = {
         ...ref,

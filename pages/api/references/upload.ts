@@ -8,6 +8,7 @@ import logger from '../../../lib/logger'
 import { enforceCsrfForMutation, enforceRateLimit, setSecurityHeaders } from '../../../lib/apiSecurity'
 import { computeContentHash } from '../../../lib/hash'
 import { deriveSourceIdentifiers } from '../../../lib/sourceIdentifiers'
+import { z } from 'zod'
 
 export const config = {
   api: {
@@ -15,10 +16,26 @@ export const config = {
   },
 }
 
+// Schema for validating form fields
+const UploadFieldsSchema = z.object({
+  deviceId: z.string().min(1, 'Device ID is required'),
+  sourceUrl: z.string().url().optional().or(z.literal('')),
+  sourceName: z.string().optional(),
+  sourceId: z.string().optional(),
+  title: z.string().optional(),
+})
+
+// Schema for validating uploaded file properties
+const UploadedFileSchema = z.object({
+  mimetype: z.literal('application/pdf', { errorMap: () => ({ message: 'Only application/pdf is accepted' }) }),
+  size: z.number().min(1, 'File size must be greater than 0').max(25 * 1024 * 1024, 'File size must be less than 25MB'),
+})
+
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   setSecurityHeaders(res)
-  if (!enforceRateLimit(req, res, 'references-upload', 60_000, 45)) return
-  if (!enforceCsrfForMutation(req, res)) return
+  // Note: enforceRateLimit and enforceCsrfForMutation are now async
+  if (!(await enforceRateLimit(req, res, 'references-upload', 60_000, 45))) return
+  if (!(await enforceCsrfForMutation(req, res))) return
   if (req.method !== 'POST') return res.status(405).end()
 
   const form = formidable({ multiples: false })
@@ -29,26 +46,35 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           res.status(500).json({ error: 'Upload error' })
           return resolve()
         }
-        const deviceId = fields.deviceId as string
-        if (!deviceId) {
-          res.status(400).json({ error: 'deviceId required' })
+
+        // 1. Validate Fields
+        const fieldsValidation = UploadFieldsSchema.safeParse(fields)
+        if (!fieldsValidation.success) {
+          res.status(400).json({ 
+            error: 'Invalid form fields', 
+            details: fieldsValidation.error.errors 
+          })
           return resolve()
         }
+        const { deviceId, sourceUrl, sourceName, sourceId, title } = fieldsValidation.data
 
+        // 2. Validate File
         const file = files.file as any
         if (!file) {
           res.status(400).json({ error: 'file required' })
           return resolve()
         }
+        
+        const fileValidation = UploadedFileSchema.safeParse({
+          mimetype: file.mimetype,
+          size: file.size,
+        })
 
-        const maxBytes = 25 * 1024 * 1024
-        const mimeType = String(file.mimetype || '').toLowerCase()
-        if (mimeType !== 'application/pdf') {
-          res.status(400).json({ error: 'only application/pdf is accepted' })
-          return resolve()
-        }
-        if (Number(file.size || 0) <= 0 || Number(file.size || 0) > maxBytes) {
-          res.status(400).json({ error: 'file size must be between 1B and 25MB' })
+        if (!fileValidation.success) {
+          res.status(400).json({ 
+            error: 'Invalid file', 
+            details: fileValidation.error.errors 
+          })
           return resolve()
         }
 
@@ -70,14 +96,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         if (!fs.existsSync(uploadsDir)) fs.mkdirSync(uploadsDir)
         const filename = `ref_upload_${Date.now()}.pdf`
 
-        const sourceUrl = (fields.sourceUrl as string) || null
-        const sourceName = (fields.sourceName as string) || null
-        const sourceId = (fields.sourceId as string) || null
         const identifiers = deriveSourceIdentifiers({
-          sourceUrl,
-          sourceName,
-          sourceId,
-          title: (fields.title as string) || filename,
+          sourceUrl: sourceUrl || null,
+          sourceName: sourceName || null,
+          sourceId: sourceId || null,
+          title: title || filename,
         })
 
         const identifierOr = [
@@ -114,7 +137,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         const ref = await prisma.reference.create({
           data: {
             deviceId,
-            title: (fields.title as string) || filename,
+            title: title || filename,
             filePath: null,
             pageCount: pages.length,
             parsedText: text.substring(0, 2000),

@@ -3,12 +3,34 @@ import { withAdminAuth } from '../../../../lib/adminAuth'
 import prisma from '../../../../lib/prisma'
 import { computeContentHash } from '../../../../lib/hash'
 import { deriveSourceIdentifiers } from '../../../../lib/sourceIdentifiers'
+import { z } from 'zod'
+
+// Define the validation schema for the request body
+const ImportBodySchema = z.object({
+  deviceId: z.number().int().positive('Device ID must be a positive integer'),
+  pmid: z.string().min(1, 'PMID is required'),
+  title: z.string().min(1, 'Title is required'),
+  authors: z.string().optional(),
+  pubDate: z.string().optional(), // Expecting ISO date string
+  sourceUrl: z.string().url().optional().or(z.literal(''))
+})
 
 async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method !== 'POST') return res.status(405).end()
 
-  const { deviceId, pmid, title, authors, pubDate, sourceUrl } = req.body
-  if (!deviceId || !pmid || !title) return res.status(400).json({ error: 'missing fields' })
+  // Validate request body against the schema
+  const validationResult = ImportBodySchema.safeParse(req.body)
+
+  if (!validationResult.success) {
+    // If validation fails, return 400 Bad Request with error details
+    return res.status(400).json({ 
+      error: 'Invalid request body', 
+      details: validationResult.error.errors 
+    })
+  }
+
+  // Extract validated data
+  const { deviceId, pmid, title, authors, pubDate, sourceUrl } = validationResult.data
 
   try {
     const contentHash = computeContentHash(`pubmed:${pmid}:${title}`)
