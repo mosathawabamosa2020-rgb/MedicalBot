@@ -8,6 +8,7 @@ import { enforceCsrfForMutation, enforceRateLimit, setSecurityHeaders } from '..
 import logger from '../../../../lib/logger'
 import { computeContentHash } from '../../../../lib/hash'
 import { deriveSourceIdentifiers } from '../../../../lib/sourceIdentifiers'
+import { getServerSession } from 'next-auth/next'
 
 const BLOCKED_PROTOCOLS = new Set(['file:', 'ftp:', 'gopher:'])
 const BLOCKED_HOSTS = new Set([
@@ -64,10 +65,27 @@ function scoreSource(url: string) {
 }
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+  // 1. Security Headers & Rate Limiting
   setSecurityHeaders(res)
-  if (!enforceRateLimit(req, res, 'discovery-ingest', 60_000, 30)) return
-  if (!enforceCsrfForMutation(req, res)) return
+  if (!(await enforceRateLimit(req, res, 'discovery-ingest', 60_000, 30))) return
+  if (!(await enforceCsrfForMutation(req, res))) return
+
+  // 2. Authentication & Authorization Check
+  const session = await getServerSession(req, res)
+  if (!session || !session.user) {
+    // Return 401 Unauthorized for missing credentials (standard HTTP semantics)
+    return res.status(401).json({ error: 'Authentication required' })
+  }
+
+  const userRole = session.user.role
+  if (userRole !== 'ADMIN' && userRole !== 'REVIEWER') {
+    // Return 403 Forbidden for authenticated but unauthorized users
+    return res.status(403).json({ error: 'Insufficient permissions' })
+  }
+
+  // 3. Request Method Validation
   if (req.method !== 'POST') return res.status(405).end()
+
   const { url, deviceId, title } = req.body as { url?: string; deviceId?: string; title?: string }
   if (!url || !deviceId) return res.status(400).json({ error: 'url and deviceId required' })
 

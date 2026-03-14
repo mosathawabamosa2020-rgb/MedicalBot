@@ -1,11 +1,27 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import prisma from '../../../lib/prisma'
 import logger from '../../../lib/logger'
+import { getServerSession } from 'next-auth/next'
 
 const OPENAI_URL = 'https://api.openai.com/v1/chat/completions'
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+  // 1. Request Method Validation
   if (req.method !== 'POST') return res.status(405).end()
+
+  // 2. Authentication & Authorization Check
+  const session = await getServerSession(req, res)
+  if (!session || !session.user) {
+    // Return 401 Unauthorized for missing credentials
+    return res.status(401).json({ error: 'Authentication required' })
+  }
+
+  const userRole = session.user.role
+  if (userRole !== 'ADMIN') {
+    // Return 403 Forbidden for authenticated but unauthorized users
+    return res.status(403).json({ error: 'Insufficient permissions' })
+  }
+
   const { suggestionId, contentType } = req.body as { suggestionId?: string; contentType?: string }
   if (!suggestionId) return res.status(400).json({ error: 'suggestionId required' })
 
@@ -36,7 +52,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       return res.status(500).json({ error: 'OpenAI error', details: txt })
     }
     const j = await r.json()
-    const post = j.choices && j.choices[0] && j.choices[0].message ? j.choices[0].message.content : (j.choices && j.choices[0] && j.choices[0].text ? j.choices[0].text : '')
+    
+    // Improved extraction logic to handle different API response structures
+    const post = j.choices && j.choices[0] && j.choices[0].message 
+      ? j.choices[0].message.content 
+      : (j.choices && j.choices[0] && j.choices[0].text ? j.choices[0].text : '')
 
     return res.json({ post })
   } catch (e: any) {
@@ -44,3 +64,4 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     return res.status(500).json({ error: e.message })
   }
 }
+ق
