@@ -1,5 +1,5 @@
 // This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
+// learn more about it in docs: https://pris.ly/d/prisma-schema
 
 generator client {
   provider = "prisma-client-js"
@@ -8,7 +8,7 @@ generator client {
 datasource db {
   provider  = "postgresql"
   url       = env("DATABASE_URL")
-  directUrl = env("DATABASE_URL") // This is the new, important line
+  directUrl = env("DATABASE_URL") // This is new, important line
 }
 
 model User {
@@ -93,6 +93,7 @@ model Reference {
   verificationLogs VerificationLog[]
   auditLogs       AuditLog[]
   generatedContentRefs GeneratedContentReference[]
+  embedding        Unsupported("vector")? // Added for semantic retrieval compatibility
 
   @@index([status])
   @@index([uploadedAt])
@@ -125,7 +126,7 @@ model KnowledgeChunk {
   content     String                 @db.Text
   category    String
   pageNumber  Int
-  embedding   Unsupported("vector")?
+  embedding   Unsupported("vector")? // Added for semantic retrieval compatibility
   createdAt   DateTime               @default(now())
 }
 
@@ -300,7 +301,7 @@ model Section {
   title       String
   content     String        @db.Text
   order       Int
-  embedding   Unsupported("vector")?
+  embedding   Unsupported("vector")? // Added for semantic retrieval compatibility
   createdAt   DateTime      @default(now())
 }
 
