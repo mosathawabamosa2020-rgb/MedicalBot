@@ -55,7 +55,8 @@ export async function runScraper(input: string) {
       if (/^User-agent:\s*\*/i.test(l)) { inStar = true; continue }
       if (/^User-agent:/i.test(l) && inStar) break
       if (inStar && /^Disallow:/i.test(l)) {
-        const p = l.split(':')[1].trim()
+        // FIX 1: Handle potentially undefined split result
+        const p = l.split(':')[1]?.trim() || ''
         disallows.push(p)
       }
     }
@@ -74,7 +75,8 @@ export async function runScraper(input: string) {
     try {
       const data = await pdf(buffer)
       const text = data.text || ''
-      const pages = text.split('\f').map(p => p.trim()).filter(Boolean)
+      // FIX 2: Explicitly type 'p' as string
+      const pages = text.split('\f').map((p: string) => p.trim()).filter(Boolean)
       const apiKey = process.env.OPENAI_API_KEY
       if (!apiKey) throw new Error('OPENAI_API_KEY missing')
       for (let i = 0; i < pages.length; i++) {
@@ -114,7 +116,8 @@ export async function runScraper(input: string) {
     try {
       const data = await pdf(buffer)
       const text = data.text || ''
-      let pages = text.split('\f').map(p => p.trim()).filter(Boolean)
+      // FIX 3: Explicitly type 'p' as string
+      let pages = text.split('\f').map((p: string) => p.trim()).filter(Boolean)
       // If pdf-parse yields no text, use OCR.space as a fallback (requires OCR_SPACE_API_KEY)
       if (!pages.length) {
         try {
@@ -122,7 +125,8 @@ export async function runScraper(input: string) {
           const ocrText = await ocrSpaceParse(buffer)
           try { logger.info({ referenceId, ocrTextSample: (ocrText||'').slice(0,200) }) } catch (e) { }
           if (ocrText && ocrText.trim().length) {
-            pages = ocrText.split('\f').map(p => p.trim()).filter(Boolean)
+            // FIX 4: Explicitly type 'p' as string
+            pages = ocrText.split('\f').map((p: string) => p.trim()).filter(Boolean)
           }
         } catch (e) { /* ignore OCR errors */ }
       }
@@ -159,7 +163,8 @@ export async function runScraper(input: string) {
         const pageNumber = i + 1
         const pageText = pages[i]
         // split into paragraphs by two or more newlines
-        const paragraphs = pageText.split(/\n{2,}/).map(p => p.trim()).filter(Boolean)
+        // FIX 5: Explicitly type 'p' as string
+        const paragraphs = pageText.split(/\n{2,}/).map((p: string) => p.trim()).filter(Boolean)
         for (const para of paragraphs) {
           // classify via OpenAI
           let category = 'Other'
